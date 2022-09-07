@@ -1,0 +1,111 @@
+.container{
+  background:hsl(220, 73%, 25%);
+  position:absolute;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  left:0px;
+}
+
+.h1{
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 100px;
+    font-size: 25px;
+    line-height: 80px;
+    color: rgba(255, 255, 255, 0.87);
+    Fill: Solid
+rgba(255, 255, 255, 0.87)
+
+
+}
+
+.campos{
+position: absolute;
+width: 300px;
+height: 45px;
+left: 570px;
+top: 467px;
+
+}
+
+.containerbt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* log */
+.log{
+position: absolute;
+width: 443px;
+height: 147px;
+left: 498px;
+top: 166px;
+}
+
+
+
+.btn{
+    background-color: #215c9c;
+    width: 200px;
+    height: 15px;
+    /* filter: drop-shadow(7px 7px 20px rgba(0, 3, 20, 0.25)); */
+    /* border-radius: 5px;
+    border: none;
+    padding: 0.42em;
+    box-shadow: 0px 0px 10px rgba(0, 0, 2, 0.384);
+    margin-top: 1.5em;
+    font-size:60%; */
+
+}
+.btnsubmit{
+  background-color: #0d3178;
+    width: 70px;
+    height: 20px;
+}
+
+.botao{
+  border-radius: 5px;
+    border: none;
+    padding: 0.42em;
+    box-shadow: 0px 0px 10px rgba(0, 0, 2, 0.384);
+    margin-top: 1.5em;
+    font-size:60%;
+
+}
+
+
+/* .check{
+    background-color: #125194;
+} */
+
+ input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+::-webkit-input-placeholder{
+    color: rgba(222, 225, 228, 0.952);
+    font-weight: bold;
+    font-size: 87%;
+  }
+
+  input{
+    color: antiquewhite;
+  }
+
+  /* p{
+    color:#FFFF;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 8px;
+    line-height: 17px;
+identical to box height
+    text-align: center;
+  } */
+
+
+
