@@ -3,6 +3,7 @@ import './style.css';
 
 
 
+
 export const Login = () =>{
     const [matricula,SetEmail] = useState('');
     const [password,SetPassword] = useState('');
@@ -10,22 +11,23 @@ export const Login = () =>{
 
     return(
         <div className="container">
-           <h1 className='h1'>Entrar</h1>
+           <h1 className='titulo'>Entrar</h1>
             <div className="containerbt">
 
             <input type="text" 
             className='btn botao' 
             placeholder='Matricula '
-            value={matricula}
+            // value={matricula}
            />
             <input type="Password" 
             className='btn botao' 
             placeholder='Senha '
-            value={password}
+            // value={password}
             />
             <input type="submit" 
             className="btnsubmit botao"
              />
+             
             {/* <input type="checkbox" 
             name="remember" 
             id="remember"
