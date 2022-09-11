@@ -1,113 +1,114 @@
-.container{
-    background:hsl(220, 73%, 25%);
-    position:absolute;
-    top:0px;
-    right:0px;
-    bottom:0px;
-    left:0px;
+
+*{
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Pappins" ,  sans-serif;
+}
+
+body{
+  background-color:#0B2D72 ;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  min-width: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  /* linear-grandient(45deg, hsl(220, 73%, 25%) , #4a08e0) ; */
+}
+
+main.container{
+  background-color:#0B2D72;
+  max-width: 400px;
+  min-height: 40vh;
+  padding: 2rem;
+/* background-color: red; */
+
+  
+}
+  .logo{
+    margin-top: 0%;
   }
-  
-  .titulo{
-      font-family: 'Lexend Deca';
-      font-style: normal;
-      font-weight: 100px;
-      font-size: 25px;
-      line-height: 80px;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.87);
-      Fill: Solid
-  rgba(255, 255, 255, 0.87)
-  
-  
-  }
-  
-  .campos{
+
+main h1{
+  /* font-weight: 600px; */
+  margin-top: 1rem;
+  position: relative;
+  color: white;
+  text-align: center;
+  top: 0%;
+
+}
+
+main h1::before{
+  content: '';
   position: absolute;
-  width: 300px;
-  height: 45px;
-  left: 570px;
-  top: 467px;
+  height: 5px;
+  width: 37px;
+  bottom: 1px;
+  /* left: 0; */
+  text-align: center;
+  border-radius:4px ;
+  background-color: #010511c5;
+}
+
+.input-field{
+  position: relative;
+
+}
+
+form .input-field:first-child{
+  margin-bottom: 1.2rem;
+  margin-top: 2.4rem;
+}
+
+
+.input-field input{
+  outline: none;
+  font-size: 1.2em; 
+  height: 2.0rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 2, 0.384);
+  border-radius: 4px;
+  background-color: #3375BA;
+  color: rgb(253, 253, 253);
+  padding-left: 0.2rem;
   
+  
+}
+
+.input-field input::placeholder{
+  color: #ffff;
+  padding-left: 0.3em;
+  font-size: 1rem;
+}
+
+form input[type="button"]{
+  margin-top: 2rem;
+  padding: 0.4rem;
+  background-color: #1b69de8a;
+  cursor: pointer;
+  color: aliceblue;
+  font-size: 1rem;
+  font-weight: 300;
+  border-radius: 4px;
+  transition: all 0.3 ease ;
+  width: 242px;
   }
-  
-  .containerbt{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+  form{
+    display: flex;
+    flex-direction: column;
   }
-  
-  /* log */
-  .log{
-  position: absolute;
-  width: 443px;
-  height: 147px;
-  left: 498px;
-  top: 166px;
+
+  form input[type="button"]:hover{
+    letter-spacing: 0.5px;
+   background-color: hsl(221, 79%, 17%);
   }
-  
-  
-  
-  .btn{
-      background-color: #215c9c;
-      width: 200px;
-      height: 15px;
-      /* filter: drop-shadow(7px 7px 20px rgba(0, 3, 20, 0.25)); */
-      /* border-radius: 5px;
-      border: none;
-      padding: 0.42em;
-      box-shadow: 0px 0px 10px rgba(0, 0, 2, 0.384);
-      margin-top: 1.5em;
-      font-size:60%; */
-  
-  }
-  .btnsubmit{
-    background-color: #0d3178;
-      width: 70px;
-      height: 20px;
-  }
-  
-  .botao{
-    border-radius: 5px;
-      border: none;
-      padding: 0.42em;
-      box-shadow: 0px 0px 10px rgba(0, 0, 2, 0.384);
-      margin-top: 1.5em;
-      font-size:60%;
-  
-  }
-  
-  
-  /* .check{
-      background-color: #125194;
-  } */
-  
-   input:focus {
-      box-shadow: 0 0 0 0;
-      outline: 0;
-  }
-  
-  ::-webkit-input-placeholder{
-      color: rgba(222, 225, 228, 0.952);
-      font-weight: bold;
-      font-size: 87%;
-    }
-  
-    input{
-      color: antiquewhite;
-    }
-  
-    /* p{
-      color:#FFFF;
-      font-family: 'Montserrat';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 8px;
-      line-height: 17px;
-  identical to box height
-      text-align: center;
-    } */
-  
-  
-  
+
+
+
+
+
+
   

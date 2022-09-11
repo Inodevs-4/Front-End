@@ -5,6 +5,7 @@ import Cadastro from "./pages/Cadastro_Hora/index";
 
 
 
+
 export const App = () => {
   return (
     <BrowserRouter>
