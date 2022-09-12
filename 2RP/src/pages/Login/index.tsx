@@ -17,7 +17,7 @@ export const Login = () =>{
         </div>
       <main className="container">
       <img src="https://www.2rpnet.com.br/assets/images/2rp-net.svg" alt="logo" />
-        <h1>Entrar</h1>
+        <h1>Entrar:</h1>
             <form action="">
               <div className="input-field">
                 <input type="text" name="username" id="username"
