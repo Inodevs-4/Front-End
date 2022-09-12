@@ -17,17 +17,17 @@ export const Login = () =>{
         </div>
       <main className="container">
       <img src="https://www.2rpnet.com.br/assets/images/2rp-net.svg" alt="logo" />
-        <h1>Login</h1>
+        <h1>Entrar</h1>
             <form action="">
               <div className="input-field">
                 <input type="text" name="username" id="username"
-                placeholder="Matricula"/>
+                placeholder="Usuário: "/>
                 <div className="underline"></div>
               </div>
                
                 <div className="input-field">
                 <input type="password" name="password" id="password"
-                placeholder="Senha"/>
+                placeholder="Senha: "/>
                 <div className="underline"></div>
               </div>
               <a href="/pagina-inicial">
