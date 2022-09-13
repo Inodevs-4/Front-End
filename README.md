@@ -1,4 +1,6 @@
-# 📌 Manual de Instalação
+<h2 align="center"> 
+📌 Manual de Instalação
+</h2>
 
 ## Getting Started with Create React App
 
