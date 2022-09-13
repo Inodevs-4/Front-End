@@ -1,1 +1,1 @@
-## Manual de instalação
+## 👉 Manual de instalação
