@@ -16,7 +16,7 @@ export const Etapa3Form = () => {
     }, []);
 
     const handleNextStep = () => {
-        if(state.cliente !== '' && state.projeto !== '' && state.gestor !== ''){
+        if(state.projeto !== '' && state.gestor !== ''){
             console.log(state);
         }
         else{
@@ -32,9 +32,9 @@ export const Etapa3Form = () => {
         });
     }
     
-    const handleClientChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleObsChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         dispatch({
-            type: FormActions.setCliente,
+            type: FormActions.setObservacoes,
             payload: e.target.value
         });
     }
@@ -65,16 +65,15 @@ export const Etapa3Form = () => {
                     />
                     <label htmlFor="floatingInput">Nome do Projeto</label>
                 </div>
-                <div className="form-floating mb-3">
-                    <input type="text" 
-                    className="form-control" 
-                    id="floatingInput2" 
-                    value={state.cliente}
-                    onChange={handleClientChange}
-                    placeholder="Nome do Cliente"
-                    />
-                    <label htmlFor="floatingInput2">Nome do Cliente</label>
-                </div>
+                
+                <div className="input-group">
+                    <textarea className="form-control" aria-label="With textarea"
+                    value={state.observacoes}
+                    onChangeCapture={handleObsChange}
+                    
+                    placeholder="Observações"></textarea>
+                </div>  
+                <p></p>
                 <div className="form-floating mb-3">
                     <input type="text" 
                     className="form-control" 

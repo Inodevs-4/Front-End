@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const Area = styled.div`
     margin: auto;
-    width: 780px;
+    width: 1000px;
     height: 80vh;
     display: flex;
     flex-direction: column;

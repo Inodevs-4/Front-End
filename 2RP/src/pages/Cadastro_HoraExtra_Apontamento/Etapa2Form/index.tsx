@@ -30,11 +30,16 @@ export const Etapa2Form = () => {
 
     const handleDateEndsChange = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch({
-            type: FormActions.setDataInicio,
+            type: FormActions.setDataFim,
             payload: e.target.value
         })
     }
-
+    const handleColaboratorChange = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch({
+            type: FormActions.setColaborador,
+            payload: e.target.value
+        });
+    }
     const handleNextStep = () => {
         if(state.data_inicio === '' || state.data_fim === ''){
             alert("Preencha todos os campos")
@@ -55,8 +60,17 @@ export const Etapa2Form = () => {
             <C.Container>
                 <h4>Passo 2/3</h4>
                 <p>Defina  a data de inicio e fim e horário</p>
-                <p>{state.data_inicio}</p>
                <hr/>
+               <div className="form-floating mb-3">
+                    <input type="text" 
+                    className="form-control" 
+                    id="floatingInput4" 
+                    value={state.colaborador}
+                    onChange={handleColaboratorChange}
+                    placeholder="Nome do Cliente"
+                    />
+                    <label htmlFor="floatingInput4">Nome do Colaborador</label>
+                </div>
                <p>Inicio </p>
                 <input type="datetime-local" name="" id="" onChange={handleDateStartsChange}/>
                 <hr />

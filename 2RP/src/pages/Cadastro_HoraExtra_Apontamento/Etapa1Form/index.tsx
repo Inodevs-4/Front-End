@@ -33,12 +33,7 @@ export const Etapa1Form = () => {
             alert("Selecione a modalidade");
         }
     }
-    const setLevel = (level: number) => {
-        dispatch({
-            type: FormActions.setLevel,
-            payload: level
-        })
-    }
+
 
     return (
         <Theme>

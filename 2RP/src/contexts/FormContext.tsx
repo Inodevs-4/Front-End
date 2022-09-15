@@ -4,11 +4,11 @@ import { createContext, ReactNode, useContext, useReducer } from 'react'
 type State = {
     currentStep: number;
     modalidade: string;
-    level: 0 | 1 | 2;
+    colaborador: string;
     gestor: string;
     data_inicio: string;
     data_fim: string; 
-    cliente: string;
+    observacoes: string;
     projeto: string;
 }
 
@@ -29,11 +29,11 @@ type FormProviderProps = {
 const initialData: State = {
     currentStep: 0,
     modalidade: '',
-    level: 0,
+    colaborador: '',
     gestor: '',
     data_inicio: '',
     data_fim: '',
-    cliente: '',
+    observacoes: '',
     projeto: ''
 }
 
@@ -44,11 +44,11 @@ const FormContext = createContext<ContextType | undefined>(undefined);
 export enum FormActions {
     setCurrentStep,
     setModalidade,
-    setLevel,
+    setColaborador,
     setGestor,
     setDataInicio,
     setDataFim,
-    setCliente,
+    setObservacoes,
     setProjeto
 }
 
@@ -58,16 +58,16 @@ const formReducer = (state: State, action: Action) => {
             return{...state, currentStep: action.payload };
         case FormActions.setModalidade:
             return{...state, modalidade: action.payload };
-        case FormActions.setLevel:
-            return{...state, level: action.payload };
+        case FormActions.setColaborador:
+            return{...state, colaborador: action.payload };
         case FormActions.setGestor:
             return{...state, gestor: action.payload };
         case FormActions.setDataInicio:
             return{...state, data_inicio: action.payload };
         case FormActions.setDataFim:
             return{...state, data_fim: action.payload };
-        case FormActions.setCliente:
-            return{...state, cliente: action.payload};
+        case FormActions.setObservacoes:
+            return{...state, observacoes: action.payload};
         case FormActions.setProjeto:
             return{...state, projeto: action.payload};
         default:

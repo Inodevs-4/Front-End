@@ -3,6 +3,12 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
+
+label {
+    color: gray;
+    font-wight: bold;
+}
+
 p {
     font-size: 20px;
     color: #B8B8D4;

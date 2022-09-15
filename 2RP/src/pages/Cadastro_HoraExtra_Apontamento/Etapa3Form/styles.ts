@@ -42,5 +42,7 @@ export const Container = styled.div`
             width: 43em;
             margin: -2px;
         }
-
+        textarea {
+            max-height:105px;
+        }
 `;  
