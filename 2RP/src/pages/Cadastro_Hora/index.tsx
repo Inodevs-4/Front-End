@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles.css";
+import "./syled.css";
 
 const steps = [
   {
@@ -35,7 +35,7 @@ export const Home = () =>{
     setCurrentStep((prevState) => prevState + 1);
   }
 
-  function handleInputChange(x) {
+  function handleInputChange(x: any) {
     const { name, value } = x.target;
 
     setFormValues((prevState) => ({
@@ -44,7 +44,7 @@ export const Home = () =>{
     }));
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e:any) {
     e.preventDefault();
 
     console.log("Form sent...", formValues);

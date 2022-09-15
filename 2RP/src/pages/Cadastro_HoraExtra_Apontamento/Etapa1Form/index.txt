@@ -1,0 +1,55 @@
+import * as C from './styles';
+import { useNavigate } from 'react-router-dom';
+import { Theme } from '../../../components/Theme';
+import { useForm, FormActions } from '../../../contexts/FormContext';
+import { ChangeEvent,useEffect } from 'react';
+import { Link } from "react-router-dom";
+import {useState} from 'react'
+
+
+export const Etapa1Form = () => {
+    const [matricula,SetEmail] = useState('');
+    const [password,SetPassword] = useState('');
+    const navigate = useNavigate();
+    const { state, dispatch } = useForm();
+
+    useEffect(() => {
+        dispatch({
+            type: FormActions.setCurrentStep,
+            payload: 1,
+        });
+    }, []);
+    
+    const handleModalidadeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        dispatch({
+            type: FormActions.setModalidade,
+            payload: e.target.value 
+        });
+    }
+
+    const handleNextStep = () => {
+
+        if (state.modalidade !== '') {
+            navigate("/etapa2")
+        }
+        else {
+            alert("Selecione a modalidade");
+        }
+    }
+    const setLevel = (level: number) => {
+        dispatch({
+            type: FormActions.setLevel,
+            payload: level
+        })
+    }
+
+    return(
+        <div>
+            <p>Alo</p>
+        </div>
+
+
+    )
+}
+
+export default Etapa1Form;
