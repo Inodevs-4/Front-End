@@ -34,7 +34,6 @@ export const Etapa1Form = () => {
         }
     }
 
-
     return (
         <Theme>
             <C.Container>
@@ -46,8 +45,8 @@ export const Etapa1Form = () => {
             <p></p>
             <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleModalidadeChange}>
                 <option selected disabled >Selecione a modalidade</option>
-                <option value="Hora extra" >Hora Extra</option>
-                <option value="Sobreaviso" >Sobreaviso</option>
+                <option value="hora extra" >Hora Extra</option>
+                <option value="sobreaviso" >Sobreaviso</option>
             </select>
                 <button onClick={handleNextStep}> Próximo </button>
             </C.Container>

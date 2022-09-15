@@ -1,12 +1,44 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import * as C from './styles';
 import { useForm, FormActions } from '../../../contexts/FormContext';
 import { Theme } from '../../../components/Theme';
-import { ChangeEvent, useEffect, } from 'react';
+import { ChangeEvent, useEffect, useState, } from 'react';
+import { Colaborador, Projeto } from '../../../types/Types'
 
 export const Etapa3Form = () => {
     const history = useNavigate();
     const { state, dispatch } = useForm();
+
+    const location: any = useLocation()
+
+    const [ projetos, setProjetos ] = useState<Projeto[]>([]);
+    const [ colaborador, setColaborador ] = useState<Colaborador>({});
+
+    useEffect(() => {
+        fetch('http://localhost:5000/selectProjetos', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            setProjetos(data)
+          })
+      }, [])
+
+      useEffect(() => {
+        fetch(`http://localhost:5000/getColaborador/${state.colaborador}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            setColaborador(data)
+          })
+      }, [])
 
     useEffect(() => {
         dispatch({
@@ -16,16 +48,29 @@ export const Etapa3Form = () => {
     }, []);
 
     const handleNextStep = () => {
-        if(state.projeto !== '' && state.gestor !== ''){
-            console.log(state);
-        }
+        if(state.projeto !== '' /*&& state.gestor !== ''*/){
+            console.log(state)
+            fetch('http://localhost:5000/salvarLancamento', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(state),
+              })
+                .then((resp) => resp.json())
+                .then((data) => {
+                  console.log(data)
+                  history('/pagina-inicial')
+                })
+                .catch((err) => console.log(err))
+            }
         else{
             alert("Preencha todos os campos")
         }
         
     }
 
-    const handleProjectChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleProjectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch({
             type: FormActions.setProjeto,
             payload: e.target.value
@@ -45,7 +90,7 @@ export const Etapa3Form = () => {
             payload: e.target.value
         });
     }
-
+    
     return (
         <Theme>
             <C.Container>
@@ -54,17 +99,12 @@ export const Etapa3Form = () => {
 
                 <hr/>
 
-                
-                <div className="form-floating mb-3">
-                    <input type="text" 
-                    className="form-control" 
-                    id="floatingInput" 
-                    value={state.projeto}
-                    onChange={handleProjectChange}
-                    placeholder="Nome do Projeto"
-                    />
-                    <label htmlFor="floatingInput">Nome do Projeto</label>
-                </div>
+                <select name="projeto" id="projeto" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleProjectChange}>
+                    <option disabled selected>Selecione um projeto</option>
+                    {projetos.map((projeto) => (
+                        <option value={projeto.id} key={projeto.id}>{projeto.nome}</option>
+                    ))}
+                </select>
                 
                 <div className="input-group">
                     <textarea className="form-control" aria-label="With textarea"
@@ -76,9 +116,10 @@ export const Etapa3Form = () => {
                 <p></p>
                 <div className="form-floating mb-3">
                     <input type="text" 
+                    disabled
                     className="form-control" 
                     id="floatingInput3" 
-                    value={state.gestor}
+                    value={colaborador.gestor?.nome}
                     onChange={handleGestorChange}
                     placeholder="Nome do Gestor"
                     />

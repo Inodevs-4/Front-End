@@ -2,12 +2,28 @@ import * as C from './styles';
 import { Theme } from '../../../components/Theme';
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm, FormActions } from '../../../contexts/FormContext';
-import { ChangeEvent, useEffect } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { Colaborador } from '../../../types/Types'
 
 export const Etapa2Form = () => {
 
     const history = useNavigate();
     const { state, dispatch } = useForm();
+
+    const [ colaboradores, setColaboradores ] = useState<Colaborador[]>([])
+
+    useEffect(() => {
+        fetch('http://localhost:5000/selectColaboradores', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            setColaboradores(data)
+          })
+      }, [])
 
     useEffect(() => {
         if(state.modalidade === ''){
@@ -34,7 +50,7 @@ export const Etapa2Form = () => {
             payload: e.target.value
         })
     }
-    const handleColaboratorChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleColaboratorChange = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch({
             type: FormActions.setColaborador,
             payload: e.target.value
@@ -61,21 +77,17 @@ export const Etapa2Form = () => {
                 <h4>Passo 2/3</h4>
                 <p>Defina  a data de inicio e fim e horário</p>
                <hr/>
-               <div className="form-floating mb-3">
-                    <input type="text" 
-                    className="form-control" 
-                    id="floatingInput4" 
-                    value={state.colaborador}
-                    onChange={handleColaboratorChange}
-                    placeholder="Nome do Cliente"
-                    />
-                    <label htmlFor="floatingInput4">Nome do Colaborador</label>
-                </div>
+                <select name="colaborador" id="colaborador" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleColaboratorChange}>
+                    <option disabled selected>Selecione um colaborador</option>
+                    {colaboradores.map((colaborador) => (
+                        <option value={colaborador.id} key={colaborador.id}>{colaborador.nome}</option>
+                    ))}
+                </select>
                <p>Inicio </p>
-                <input type="datetime-local" name="" id="" onChange={handleDateStartsChange}/>
+                <input type="datetime-local" name="" id="" onChange={handleDateStartsChange} value={state.data_inicio}/>
                 <hr />
                 <p>Fim </p>
-                <input type="datetime-local" name="" id=""  onChange={handleDateEndsChange}/>
+                <input type="datetime-local" name="" id=""  onChange={handleDateEndsChange} value={state.data_fim}/>
                 <h5>.</h5>
                 <Link to="/etapa1" className='backButton'>Voltar</Link>
 
