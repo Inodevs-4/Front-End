@@ -3,7 +3,7 @@ import { Theme } from '../../../components/Theme';
 import { useNavigate } from 'react-router-dom';
 import { useForm, FormActions } from '../../../contexts/FormContext';
 import { ChangeEvent, useEffect } from 'react';
-
+import Menu from "../../../components/menu";
 
 export const Etapa1Form = () => {
 
@@ -35,7 +35,10 @@ export const Etapa1Form = () => {
     }
 
     return (
+        <div>
+<Menu></Menu>
         <Theme>
+            
             <C.Container>
                 <h4>Passo {state.currentStep}/3</h4>
                 <h1>Modalidade: </h1>
@@ -51,7 +54,7 @@ export const Etapa1Form = () => {
                 <button onClick={handleNextStep}> Próximo </button>
             </C.Container>
         </Theme>
-
+        </div>
     )
 } 
 

@@ -1,0 +1,32 @@
+
+section {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    background: #0B2D72;
+    height: 85px;
+    padding: 14.5px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+    ::selection:last-child{
+      gap: 1rem;
+    }
+
+     img {
+      width: 160px;
+    }
+
+     nav {
+      display: flex;
+      gap: 1rem;
+     }
+      a {
+        font-size: 20px;
+        position: relative;
+      }
+
+       a:hover{
+        width: 100%;
+       }

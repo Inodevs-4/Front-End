@@ -1,22 +1,40 @@
-import { useState} from "react";
-import './style.css';
-import Etapa1Form from "../Cadastro_HoraExtra_Apontamento/Etapa1Form";
+import Menu from "../../components/menu";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import "./styled.css"
 
 
 export const Home = () =>{
-    const [matricula,SetEmail] = useState('');
-    const [password,SetPassword] = useState('');
 
 
     return(
-        <div>
-            
-<h1>Home</h1>
+    <body>
+    <Menu/>
 
-        <a href="/etapa1">Cadastro Hora</a>
-
-        </div>
-        
+    <div className="container grid">
+       <div className="item">
+        <p>Bem vindo </p>
+        <AccountCircleIcon sx={{ fontSize: 110 }}  />
+        <a href="/apontar">
+        <input   type="button" value="Apontar horas"/>
+        </a>
+        <a href="/Cadastro">
+        <input  type="button" value="Cadastro de Horar"/>
+        </a>
+       </div>
+       <div className="item"> <p>Apontamento de horas </p>
+       <p>Falta um hora </p>
+       
+       
+       
+       </div>
+       <div className="item">
+        <p>hora extra</p>
+        <p>Sobreavisso</p>
+       </div>
+       
+     {/* <a href="/etapa1"> cadastro</a> */}
+     </div>
+     </body>
     );
     }
     export default Home

@@ -11,7 +11,7 @@ export const Login = () =>{
 
 
     return(
-      <body>
+      <body className="corpo">
         <div className="logo">
         {/* <img src="/login.png" alt="logo" /> */}
         </div>

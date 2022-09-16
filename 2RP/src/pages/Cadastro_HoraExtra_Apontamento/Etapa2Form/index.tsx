@@ -5,6 +5,7 @@ import { useForm, FormActions } from '../../../contexts/FormContext';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Colaborador } from '../../../types/Types'
 
+
 export const Etapa2Form = () => {
 
     const history = useNavigate();
