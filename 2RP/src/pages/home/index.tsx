@@ -1,5 +1,6 @@
 import Menu from "../../components/menu";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 // import Calendar from 'react-calendar';
 import "./styled.css";
 
@@ -35,6 +36,11 @@ export const Home = () =>{
        <p className="fort"> Horas Trabalhadas</p>
        <h1 className="numero">12 H</h1>
        </div>
+       <div className="apontamento">
+        <h1>Apontamentos</h1>
+        <p>Falta 1 dia para o fechamento</p>
+       </div>
+       <ArrowForwardIcon sx={{ fontSize: 60 }}/>
        <div className="Horaextra">
        <p className="cor ">Horas Extras</p>
        <div className="containerhora">

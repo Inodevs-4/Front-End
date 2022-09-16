@@ -1,19 +1,16 @@
-import { useState} from "react";
-import { Link } from "react-router-dom";
-// import { Button } from "@material-ui/core/Button";
+
 import './style.css';
 
 
 
 export const Login = () =>{
-    const [matricula,SetEmail] = useState('');
-    const [password,SetPassword] = useState('');
+    // const [matricula,SetEmail] = useState('');
+    // const [password,SetPassword] = useState('');
 
 
     return(
       <body className="corpo">
         <div className="logo">
-        {/* <img src="/login.png" alt="logo" /> */}
         </div>
       <main className="container">
       <img src="https://www.2rpnet.com.br/assets/images/2rp-net.svg" alt="logo" />
