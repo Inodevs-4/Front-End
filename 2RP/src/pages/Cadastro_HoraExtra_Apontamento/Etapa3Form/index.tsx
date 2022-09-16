@@ -3,7 +3,9 @@ import * as C from './styles';
 import { useForm, FormActions } from '../../../contexts/FormContext';
 import { Theme } from '../../../components/Theme';
 import { ChangeEvent, useEffect, useState, } from 'react';
-import { Colaborador, Projeto } from '../../../types/Types'
+import { Colaborador, Projeto } from '../../../types/Types';
+import Menu from "../../../components/menu";
+
 
 
 export const Etapa3Form = () => {
@@ -93,7 +95,10 @@ export const Etapa3Form = () => {
     }
     
     return (
+        <div>
+                <Menu/>
         <Theme>
+
             <C.Container>
                 <h4>Passo {state.currentStep}/3</h4>
                 <p>Preencha o campo abaixo com seu nome completo.</p>
@@ -131,5 +136,6 @@ export const Etapa3Form = () => {
                 <button onClick={handleNextStep}>Concluir</button>
             </C.Container>
         </Theme>
+        </div>
     );
 }

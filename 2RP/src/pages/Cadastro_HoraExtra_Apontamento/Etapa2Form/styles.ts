@@ -12,6 +12,8 @@ label {
 p {
     font-size: 20px;
     color: #B8B8D4;
+    margin-top: -14px;
+    margin-bottom: -4px;
 }
 h1 {
     margin: 0;
@@ -53,5 +55,6 @@ button {
         padding: 5px 5px;
         float:left;
         width: 34em;
+        margin: 0;
     }
 `;

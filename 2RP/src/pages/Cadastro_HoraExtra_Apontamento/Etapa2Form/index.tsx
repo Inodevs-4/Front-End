@@ -4,6 +4,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useForm, FormActions } from '../../../contexts/FormContext';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Colaborador } from '../../../types/Types'
+import Menu from "../../../components/menu";
+
 
 
 export const Etapa2Form = () => {
@@ -73,7 +75,9 @@ export const Etapa2Form = () => {
     }
 
     return (
-        <Theme>
+<div>
+    <Menu/>
+    <Theme>
             <C.Container>
                 <h4>Passo 2/3</h4>
                 <p>Defina  a data de inicio e fim e horário</p>
@@ -87,7 +91,7 @@ export const Etapa2Form = () => {
                <p>Inicio </p>
                 <input type="datetime-local" name="" id="" onChange={handleDateStartsChange} value={state.data_inicio}/>
                 <hr />
-                <p>Fim </p>
+                <p>Fim</p>
                 <input type="datetime-local" name="" id=""  onChange={handleDateEndsChange} value={state.data_fim}/>
                 <h5>.</h5>
                 <Link to="/etapa1" className='backButton'>Voltar</Link>
@@ -96,7 +100,7 @@ export const Etapa2Form = () => {
 
             </C.Container>
         </Theme>
-
+</div>
     )
 } 
 

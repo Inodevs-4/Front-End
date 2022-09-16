@@ -36,7 +36,7 @@ export const Etapa1Form = () => {
 
     return (
         <div>
-<Menu></Menu>
+        <Menu/>
         <Theme>
             
             <C.Container>

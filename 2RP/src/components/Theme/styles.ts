@@ -7,6 +7,7 @@ export const Container = styled.div`
 `;
 
 export const Area = styled.div`
+    
     margin: auto;
     width: 1000px;
     height: 80vh;
@@ -14,7 +15,7 @@ export const Area = styled.div`
     flex-direction: column;
     background-color: #022041;
     padding: 20px;
-    margin-top: 50px;
+    margin-top: 20px;
     border-radius: 20px;
     box-shadow: 8px -8px rgba(0,0,0,.5);
 

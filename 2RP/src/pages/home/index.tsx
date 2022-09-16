@@ -13,13 +13,20 @@ export const Home = () =>{
     <div className="container grid">
        <div className="item">
         <p>Bem vindo </p>
-        <AccountCircleIcon sx={{ fontSize: 110 }}  />
-        <a href="/apontar">
-        <input   type="button" value="Apontar horas"/>
-        </a>
-        <a href="/Cadastro">
-        <input  type="button" value="Cadastro de Horar"/>
-        </a>
+        <AccountCircleIcon sx={{ fontSize:150 }} />    
+        <ul>
+          <li>
+          <a href="/etapa1">
+            <input type="button" value="Apontar horas" id="Apontar"/>
+          </a>
+          </li>
+          <li>
+          <a href="/Cadastro">
+            <input  type="button" value="Cadastro de Hora" id="Cadastrar"/>
+          </a>
+          </li>
+        </ul>
+
        </div>
        <div className="item"> <p>Apontamento de horas </p>
        <p>Falta um hora </p>
