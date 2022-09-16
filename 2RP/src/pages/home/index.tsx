@@ -30,19 +30,31 @@ export const Home = () =>{
         </ul>
 
        </div>
-       <div className="item row"> 
+       <div className="item1 row "> 
        <div className="horas">
-       <p> HORAS TRABALHADAS</p>
+       <p className="fort"> Horas Trabalhadas</p>
+       <h1 className="numero">12 H</h1>
        </div>
        <div className="Horaextra">
-       <p>horas extras</p>
+       <p className="cor ">Horas Extras</p>
+       <div className="containerhora">
+        <p className="analise esq">Em Analise</p>
+        <p >sexta-feira</p>
+        <p>12h-15</p>
+        </div>
+        <p className="cor">Analise</p>
+        <div className="containerhora">
+        <p className="aprovado esq">Aprovado</p>
+        <p>sexta-feira a Domingo</p>
+        <p>01/08/2022 a 05/08/2022 </p>
+        </div>
        </div>
        </div>
 
-       <div className="item">
-        <p>hora extra</p>
-        <p>Sobreavisso</p>
-       </div>
+       {/* <div className="item">
+        <p className="cor">hora extra</p>
+        <p className="cor">Sobreavisso</p>
+       </div> */}
        
      {/* <a href="/etapa1"> cadastro</a> */}
      </div>

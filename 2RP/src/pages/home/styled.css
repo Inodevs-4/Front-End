@@ -21,7 +21,10 @@
 filter: drop-shadow(0px 3px 3px rgba(14, 12, 37, 0.25));
     
 }
-
+.item1{
+    border: none;
+    background-color: none;
+}
 
 #Cadastrar {
   
@@ -67,7 +70,7 @@ li {
 
 p{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    /* font-size: 16px; */
     font-style: normal;
     margin-bottom: 0rem;
     
@@ -93,10 +96,60 @@ filter: drop-shadow(0px 3px 3px rgba(14, 12, 37, 0.25));
     width: 30%;
     height: 221px;
     padding: 10px;
-    margin-left: 32.4rem;
+    margin-left:31rem;
     border-radius: 10px;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.26);
 filter: drop-shadow(0px 3px 3px rgba(14, 12, 37, 0.25));
 }
 
+
+ .horas ::before{
+    content: '';
+  position: absolute;
+  height: 2px;
+  width: 10.4rem;
+  bottom: 10.7rem;
+  /* left: 0; */
+  text-align: center;
+  border-radius:4px ;
+  background-color: #0a2d96c5;
+}
+
+
+.numero{
+margin-top: 3rem;
+}
+.aprovado{
+    color:#168F02;
+}
+.reprovado{
+    color: red;
+}
+.cor{
+    background-color: #0B2D72;    
+    color: #FFF;
+    width: 7rem;
+    font-size: small;
+    border-radius: 5px;
+}
+.analise{
+    color: #FFA800;
+    font-size: medium;
+}
+.containerhora{
+    background-color: #E8E8E8;
+    border-radius: 10px;
+    margin-top: 4px;
+    padding-left: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+filter: drop-shadow(0px 3px 3px rgba(14, 12, 37, 0.25));
+}
+
+.esq{
+    text-align: left;
+}
+
+.fort{
+    font-size: 30px;
+}
