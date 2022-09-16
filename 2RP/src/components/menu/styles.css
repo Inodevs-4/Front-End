@@ -14,9 +14,7 @@ section {
       gap: 1rem;
     }
 
-     img {
-      width: 160px;
-    }
+     
 
      nav {
       display: flex;
@@ -26,7 +24,9 @@ section {
         font-size: 20px;
         position: relative;
       }
-
+.eu{
+  width: 160px;
+}
        /* a:hover{
         width: 100%;
        } */

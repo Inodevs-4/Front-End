@@ -8,7 +8,7 @@ export const Home = () =>{
 
     return(
         <section>
-        <img src="https://www.2rpnet.com.br/assets/images/2rp-net.svg" alt="logo" />
+        <img className="eu" src="https://www.2rpnet.com.br/assets/images/2rp-net.svg" alt="logo" />
         <MenuIcon sx={{ fontSize: 60 }}  color="primary"/>
         </section>
     );

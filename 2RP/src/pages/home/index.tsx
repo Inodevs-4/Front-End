@@ -1,6 +1,7 @@
 import Menu from "../../components/menu";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import "./styled.css"
+// import Calendar from 'react-calendar';
+import "./styled.css";
 
 
 export const Home = () =>{
@@ -12,8 +13,9 @@ export const Home = () =>{
 
     <div className="container grid">
        <div className="item">
-        <p>Bem vindo </p>
+        <p className="Acoes">Bem vindo , Angelo </p>
         <AccountCircleIcon sx={{ fontSize:150 }} />    
+        <p className="Acoes">Matricula : 1234556</p>
         <ul>
           <li>
           <a href="/etapa1">
@@ -28,12 +30,15 @@ export const Home = () =>{
         </ul>
 
        </div>
-       <div className="item"> <p>Apontamento de horas </p>
-       <p>Falta um hora </p>
-       
-       
-       
+       <div className="item row"> 
+       <div className="horas">
+       <p> HORAS TRABALHADAS</p>
        </div>
+       <div className="Horaextra">
+       <p>horas extras</p>
+       </div>
+       </div>
+
        <div className="item">
         <p>hora extra</p>
         <p>Sobreavisso</p>
