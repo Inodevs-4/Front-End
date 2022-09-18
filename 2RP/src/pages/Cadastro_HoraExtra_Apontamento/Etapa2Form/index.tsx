@@ -92,8 +92,7 @@ export const Etapa2Form = () => {
                 <input type="datetime-local" name="" id="" onChange={handleDateStartsChange} value={state.data_inicio}/>
                 <hr />
                 <p>Fim</p>
-                <input type="datetime-local" name="" id=""  onChange={handleDateEndsChange} value={state.data_fim}/>
-                <h5>.</h5>
+                <input type="datetime-local" className='mb-4' name="" id=""  onChange={handleDateEndsChange} value={state.data_fim}/>
                 <Link to="/etapa1" className='backButton'>Voltar</Link>
 
                 <button onClick={handleNextStep}> Próximo </button>

@@ -119,8 +119,8 @@ export const Etapa3Form = () => {
                     
                     placeholder="Observações"></textarea>
                 </div>  
-                <p></p>
-                <div className="form-floating mb-3">
+                <p></p>                
+                <div className="form-floating mb-3 mt-3">
                     <input type="text" 
                     disabled
                     className="form-control" 
