@@ -3,7 +3,8 @@ import { Theme } from '../../../components/Theme';
 import { useNavigate } from 'react-router-dom';
 import { useForm, FormActions } from '../../../contexts/FormContext';
 import { ChangeEvent, useEffect } from 'react';
-import Menu from "../../../components/menu";
+import Navbar from '../../../components/menu/Navbar';
+
 
 export const Etapa1Form = () => {
 
@@ -36,7 +37,8 @@ export const Etapa1Form = () => {
 
     return (
         <div>
-        <Menu/>
+        <Navbar/>
+
         <Theme>
             
             <C.Container>

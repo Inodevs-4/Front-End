@@ -1,6 +1,7 @@
-import Menu from "../../components/menu";
+// import Menu from "../../components/menu";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Navbar from '../../components/menu/Navbar';
 // import Calendar from 'react-calendar';
 import "./styled.css";
 
@@ -10,7 +11,7 @@ export const Home = () =>{
 
     return(
     <body>
-    <Menu/>
+    <Navbar/>
 
     <div className="container grid">
        <div className="item">
@@ -55,12 +56,12 @@ export const Home = () =>{
         <p>01/08/2022 a 05/08/2022 </p>
         </div>
        </div>
-       </div>
+       </div> 
 
        {/* <div className="item">
         <p className="cor">hora extra</p>
         <p className="cor">Sobreavisso</p>
-       </div> */}
+       </div>
        
      {/* <a href="/etapa1"> cadastro</a> */}
      </div>

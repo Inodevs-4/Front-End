@@ -4,7 +4,8 @@ import { useForm, FormActions } from '../../../contexts/FormContext';
 import { Theme } from '../../../components/Theme';
 import { ChangeEvent, useEffect, useState, } from 'react';
 import { Colaborador, Projeto } from '../../../types/Types';
-import Menu from "../../../components/menu";
+import Navbar from '../../../components/menu/Navbar';
+// import Menu from "../../../components/menu";
 
 
 
@@ -96,7 +97,7 @@ export const Etapa3Form = () => {
     
     return (
         <div>
-                <Menu/>
+                <Navbar/>
         <Theme>
 
             <C.Container>

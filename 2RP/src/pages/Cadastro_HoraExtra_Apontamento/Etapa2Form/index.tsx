@@ -4,7 +4,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useForm, FormActions } from '../../../contexts/FormContext';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Colaborador } from '../../../types/Types'
-import Menu from "../../../components/menu";
+import Navbar from '../../../components/menu/Navbar';
+// import Menu from "../../../components/menu";
 
 
 
@@ -76,7 +77,7 @@ export const Etapa2Form = () => {
 
     return (
 <div>
-    <Menu/>
+<Navbar/>
     <Theme>
             <C.Container>
                 <h4>Passo 2/3</h4>
