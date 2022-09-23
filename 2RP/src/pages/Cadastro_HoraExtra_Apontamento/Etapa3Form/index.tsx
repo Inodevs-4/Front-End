@@ -1,4 +1,4 @@
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import * as C from './styles';
 import { useForm, FormActions } from '../../../contexts/FormContext';
 import { Theme } from '../../../components/Theme';
@@ -13,13 +13,11 @@ export const Etapa3Form = () => {
     const history = useNavigate();
     const { state, dispatch } = useForm();
 
-    const location: any = useLocation()
-
     const [ projetos, setProjetos ] = useState<Projeto[]>([]);
-    const [ colaborador, setColaborador ] = useState<Colaborador>({});
+    const [ gestores, setGestores ] = useState<Colaborador[]>([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/selectProjetos', {
+        fetch(`${process.env.REACT_APP_SERVER}/selectProjetos`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -32,7 +30,7 @@ export const Etapa3Form = () => {
       }, [])
 
       useEffect(() => {
-        fetch(`http://localhost:5000/getColaborador/${state.colaborador}`, {
+        fetch(`${process.env.REACT_APP_SERVER}/selectGestores`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -40,7 +38,7 @@ export const Etapa3Form = () => {
         })
           .then((resp) => resp.json())
           .then((data) => {
-            setColaborador(data)
+            setGestores(data)
           })
       }, [])
 
@@ -54,7 +52,7 @@ export const Etapa3Form = () => {
     const handleNextStep = () => {
         if(state.projeto !== '' /*&& state.gestor !== ''*/){
             console.log(state)
-            fetch('http://localhost:5000/salvarLancamento', {
+            fetch(`${process.env.REACT_APP_SERVER}/salvarLancamento`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -88,7 +86,7 @@ export const Etapa3Form = () => {
         });
     }
     
-    const handleGestorChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleGestorChange = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch({
             type: FormActions.setGestor,
             payload: e.target.value
@@ -121,17 +119,14 @@ export const Etapa3Form = () => {
                     placeholder="Observações"></textarea>
                 </div>  
                 <p></p>                
-                <div className="form-floating mb-3 mt-3">
-                    <input type="text" 
-                    disabled
-                    className="form-control" 
-                    id="floatingInput3" 
-                    value={colaborador.gestor?.nome}
-                    onChange={handleGestorChange}
-                    placeholder="Nome do Gestor"
-                    />
-                    <label htmlFor="floatingInput3">Nome do Gestor</label>
-                </div>
+
+                <select name="gestor" id="gestor" className="form-select form-select-lg mb-3 mt-3" aria-label=".form-select-lg example" onChange={handleGestorChange}>
+                    <option disabled selected>Selecione um gestor</option>
+                    {gestores.map((gestor) => (
+                        <option value={gestor.id} key={gestor.id}>{gestor.nome}</option>
+                    ))}
+                </select>
+
                 <Link to="/etapa2" className='backButton'>Voltar</Link>
 
                 <button onClick={handleNextStep}>Concluir</button>

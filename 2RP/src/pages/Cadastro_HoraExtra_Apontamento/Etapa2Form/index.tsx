@@ -17,7 +17,7 @@ export const Etapa2Form = () => {
     const [ colaboradores, setColaboradores ] = useState<Colaborador[]>([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/selectColaboradores', {
+        fetch(`${process.env.REACT_APP_SERVER}/selectColaboradores`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
