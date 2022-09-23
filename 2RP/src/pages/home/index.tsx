@@ -2,12 +2,49 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Navbar from '../../components/menu/Navbar';
+import { useEffect, useState } from 'react'
 // import Calendar from 'react-calendar';
 import "./styled.css";
+import { Lancamento } from '../../types/Types'
 
 
 export const Home = () =>{
 
+  const [lancamentos, setLancamentos] = useState<Lancamento[]>([])
+
+    useEffect(() => {
+    fetch(`${process.env.REACT_APP_SERVER}/meusLancamentos`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setLancamentos(data)
+      })
+  }, [])
+
+  const formatarDataHora = (dataHora: string | undefined) => {
+    if (dataHora === undefined){
+      return ''
+    } else {
+      const horas = dataHora.split('T')[1].split(':')[0]
+      const minutos = dataHora.split('T')[1].split(':')[1]
+      const ano = dataHora.split('T')[0].split('-')[0]
+      const mes = dataHora.split('T')[0].split('-')[1]
+      const dia = dataHora.split('T')[0].split('-')[2]
+      return horas + ':' + minutos + ' ' + dia + '/' + mes + '/' + ano
+    }
+  }
+
+  const formatarInicial = (status: string | undefined) => {
+    if (status === undefined){
+      return ''
+    } else {
+      return status[0].toUpperCase() + status.substring(1, status.length) 
+    }
+  }
 
     return(
     <body>
@@ -30,7 +67,6 @@ export const Home = () =>{
           </a>
           </li>
         </ul>
-
        </div>
        <div className="item1 row "> 
        <div className="horas">
@@ -38,10 +74,11 @@ export const Home = () =>{
        <h1 className="numero">12 H</h1>
        </div>
        <div className="apontamento">
-        <h1>Apontamentos</h1>
+        <h1>Últimos Apontamentos</h1>
         <p>Falta 1 dia para o fechamento</p>
        </div>
        <ArrowForwardIcon sx={{ fontSize: 60 }}/>
+       {/*
        <div className="Horaextra">
        <p className="cor ">Horas Extras</p>
        <div className="containerhora">
@@ -56,7 +93,28 @@ export const Home = () =>{
         <p>01/08/2022 a 05/08/2022 </p>
         </div>
        </div>
-       </div> 
+      */}
+
+      <div className="Horaextra">
+        {lancamentos.length !== 0 ? (
+          lancamentos.map((lancamento) => (
+          <div className='mb-2'>
+            <p className="cor">{formatarInicial(lancamento.modalidade)}</p>
+            <div className="containerhora">
+            <p className="analise esq">{formatarInicial(lancamento.status)}</p>
+            <p>Início: {formatarDataHora(String(lancamento.data_inicio))}</p>
+            <p>Fim: {formatarDataHora(String(lancamento.data_fim))}</p>
+            </div>
+          </div>
+          ))
+          ) : (
+            <p>Não há lançamentos cadastrados.</p>
+          )
+        }
+
+       </div>
+       </div>
+       
 
        {/* <div className="item">
         <p className="cor">hora extra</p>
