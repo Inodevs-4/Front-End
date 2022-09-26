@@ -93,6 +93,8 @@ export const Ul = styled.ul<INav>`
     background-color: #fdfdfdfa;
     position: fixed;
     transform: ${(props) => props.open ? 'translateX(0)' : 'translateX(100%)'};
+    overflow-y: auto ;
+   overflow-x: hidden;
     top: -16px;
     right: 0;
     height: 100%;
