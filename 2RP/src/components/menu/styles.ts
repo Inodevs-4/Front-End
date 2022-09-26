@@ -15,7 +15,7 @@ export const StyledBurger = styled.div<INav>`
   cursor: pointer;
   font-family: 'Zilla Slab', sans-serif;
 
-  @media (max-width: 768px) {
+  @media (max-width: 2565px) {
     display: flex;
     justify-content: space-around;
     flex-flow: column nowrap;
@@ -23,9 +23,10 @@ export const StyledBurger = styled.div<INav>`
 `
 
 export const Menus = styled.div<INav>`
-    width: 2rem;
-    height: 0.25rem;
-    background-color: #000;
+    width: 2.5rem;
+    height: 0.40rem;
+    /* margin-top: 0.8rem; */
+    background-color: #fff;
     border-radius: 10px;
     transform-origin: 1px;
     transition: all 0.3s linear;
@@ -52,7 +53,7 @@ export const Nav = styled.nav`
   align-items: center;
   position: relative;
 
-  @media (max-width: 678px) {
+  @media (max-width: 2565px) {
     width: 100vw;
   }
 `
@@ -70,20 +71,25 @@ export const Ul = styled.ul<INav>`
   align-items: center;
   font-size: 18px;
   height: 110px;
-  margin-left: 20px;
+  margin-left: 60px;
+
 
   a {
     text-decoration: none;
     text-transform: none;
     color: #fff;
     cursor: pointer;
+    
+    
+    
+    
 
     &:hover {
       color: #0DADEA;
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 2565px) {
     flex-flow: column nowrap;
     background-color: #fdfdfdfa;
     position: fixed;
@@ -103,7 +109,7 @@ export const Li = styled.li`
   padding: 18px 10px;
   outline: none;
 
-  @media (max-width: 768px) {
+  @media (max-width:2565px) {
     color: #000;
     margin-right: 34px;
 
@@ -119,7 +125,7 @@ export const Logo = styled.img`
   height: 50px;
   object-fit: contain;
 
-  @media (max-width: 1250px) {
+  @media (max-width: 2565px) {
     margin: 20px 50px 20px 5%;
   }
 
@@ -129,7 +135,7 @@ export const LogoUl = styled.img`
   margin: 20px 50px 20px 5%;
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 2565px) {
     display: flex;
     width: 160px;
     height: 70px;

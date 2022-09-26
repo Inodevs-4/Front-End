@@ -1,5 +1,11 @@
 import * as S from './styles';
-
+import CottageIcon from '@mui/icons-material/Cottage';
+import AddIcon from '@mui/icons-material/Add';
+import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
+import GroupIcon from '@mui/icons-material/Group';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 import {
   NavLink,
@@ -18,26 +24,57 @@ function RightNav(props: Props) {
           to='/pagina-inicial'
       
         >
-          <S.Li>Home</S.Li>
+          {/* <CottageIcon color='primary'/> */}
+          <S.Li> <CottageIcon color='primary'/> Home</S.Li>
         </NavLink>
         <NavLink
           to='/etapa1'
        
         >
-          <S.Li>Apontamento</S.Li>
+          {/* <AddIcon  color='primary'/> */}
+          <S.Li> <AddIcon  color='primary'/> Cadastrar<br/>Horas</S.Li>
         </NavLink>
         <NavLink
           to='/menu3'
          
         >
-          <S.Li>Menu 3</S.Li>
+          {/* <PlaylistAddCheckIcon  color='primary'/> */}
+          <S.Li> <PlaylistAddCheckIcon  color='primary'/> Tabela de<br/>apontamentos</S.Li>
         </NavLink>
         <NavLink
           to='/menu4'
        
         >
-          <S.Li>Menu 4</S.Li>
+          {/* <GroupIcon  color='primary'/> */}
+          <S.Li> <GroupIcon  color='primary'/> Projetos</S.Li>
         </NavLink>
+
+        <NavLink
+          to='/menu4'
+       
+        >
+          {/* <ModeEditIcon  color='primary'/> */}
+          <S.Li> <ModeEditIcon  color='primary'/> Manipulação<br/>Horas</S.Li>
+        </NavLink>
+
+        <NavLink
+          to='/menu4'
+       
+        >
+          {/* <DashboardIcon  color='primary'/> */}
+          <S.Li> <DashboardIcon  color='primary'/> Dashboards</S.Li>
+        </NavLink>
+
+        <NavLink
+          to='/menu4'
+       
+        >
+          {/* <HistoryToggleOffIcon  color='primary'/> */}
+          <S.Li> <HistoryToggleOffIcon  color='primary'/> Historico</S.Li>
+        </NavLink>
+
+
+
       </S.Ul>
    
   );
