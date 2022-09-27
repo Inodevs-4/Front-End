@@ -7,6 +7,7 @@ import { Etapa2Form } from "./pages/Cadastro_HoraExtra_Apontamento/Etapa2Form";
 import { Etapa3Form } from "./pages/Cadastro_HoraExtra_Apontamento/Etapa3Form";
 import { FormProvider } from "./contexts/FormContext";
 import Aprovacao from "./pages/Aprovacao_Lancamento";
+import DetalhesApontamento from "./pages/Detalhes_Apontamento";
 
 
 
@@ -23,6 +24,7 @@ export const App = () => {
         <Route path="/etapa2" element={<Etapa2Form/>}/>
         <Route path="/etapa3" element={<Etapa3Form/>}/>
         <Route path="/aprovacao-lancamento" element={<Aprovacao/>} />
+        <Route path="/aprovacao-lancamento/viewDetails" element={<DetalhesApontamento/>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Switch>
     </BrowserRouter>

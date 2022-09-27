@@ -2,6 +2,7 @@ import Navbar from "../../components/menu/Navbar";
 import './styles.css'
 
 export const Aprovacao = () => {
+
     return(
         <body>
             <Navbar/>
@@ -26,8 +27,7 @@ export const Aprovacao = () => {
                     <div className="col">XX/XX/XXXX</div>
                     <div className="col"><span className="badge bg-warning text-light">Pendente</span></div>
                     <div className="col">
-                        <a className="btn btn-primary">Editar</a>
-                        <a className="btn btn-secondary ">Detalhes</a>
+                        <a className="btn btn-primary" href="/aprovacao-lancamento/viewDetails">Visualizar</a>
                     </div>
                 </div>
 
@@ -39,8 +39,7 @@ export const Aprovacao = () => {
                     <div className="col">XX/XX/XXXX</div>
                     <div className="col"><span className="badge bg-danger text-light">Reprovado</span></div>
                     <div className="col">
-                        <a className="btn btn-primary">Editar</a>
-                        <a className="btn btn-secondary ">Detalhes</a>
+                        <a className="btn btn-primary">Visualizar</a>
                     </div>
                 </div>
             </div>
