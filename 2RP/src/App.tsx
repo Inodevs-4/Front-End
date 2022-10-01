@@ -8,6 +8,7 @@ import { Etapa3Form } from "./pages/Cadastro_HoraExtra_Apontamento/Etapa3Form";
 import { FormProvider } from "./contexts/FormContext";
 import Aprovacao from "./pages/Aprovacao_Lancamento";
 import DetalhesApontamento from "./pages/Detalhes_Apontamento";
+import { RequireAuth } from "./login/RequireAuth";
 
 
 
@@ -19,12 +20,12 @@ export const App = () => {
       <Switch>
         <Route path="/" element={<Login />} />
         {/* <Route path="/Cadastro_Hora" element={<Cadastro />} /> */}
-        <Route path="/pagina-inicial" element={<Home />} />
-        <Route path="/etapa1" element={<Etapa1Form/>}/>
-        <Route path="/etapa2" element={<Etapa2Form/>}/>
-        <Route path="/etapa3" element={<Etapa3Form/>}/>
-        <Route path="/aprovacao-lancamento" element={<Aprovacao/>} />
-        <Route path="/aprovacao-lancamento/viewDetails" element={<DetalhesApontamento/>} />
+        <Route path="/pagina-inicial" element={<RequireAuth><Home /></RequireAuth>} />
+        <Route path="/etapa1" element={<RequireAuth><Etapa1Form/></RequireAuth>}/>
+        <Route path="/etapa2" element={<RequireAuth><Etapa2Form/></RequireAuth>}/>
+        <Route path="/etapa3" element={<RequireAuth><Etapa3Form/></RequireAuth>}/>
+        <Route path="/aprovacao-lancamento" element={<RequireAuth><Aprovacao/></RequireAuth>} />
+        <Route path="/aprovacao-lancamento/viewDetails" element={<RequireAuth><DetalhesApontamento/></RequireAuth>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Switch>
     </BrowserRouter>

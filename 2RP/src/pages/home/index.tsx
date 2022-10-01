@@ -2,18 +2,21 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Navbar from '../../components/menu/Navbar';
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 // import Calendar from 'react-calendar';
 import "./styled.css";
 import { Lancamento } from '../../types/Types'
+import { AuthContext } from '../../login/AuthContext';
 
 
 export const Home = () =>{
 
   const [lancamentos, setLancamentos] = useState<Lancamento[]>([])
 
+  const auth = useContext(AuthContext)
+
     useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER}/meusLancamentos`, {
+    fetch(`${process.env.REACT_APP_SERVER}/meusLancamentos/${auth.colaborador?.id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -29,7 +32,7 @@ export const Home = () =>{
     if (dataHora === undefined){
       return ''
     } else {
-      const horas = dataHora.split('T')[1].split(':')[0]
+      const horas = String(Number(dataHora.split('T')[1].split(':')[0]) - 3)
       const minutos = dataHora.split('T')[1].split(':')[1]
       const ano = dataHora.split('T')[0].split('-')[0]
       const mes = dataHora.split('T')[0].split('-')[1]
@@ -52,9 +55,9 @@ export const Home = () =>{
 
     <div className="container grid">
        <div className="item">
-        <p className="Acoes">Bem vindo , Angelo </p>
+        <p className="Acoes">Bem vindo, {auth.colaborador?.nome} </p>
         <AccountCircleIcon sx={{ fontSize:150 }} />    
-        <p className="Acoes">Matricula : 1234556</p>
+        <p className="Acoes">Matricula : {auth.colaborador?.matricula} </p>
         <ul>
           <li>
           <a href="/etapa1">

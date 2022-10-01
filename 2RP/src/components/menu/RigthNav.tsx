@@ -10,12 +10,21 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import {
   NavLink,
 } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../login/AuthContext';
 
 type Props = {
   open: boolean;
 };
 
 function RightNav(props: Props) {
+  const auth = useContext(AuthContext)
+
+  const handleLogout = () => {
+      auth.signout()
+      window.location.href = ''
+  }
+
   return (
       <S.Ul open={props.open}>
        
@@ -35,7 +44,7 @@ function RightNav(props: Props) {
           <S.Li> <AddIcon  color='primary'/> Cadastrar<br/>Horas</S.Li>
         </NavLink>
         <NavLink
-          to='/menu3'
+          to='/aprovacao-lancamento'
          
         >
           {/* <PlaylistAddCheckIcon  color='primary'/> */}
@@ -73,7 +82,7 @@ function RightNav(props: Props) {
           <S.Li> <HistoryToggleOffIcon  color='primary'/> Historico</S.Li>
         </NavLink>
 
-
+        <button onClick={handleLogout}>Sair</button>
 
       </S.Ul>
    
