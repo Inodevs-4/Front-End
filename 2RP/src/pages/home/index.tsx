@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from 'react'
 import "./styled.css";
 import { Lancamento } from '../../types/Types'
 import { AuthContext } from '../../login/AuthContext';
-
+import { formatarDataHora, formatarInicial } from '../../functions/formatar';
 
 export const Home = () =>{
 
@@ -28,27 +28,6 @@ export const Home = () =>{
       })
   }, [])
 
-  const formatarDataHora = (dataHora: string | undefined) => {
-    if (dataHora === undefined){
-      return ''
-    } else {
-      const horas = String(Number(dataHora.split('T')[1].split(':')[0]) - 3)
-      const minutos = dataHora.split('T')[1].split(':')[1]
-      const ano = dataHora.split('T')[0].split('-')[0]
-      const mes = dataHora.split('T')[0].split('-')[1]
-      const dia = dataHora.split('T')[0].split('-')[2]
-      return horas + ':' + minutos + ' ' + dia + '/' + mes + '/' + ano
-    }
-  }
-
-  const formatarInicial = (status: string | undefined) => {
-    if (status === undefined){
-      return ''
-    } else {
-      return status[0].toUpperCase() + status.substring(1, status.length) 
-    }
-  }
-
     return(
     <body>
     <Navbar/>
@@ -57,7 +36,7 @@ export const Home = () =>{
        <div className="item">
         <p className="Acoes">Bem vindo, {auth.colaborador?.nome} </p>
         <AccountCircleIcon sx={{ fontSize:150 }} />    
-        <p className="Acoes">Matricula : {auth.colaborador?.matricula} </p>
+        <p className="Acoes">Matricula: {auth.colaborador?.matricula} </p>
         <ul>
           <li>
           <a href="/etapa1">
