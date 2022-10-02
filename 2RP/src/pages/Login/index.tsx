@@ -3,6 +3,7 @@ import './style.css';
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../login/AuthContext';
+import Loading from '../../components/Loading';
 
 
 export const Login = () =>{
@@ -12,8 +13,10 @@ export const Login = () =>{
 
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
+  const [removeLoading, setRemoveLoading] = useState(true)
 
   const handleLogin = async (e: any) => {
+      setRemoveLoading(false)
       e.preventDefault()
       if (email) {
           const isLogged = await auth.signin(email, senha);
@@ -25,10 +28,12 @@ export const Login = () =>{
       } else {
           alert("Preencha o email");
       }
+      setRemoveLoading(true)
   }
 
     return(
       <body className="corpo">
+        {!removeLoading && <Loading/>}
         <div className="logo">
         </div>
       <main className="container">

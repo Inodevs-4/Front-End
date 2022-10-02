@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Loading from "../../components/Loading";
 import Navbar from "../../components/menu/Navbar";
 import { formatarDataHora, formatarInicial } from "../../functions/formatar";
 import { Lancamento } from "../../types/Types";
@@ -7,6 +8,7 @@ import './styles.css'
 export const Aprovacao = () => {
 
     const [lancamentos, setLancamentos] = useState<Lancamento[]>([])
+    const [removeLoading, setRemoveLoading] = useState(false)
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_SERVER}/todosLancamentos`, {
@@ -18,6 +20,7 @@ export const Aprovacao = () => {
           .then((resp) => resp.json())
           .then((data) => {
             setLancamentos(data)
+            setRemoveLoading(true)
           })
       }, [])
 
@@ -36,7 +39,8 @@ export const Aprovacao = () => {
                     <div className="col">Status</div>
                     <div className="col">Ações</div>
                 </div>
-                {lancamentos.map((lancamento) => (
+                {!removeLoading && <Loading/>}
+                {!removeLoading || lancamentos.map((lancamento) => (
                 <div className="row items">
                     <div className="col">{lancamento.id}</div>
                     <div className="col">{lancamento.colaborador?.nome}</div>

@@ -89,7 +89,7 @@ function RightNav(props: Props) {
       <S.Li> <HistoryToggleOffIcon  color='primary'/> Historico</S.Li>
     </NavLink>
 
-
+    <button onClick={handleLogout}>Sair</button>
 
   </S.Ul>
    

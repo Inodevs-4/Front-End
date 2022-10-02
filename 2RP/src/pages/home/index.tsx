@@ -8,10 +8,12 @@ import "./styled.css";
 import { Lancamento } from '../../types/Types'
 import { AuthContext } from '../../login/AuthContext';
 import { formatarDataHora, formatarInicial } from '../../functions/formatar';
+import Loading from '../../components/Loading';
 
 export const Home = () =>{
 
   const [lancamentos, setLancamentos] = useState<Lancamento[]>([])
+  const [removeLoading, setRemoveLoading] = useState(false)
 
   const auth = useContext(AuthContext)
 
@@ -25,6 +27,7 @@ export const Home = () =>{
       .then((resp) => resp.json())
       .then((data) => {
         setLancamentos(data)
+        setRemoveLoading(true)
       })
   }, [])
 
@@ -78,7 +81,8 @@ export const Home = () =>{
       */}
 
       <div className="Horaextra">
-        {lancamentos.length !== 0 ? (
+        {!removeLoading && <Loading/>}
+        {!removeLoading || lancamentos.length !== 0 ? (
           lancamentos.map((lancamento) => (
           <div className='mb-2'>
             <p className="cor">{formatarInicial(lancamento.modalidade)}</p>

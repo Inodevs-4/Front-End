@@ -20,13 +20,13 @@ export const App = () => {
     <FormProvider>
     <BrowserRouter>
       <Switch>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         {/* <Route path="/Cadastro_Hora" element={<Cadastro />} /> */}
-        <Route path="/pagina-inicial" element={<RequireAuth><Home /></RequireAuth>} />
+        <Route path="/" element={<RequireAuth><Home /></RequireAuth>} />
         <Route path="/etapa1" element={<RequireAuth><Etapa1Form/></RequireAuth>}/>
         <Route path="/etapa2" element={<RequireAuth><Etapa2Form/></RequireAuth>}/>
         <Route path="/etapa3" element={<RequireAuth><Etapa3Form/></RequireAuth>}/>
-        <Route path="/tabela_usuarios" element={<Tabela_usuario/>}/>
+        <Route path="/tabela_usuarios" element={<RequireAuth><Tabela_usuario/></RequireAuth>}/>
         <Route path="/aprovacao-lancamento" element={<RequireAuth><Aprovacao/></RequireAuth>} />
         <Route path="/aprovacao-lancamento/viewDetails" element={<RequireAuth><DetalhesApontamento/></RequireAuth>} />
         <Route path="*" element={<Navigate to="/" />} />
