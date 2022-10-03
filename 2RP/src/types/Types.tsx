@@ -10,6 +10,7 @@ export type Colaborador = {
     id?: number
     nome?: string,
     matricula?: number,
+    status?:string,
     turno?: string,
     email?: string,
     telefone?: string,

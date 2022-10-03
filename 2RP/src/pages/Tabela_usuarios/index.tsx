@@ -1,41 +1,51 @@
+import { useEffect, useState } from "react";
 import Navbar from "../../components/menu/Navbar";
 import './styles.css'
-
+import { Lancamento } from "../../types/Types";
 export const Tabela_usuario = () => {
+
+
+
+    const [lancamentos, setLancamentos] = useState<Lancamento[]>([])
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_SERVER}/todosLancamentos`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            setLancamentos(data)
+          })
+      }, [])
 
     return(
         <body>
             <Navbar/>
-            <p className="h3">Tabela de apontamentos</p>
+            <p className="h3">Tabela Usuarios</p>
             <hr />
             <div className="apontamentos">
                 <div className="row titles">
                     <div className="col">ID</div>
                     <div className="col">Nome</div>
                     <div className="col">Nivel de acesso</div>
-                    <div className="col">Status</div>
+                    <div className="col">matricula</div>
+                    <div className="col">Ações</div>
                 </div>
 
+                {lancamentos.map((lancamento) => (
                 <div className="row items">
-                    <div className="col">0001</div>
-                    <div className="col">Richard</div>
-                    <div className="col">Gestor</div>
-                    <div className="col"><span className="badge bg-success text-light">Ativo</span></div>
+                    <div className="col">{lancamento.id}</div>
+                    <div className="col">{lancamento.colaborador?.nome}</div>
+                    <div className="col">{lancamento.colaborador?.perfil}</div>
+                    <div className="col">{lancamento.colaborador?.matricula}</div>
                     <div className="col">
                         <a className="btn btn-primary" href="/aprovacao-lancamento/viewDetails">Visualizar</a>
                     </div>
                 </div>
-
-                <div className="row items">
-                    <div className="col">0002</div>
-                    <div className="col">Jennefer</div>
-                    <div className="col">Colaborador</div>
-                    <div className="col"><span className="badge bg-danger text-light">Inativo</span></div>
-                    <div className="col">
-                        <a className="btn btn-primary">Visualizar</a>
-                    </div>
-                    
-                </div>
+                ))}
             </div>
 
         </body>
