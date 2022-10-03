@@ -31,7 +31,7 @@ export const Login = () =>{
                 <div className="underline"></div>
               </div>
               <a href="/pagina-inicial">
-              <input  type="button" value="Login"/>
+              <input  type="button" value="Entrar" onClick={handleLogin}/>
               </a>
               {/* <a href="/pagina-inicial">
               <input  type="submit" value="Entrar" />
