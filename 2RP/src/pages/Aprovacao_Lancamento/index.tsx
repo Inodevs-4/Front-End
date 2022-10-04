@@ -44,7 +44,7 @@ export const Aprovacao = () => {
                 <div className="row items">
                     <div className="col">{lancamento.id}</div>
                     <div className="col">{lancamento.colaborador?.nome}</div>
-                    <div className="col">{lancamento.modalidade}</div>
+                    <div className="col">{formatarInicial(lancamento.modalidade)}</div>
                     <div className="col">{formatarDataHora(String(lancamento.data_inicio))}</div>
                     <div className="col">{formatarDataHora(String(lancamento.data_fim))}</div>
                     <div className="col">{formatarInicial(lancamento.status)}</div>

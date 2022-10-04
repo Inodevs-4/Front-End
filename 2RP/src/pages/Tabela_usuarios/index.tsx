@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/menu/Navbar";
 import './styles.css'
 import { Colaborador } from "../../types/Types";
+import { formatarInicial } from "../../functions/formatar";
 export const Tabela_usuario = () => {
 
 
@@ -28,7 +29,7 @@ export const Tabela_usuario = () => {
             <hr />
             <div className="apontamentos">
                 <div className="row titles">
-                    <div className="col">ID</div>
+                    <div className="col">Matricula</div>
                     <div className="col">Nome</div>
                     <div className="col">Nivel de acesso</div>
                     <div className="col">Email</div>
@@ -38,13 +39,13 @@ export const Tabela_usuario = () => {
                 </div>
 
                 {colaboradores.map((Colaborador) => (
-                <div className="row items">
-                    <div className="col">{Colaborador?.id}</div>
+                <div key={Colaborador?.matricula} className="row items">
+                    <div className="col">{Colaborador?.matricula}</div>
                     <div className="col">{Colaborador?.nome}</div>
-                    <div className="col">{Colaborador?.perfil}</div>
+                    <div className="col">{formatarInicial(Colaborador?.perfil)}</div>
                     <div className="col">{Colaborador?.email}</div>
                     <div className="col">{Colaborador?.turno}</div>
-                    <div className="col">{Colaborador?.status}</div>
+                    <div className="col">{formatarInicial(Colaborador?.status)}</div>
                     <div className="col">
                         <a className="btn btn-primary" href="/editUsuario">Visualizar</a>
                     </div>

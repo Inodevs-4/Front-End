@@ -18,7 +18,7 @@ export const Home = () =>{
   const auth = useContext(AuthContext)
 
     useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER}/meusLancamentos/${auth.colaborador?.id}`, {
+    fetch(`${process.env.REACT_APP_SERVER}/meusLancamentos/${auth.colaborador?.matricula}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -47,8 +47,8 @@ export const Home = () =>{
           </a>
           </li>
           <li>
-          <a href="/Cadastro">
-            <input  type="button" value="Cadastro de Hora" id="Cadastrar"/>
+          <a href="/aprovacao-lancamento">
+            <input  type="button" value="Visualizar apontamentos" id="Cadastrar"/>
           </a>
           </li>
         </ul>
@@ -84,7 +84,7 @@ export const Home = () =>{
         {!removeLoading && <Loading/>}
         {!removeLoading || lancamentos.length !== 0 ? (
           lancamentos.map((lancamento) => (
-          <div className='mb-2'>
+          <div className='mb-2' key={lancamento.id}>
             <p className="cor">{formatarInicial(lancamento.modalidade)}</p>
             <div className="containerhora">
             <p className="analise esq">{formatarInicial(lancamento.status)}</p>

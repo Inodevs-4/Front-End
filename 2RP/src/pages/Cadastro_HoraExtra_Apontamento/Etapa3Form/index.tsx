@@ -123,7 +123,7 @@ export const Etapa3Form = () => {
                 <select name="gestor" id="gestor" className="form-select form-select-lg mb-3 mt-3" aria-label=".form-select-lg example" onChange={handleGestorChange}>
                     <option disabled selected>Selecione um gestor</option>
                     {gestores.map((gestor) => (
-                        <option value={gestor.id} key={gestor.id}>{gestor.nome}</option>
+                        <option value={gestor.matricula} key={gestor.matricula}>{gestor.nome}</option>
                     ))}
                 </select>
 

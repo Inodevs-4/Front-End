@@ -20,7 +20,7 @@ export const AuthProvider = ({children} : {children: JSX.Element}) => {
                 .then((data) => {
                     return data
                 }).catch(err => console.log(err))
-                if (data.id) {
+                if (data.matricula) {
                     setColaborador(data);
                 }
             }

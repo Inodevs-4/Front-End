@@ -86,7 +86,7 @@ export const Etapa2Form = () => {
                 <select name="colaborador" id="colaborador" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleColaboratorChange}>
                     <option disabled selected>Selecione um colaborador</option>
                     {colaboradores.map((colaborador) => (
-                        <option value={colaborador.id} key={colaborador.id}>{colaborador.nome}</option>
+                        <option value={colaborador.matricula} key={colaborador.matricula}>{colaborador.nome}</option>
                     ))}
                 </select>
                <p>Inicio </p>
