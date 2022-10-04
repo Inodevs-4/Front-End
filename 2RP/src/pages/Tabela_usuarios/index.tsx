@@ -42,7 +42,7 @@ export const Tabela_usuario = () => {
                     <div className="col">{lancamento.colaborador?.perfil}</div>
                     <div className="col">{lancamento.colaborador?.matricula}</div>
                     <div className="col">
-                        <a className="btn btn-primary" href="/aprovacao-lancamento/viewDetails">Visualizar</a>
+                        <a className="btn btn-primary" href="/editUsuario">Visualizar</a>
                     </div>
                 </div>
                 ))}
