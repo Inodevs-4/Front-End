@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/menu/Navbar";
 import './styles.css'
-import { Lancamento } from "../../types/Types";
+import { Colaborador } from "../../types/Types";
 export const Tabela_usuario = () => {
 
 
 
-    const [lancamentos, setLancamentos] = useState<Lancamento[]>([])
+    const [lancamentos, setLancamentos] = useState<Colaborador[]>([])
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/todosLancamentos`, {
+        fetch(`${process.env.REACT_APP_SERVER}/selectColaboradores`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -31,18 +31,22 @@ export const Tabela_usuario = () => {
                     <div className="col">ID</div>
                     <div className="col">Nome</div>
                     <div className="col">Nivel de acesso</div>
-                    <div className="col">matricula</div>
+                    <div className="col">Email</div>
+                    <div className="col">Turno</div>
+                    <div className="col">Status</div>
                     <div className="col">Ações</div>
                 </div>
 
-                {lancamentos.map((lancamento) => (
+                {lancamentos.map((Colaborador) => (
                 <div className="row items">
-                    <div className="col">{lancamento.id}</div>
-                    <div className="col">{lancamento.colaborador?.nome}</div>
-                    <div className="col">{lancamento.colaborador?.perfil}</div>
-                    <div className="col">{lancamento.colaborador?.matricula}</div>
+                    <div className="col">{Colaborador?.id}</div>
+                    <div className="col">{Colaborador?.nome}</div>
+                    <div className="col">{Colaborador?.perfil}</div>
+                    <div className="col">{Colaborador?.email}</div>
+                    <div className="col">{Colaborador?.turno}</div>
+                    <div className="col">{Colaborador?.status}</div>
                     <div className="col">
-                        <a className="btn btn-primary" href="/aprovacao-lancamento/viewDetails">Visualizar</a>
+                        {/* <a className="btn btn-primary" href="/aprovacao-lancamento/viewDetails">Visualizar</a> */}
                     </div>
                 </div>
                 ))}
