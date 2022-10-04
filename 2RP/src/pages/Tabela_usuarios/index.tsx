@@ -46,11 +46,7 @@ export const Tabela_usuario = () => {
                     <div className="col">{Colaborador?.turno}</div>
                     <div className="col">{Colaborador?.status}</div>
                     <div className="col">
-<<<<<<< HEAD
                         <a className="btn btn-primary" href="/editUsuario">Visualizar</a>
-=======
-                        {/* <a className="btn btn-primary" href="/aprovacao-lancamento/viewDetails">Visualizar</a> */}
->>>>>>> a8ab2222cac04eb272b2836f364c8d906564e4fa
                     </div>
                 </div>
                 ))}
