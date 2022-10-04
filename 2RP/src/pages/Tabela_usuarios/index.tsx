@@ -6,7 +6,7 @@ export const Tabela_usuario = () => {
 
 
 
-    const [lancamentos, setLancamentos] = useState<Colaborador[]>([])
+    const [colaboradores, setColaboradores] = useState<Colaborador[]>([])
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_SERVER}/selectColaboradores`, {
@@ -17,7 +17,7 @@ export const Tabela_usuario = () => {
         })
           .then((resp) => resp.json())
           .then((data) => {
-            setLancamentos(data)
+            setColaboradores(data)
           })
       }, [])
 
@@ -37,7 +37,7 @@ export const Tabela_usuario = () => {
                     <div className="col">Ações</div>
                 </div>
 
-                {lancamentos.map((Colaborador) => (
+                {colaboradores.map((Colaborador) => (
                 <div className="row items">
                     <div className="col">{Colaborador?.id}</div>
                     <div className="col">{Colaborador?.nome}</div>
