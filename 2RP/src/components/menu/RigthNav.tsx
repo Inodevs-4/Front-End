@@ -34,35 +34,35 @@ function RightNav(props: Props) {
   
     >
       {/* <CottageIcon color='primary'/> */}
-      <S.Li> <CottageIcon color='primary'/> Home</S.Li>
+      <S.Li> <CottageIcon color='primary'/>Home</S.Li>
     </NavLink>
     <NavLink
       to='/etapa1'
    
     >
       {/* <AddIcon  color='primary'/> */}
-      <S.Li> <AddIcon  color='primary'/> Cadastrar<br/>Horas</S.Li>
+      <S.Li> <AddIcon  color='primary'/>Cadastrar Horas</S.Li>
     </NavLink>
     <NavLink
       to='/aprovacao-lancamento'
      
     >
       {/* <PlaylistAddCheckIcon  color='primary'/> */}
-      <S.Li> <PlaylistAddCheckIcon  color='primary'/> Tabela de<br/>apontamentos</S.Li>
+      <S.Li> <PlaylistAddCheckIcon  color='primary'/>Apontamentos</S.Li>
     </NavLink>
     <NavLink
       to='/tabela_usuarios'
      
     >
       {/* <PlaylistAddCheckIcon  color='primary'/> */}
-      <S.Li> <PlaylistAddCheckIcon  color='primary'/>Tabela<br/>Usuarios</S.Li>
+      <S.Li> <PlaylistAddCheckIcon  color='primary'/>Tabela Usuários</S.Li>
     </NavLink>
     <NavLink
       to='/tabela_usuario'
    
     >
       {/* <GroupIcon  color='primary'/> */}
-      <S.Li> <GroupIcon  color='primary'/> Projetos</S.Li>
+      <S.Li> <GroupIcon  color='primary'/>Projetos</S.Li>
     </NavLink>
 
     <NavLink
@@ -70,7 +70,7 @@ function RightNav(props: Props) {
    
     >
       {/* <ModeEditIcon  color='primary'/> */}
-      <S.Li> <ModeEditIcon  color='primary'/> Manipulação<br/>Horas</S.Li>
+      <S.Li> <ModeEditIcon  color='primary'/> Manipulação Horas</S.Li>
     </NavLink>
 
     <NavLink
@@ -78,7 +78,7 @@ function RightNav(props: Props) {
    
     >
       {/* <DashboardIcon  color='primary'/> */}
-      <S.Li> <DashboardIcon  color='primary'/> Dashboards</S.Li>
+      <S.Li> <DashboardIcon  color='primary'/>Dashboards</S.Li>
     </NavLink>
 
     <NavLink
@@ -86,7 +86,7 @@ function RightNav(props: Props) {
    
     >
       {/* <HistoryToggleOffIcon  color='primary'/> */}
-      <S.Li> <HistoryToggleOffIcon  color='primary'/> Historico</S.Li>
+      <S.Li> <HistoryToggleOffIcon  color='primary'/>Histórico</S.Li>
     </NavLink>
 
     <button onClick={handleLogout}>Sair</button>
