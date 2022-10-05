@@ -8,8 +8,8 @@ export const StyledBurger = styled.div<INav>`
   width: 2rem;
   height: 2rem;
   position: fixed;
-  top: 15px;
-  right: 20px;
+  top: 25px;
+  right: 30px;
   z-index: 20;
   display: none;
   cursor: pointer;
@@ -26,7 +26,7 @@ export const Menus = styled.div<INav>`
     width: 2rem;
     height: 0.25rem;
     background-color: #000;
-    border-radius: 10px;
+    border-radius: 30px;
     transform-origin: 1px;
     transition: all 0.3s linear;
     cursor: pointer;
