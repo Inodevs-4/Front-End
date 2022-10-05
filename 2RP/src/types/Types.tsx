@@ -14,9 +14,9 @@ export type Colaborador = {
     email?: string,
     telefone?: string,
     perfil?: string,
+    senha?: string,
     lancamentos?: Lancamento[],
     cr?: any,
-    gestor?: Colaborador
 }
 
 export type Status = 'aprovado' | 'pendente' | 'reprovado'

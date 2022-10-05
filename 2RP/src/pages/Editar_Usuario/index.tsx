@@ -5,13 +5,41 @@ import Navbar from '../../components/menu/Navbar';
 import { useContext, useEffect, useState } from 'react'
 // import Calendar from 'react-calendar';
 import "./styles.css";
-import { Lancamento } from '../../types/Types'
+import { Colaborador, Lancamento } from '../../types/Types'
 import { AuthContext } from '../../login/AuthContext';
 import { formatarDataHora, formatarInicial } from '../../functions/formatar';
 import Loading from '../../components/Loading';
 import { ChangeEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 export const Editar_Usuario = () =>{
+
+    const { matricula } = useParams()
+
+    const [colaborador, setColaborador] = useState<Colaborador>()
+    const [colaboradorInicial, setColaboradorInicial] = useState<Colaborador>()
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_SERVER}/getColaborador/${matricula}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            setColaborador(data)
+            setColaboradorInicial(data)
+          })
+      }, [])
+
+      
+    function handleChange(e: any) {
+        setColaborador({...colaborador, [e.target.name]: e.target.value})
+    }
+
+    function handleSelect(e: any) {
+        setColaborador({...colaborador, [e.target.name]: e.target.options[e.target.selectedIndex].value,})
+    }
 
     // Função para ativar inputs
     const[isDisabled, setIsDisabled] = useState(true);
@@ -27,10 +55,32 @@ export const Editar_Usuario = () =>{
 
     const history = useNavigate();
 
+    /*
     const cancelar = () => {
         history('/editUsuario')
     }
+    */
 
+    const cancelar = () => {
+        setColaborador(colaboradorInicial)
+        editarUsuario()
+    }
+
+    const salvarColaborador = () => {
+        fetch(`${process.env.REACT_APP_SERVER}/atualizarColaborador/${matricula}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(colaborador),
+          })
+            .then((resp) => resp.json())
+            .then((data) => {
+              console.log(data)
+              history('/tabela_usuarios')
+            })
+            .catch((err) => console.log(err))
+    }
 
     return(
     <body>
@@ -41,16 +91,16 @@ export const Editar_Usuario = () =>{
                 <div className="row g-2">
                     <div className="col-md">
                         <div className="form-floating">
-                        <input type="text" className="form-control matricula" id="floatingInputGrid matricula" disabled={isDisabled} defaultValue="Felipe"/>
+                        <input type="text" className="form-control matricula" id="floatingInputGrid matricula" disabled value={colaborador?.matricula} name='matricula'/>
                         <label htmlFor="floatingInputGrid">Matrícula</label>
                         </div>
                     </div>
                     <div className="col-md">
-                    <select className="form-select turno" aria-label="Disabled select example" disabled={isDisabled}>
-                            <option value="1">Manhã</option>
-                            <option value="2">Tarde</option>
-                            <option value="3">Noite</option>
-                            <option value="4">Madrugada</option>
+                    <select className="form-select turno" aria-label="Disabled select example" disabled={isDisabled} value={colaborador?.turno} onChange={handleSelect} name='turno'>
+                            <option value="Manhã">Manhã</option>
+                            <option value="Tarde">Tarde</option>
+                            <option value="Noite">Noite</option>
+                            <option value="Madrugada">Madrugada</option>
                     </select>
                         
                     </div>
@@ -58,21 +108,21 @@ export const Editar_Usuario = () =>{
 
                 {/* Nome */}
                 <div className="form-floating mb-3">
-                    <input type="text" className="form-control" id="floatingInput" defaultValue="InoDevs" disabled={isDisabled}/>
+                    <input type="text" className="form-control" id="floatingInput" value={colaborador?.nome} disabled={isDisabled} onChange={handleChange} name='nome'/>
                     <label htmlFor="floatingInput">Nome</label>
                 </div>
                 {/* Turno && Email */}
                 <div className="row g-2">
                     <div className="col-md">
-                    <select className="form-select status" aria-label="Disabled select example" disabled={isDisabled}>
-                            <option value="1">Ativo</option>
-                            <option value="2">Inativo</option>
+                    <select className="form-select status" aria-label="Disabled select example" disabled={isDisabled} value={colaborador?.status} onChange={handleSelect} name='status'>
+                            <option value="ativo">Ativo</option>
+                            <option value="inativo">Inativo</option>
 
                     </select>
                     </div>
                     <div className="col-md">
                         <div className="form-floating">
-                            <input type="email" className="form-control" id="floatingInputGrid" defaultValue="Esqueci :o" disabled={isDisabled}/>
+                            <input type="email" className="form-control" id="floatingInputGrid" value={colaborador?.email} disabled={isDisabled} onChange={handleChange} name='email'/>
                             <label htmlFor="floatingInputGrid">Email</label>
                         </div>
                     </div>
@@ -81,15 +131,17 @@ export const Editar_Usuario = () =>{
                 {/* Status e telefone */}
                 <div className="row g-2">
                     <div className="col-md">
-                    <div className="form-floating">
-                            <input type="text" className="form-control" id="floatingInputGrid" defaultValue="Colaborador" disabled={isDisabled}/>
-                            <label htmlFor="floatingInputGrid">Perfil</label>
-                        </div>
+
+                    <select className="form-select perfil" aria-label="Disabled select example" disabled={isDisabled} value={colaborador?.perfil} onChange={handleSelect} name='perfil'>
+                            <option value="colaborador">Colaborador</option>
+                            <option value="gestor">Gestor</option>
+                            <option value="administrador">Administrador</option>
+                    </select>
                     </div>
 
                     <div className="col-md">
                         <div className="form-floating">
-                            <input type="tel" className="form-control" id="floatingInputGrid" defaultValue="000000000" disabled={isDisabled}/>
+                            <input type="tel" className="form-control" id="floatingInputGrid" value={colaborador?.telefone} disabled={isDisabled} onChange={handleChange} name='telefone'/>
                             <label htmlFor="floatingInputGrid">Telefone</label>
                         </div>
                     </div>
@@ -98,8 +150,8 @@ export const Editar_Usuario = () =>{
                     {/* Botão Editar */}
                     <button onClick={editarUsuario}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
                     <div className='alteracao' hidden={isVisible}>
-                        <a href="/editUsuario" className='btn btn-danger' onClick={cancelar}>Cancelar</a>
-                        <button className='btn btn-success'>Concluir</button>
+                        <button className='btn btn-danger' onClick={cancelar}>Cancelar</button>
+                        <button onClick={salvarColaborador} className='btn btn-success'>Concluir</button>
                     </div>
                 </div> 
             </div>

@@ -47,7 +47,7 @@ export const Tabela_usuario = () => {
                     <div className="col">{Colaborador?.turno}</div>
                     <div className="col">{formatarInicial(Colaborador?.status)}</div>
                     <div className="col">
-                        <a className="btn btn-primary" href="/editUsuario">Visualizar</a>
+                        <a className="btn btn-primary" href={`/editUsuario/${Colaborador.matricula}`}>Visualizar</a>
                     </div>
                 </div>
                 ))}
