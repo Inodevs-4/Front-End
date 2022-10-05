@@ -8,6 +8,9 @@ type State = {
     gestor: string;
     data_inicio: string;
     data_fim: string; 
+    data_inicio2: string;
+    data_fim2: string;
+    acionado: string;
     observacoes: string;
     projeto: string;
 }
@@ -33,6 +36,9 @@ const initialData: State = {
     gestor: '',
     data_inicio: '',
     data_fim: '',
+    data_inicio2: '',
+    data_fim2: '',
+    acionado: '',
     observacoes: '',
     projeto: ''
 }
@@ -48,6 +54,9 @@ export enum FormActions {
     setGestor,
     setDataInicio,
     setDataFim,
+    setDataInicio2,
+    setDataFim2,
+    setAcionado,
     setObservacoes,
     setProjeto
 }
@@ -66,6 +75,12 @@ const formReducer = (state: State, action: Action) => {
             return{...state, data_inicio: action.payload };
         case FormActions.setDataFim:
             return{...state, data_fim: action.payload };
+        case FormActions.setDataInicio2:
+            return{...state, data_inicio2: action.payload };
+        case FormActions.setDataFim2:
+            return{...state, data_fim2: action.payload};
+        case FormActions.setAcionado:
+            return{...state, acionado: action.payload};
         case FormActions.setObservacoes:
             return{...state, observacoes: action.payload};
         case FormActions.setProjeto:

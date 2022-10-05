@@ -54,6 +54,29 @@ export const Etapa2Form = () => {
             payload: e.target.value
         })
     }
+
+    const handleDateStarts2Change = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch({
+            type: FormActions.setDataInicio2,
+            payload: e.target.value
+        })
+    }
+
+    const handleDateEnds2Change = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch({
+            type: FormActions.setDataFim2,
+            payload: e.target.value
+        })
+    }
+
+    const handleAcionadoChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        dispatch({
+            type: FormActions.setAcionado,
+            payload: e.target.value 
+        });
+        console.log(state.acionado)
+    }
+
     const handleColaboratorChange = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch({
             type: FormActions.setColaborador,
@@ -89,11 +112,24 @@ export const Etapa2Form = () => {
                         <option value={colaborador.matricula} key={colaborador.matricula}>{colaborador.nome}</option>
                     ))}
                 </select>
-               <p>Inicio </p>
+                <p>Inicio </p>
                 <input type="datetime-local" name="" id="" onChange={handleDateStartsChange} value={state.data_inicio}/>
                 <hr />
                 <p>Fim</p>
                 <input type="datetime-local" className='mb-4' name="" id=""  onChange={handleDateEndsChange} value={state.data_fim}/>
+                <p>Foi acionado mais de uma vez?</p>
+                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleAcionadoChange}>
+                        <option value="sim" >Sim</option>
+                        <option value="nao" selected >Não</option>
+                    </select>
+                {state.acionado === 'sim'  && (
+                    <>
+                        <p>2º Inicio</p>
+                        <input type="datetime-local" name="" id="" onChange={handleDateStarts2Change} value={state.data_inicio2}/>
+                        <p>2º Fim</p>
+                        <input type="datetime-local" className='mb-4' name="" id=""  onChange={handleDateEnds2Change} value={state.data_fim2}/> 
+                    </>
+                )}
                 <Link to="/etapa1" className='backButton'>Voltar</Link>
 
                 <button onClick={handleNextStep}> Próximo </button>

@@ -25,6 +25,6 @@ export const RequireAuth = ({ children, nivel }: { children: JSX.Element, nivel?
             </>
         )
     }
-
+    
     return children;
 }
