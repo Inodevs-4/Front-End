@@ -26,6 +26,8 @@ export const Tabela_usuario = () => {
         <body>
             <Navbar/>
             <p className="h3">Tabela Usuarios</p>
+            <a href="/cadastro-usuario" className='btn btn-primary cadastrar' data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novo Usuário"><p className="icon">+</p></a>
+
             <hr />
             <div className="apontamentos">
                 <div className="row titles">
@@ -40,7 +42,7 @@ export const Tabela_usuario = () => {
 
                 {colaboradores.map((Colaborador) => (
                 <div key={Colaborador?.matricula} className="row items">
-                    <div className="col">{Colaborador?.matricula}</div>
+                    <div className="col"><p className="matricula">{Colaborador?.matricula}</p></div>
                     <div className="col">{Colaborador?.nome}</div>
                     <div className="col">{formatarInicial(Colaborador?.perfil)}</div>
                     <div className="col">{Colaborador?.email}</div>

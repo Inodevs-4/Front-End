@@ -54,3 +54,43 @@ hr {
     margin-right: auto;
 }
 
+.edit {
+    width: 65%;
+    min-height: 40em;
+    margin-bottom: 3em;
+    background-color: rgb(255, 255, 255);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.3);
+    
+
+}
+
+.btn.btn-primary.cadastrar {
+    align-items: right;
+    margin-left: 92% !important;
+    width: 3.5em !important;
+    display: inline-flex;
+    padding-top: 15px !important;
+    font-size: 16px !important;
+    font-weight: bold;
+    height: 2.5em !important;
+    margin-bottom: -1% !important;
+}
+.icon {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -25%;
+
+}
+.matricula {
+    background-color: rgb(232, 232, 232) !important;
+    width: 70% !important;
+    text-align: center !important;
+    border-radius: 5px;
+}

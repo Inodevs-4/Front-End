@@ -12,6 +12,7 @@ import DetalhesApontamento from "./pages/Detalhes_Apontamento";
 import { RequireAuth } from "./login/RequireAuth";
 import Tabela_usuario from "./pages/Tabela_usuarios";
 import Editar_Usuario from "./pages/Editar_Usuario";
+import CadastroUsuario from "./pages/CadastroUsuario";
 
 
 
@@ -32,6 +33,7 @@ export const App = () => {
         <Route path="/aprovacao-lancamento/viewDetails" element={<RequireAuth><DetalhesApontamento/></RequireAuth>} />
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/editUsuario/:matricula" element={<RequireAuth><Editar_Usuario/></RequireAuth>} />
+        <Route path="/cadastro-usuario" element={<RequireAuth><CadastroUsuario/></RequireAuth>}/>
       </Switch>
     </BrowserRouter>
     </FormProvider>
