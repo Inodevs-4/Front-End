@@ -10,7 +10,7 @@ export const Area = styled.div`
     
     margin: auto;
     width: 1000px;
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     background-color: #022041;

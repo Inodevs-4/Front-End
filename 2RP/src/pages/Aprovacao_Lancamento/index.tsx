@@ -49,7 +49,7 @@ export const Aprovacao = () => {
                     <div className="col">{formatarDataHora(String(lancamento.data_fim))}</div>
                     <div className="col">{formatarInicial(lancamento.status)}</div>
                     <div className="col">
-                        <a className="btn btn-primary" href="/aprovacao-lancamento/viewDetails">Visualizar</a>
+                        <a className="btn btn-primary" href={`/Detalhes_Apontamento/${lancamento.id}`}>Visualizar</a>
                     </div>
                 </div>
                 ))}

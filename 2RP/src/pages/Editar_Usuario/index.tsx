@@ -1,15 +1,7 @@
-// import Menu from "../../components/menu";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Navbar from '../../components/menu/Navbar';
 import { useContext, useEffect, useState } from 'react'
-// import Calendar from 'react-calendar';
 import "./styles.css";
-import { Colaborador, Lancamento } from '../../types/Types'
-import { AuthContext } from '../../login/AuthContext';
-import { formatarDataHora, formatarInicial } from '../../functions/formatar';
-import Loading from '../../components/Loading';
-import { ChangeEvent } from 'react';
+import { Colaborador} from '../../types/Types'
 import { useNavigate, useParams } from 'react-router-dom';
 export const Editar_Usuario = () =>{
 

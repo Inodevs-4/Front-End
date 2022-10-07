@@ -22,14 +22,14 @@ export type Colaborador = {
 export type Status = 'aprovado' | 'pendente' | 'reprovado'
 export type StatusUsuario = 'ativo' | 'inativo'
 export type Modalidade = 'hora extra' | 'sobreaviso'
-export type Tipo = 'continuo' | 'escalonado'
+export type Acionado = 'sim' | 'nao'
 
 export type Lancamento = {
     id?: number,
     modalidade?: Modalidade,
     data_inicio?: Date,
     data_fim?: Date,
-    tipo?: Tipo,
+    acionado?: Acionado,
     data_inicio2?: Date,
     data_fim2?: Date,
     observacoes?: string,
