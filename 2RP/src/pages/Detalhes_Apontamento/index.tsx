@@ -2,9 +2,9 @@ import Navbar from '../../components/menu/Navbar';
 import { useEffect, useState } from 'react'
 import "./styles.css";
 import { formatarDataHoraInput } from "../../functions/formatar";
-import { Colaborador, Lancamento, Projeto } from '../../types/Types'
-import { useParams } from 'react-router-dom';
-import { atualizarLancamento, getLancamento } from '../../hooks/Lancamento';
+import { Colaborador, Lancamento, Projeto, Status } from '../../types/Types'
+import { useNavigate, useParams } from 'react-router-dom';
+import { aprovarLancamento, atualizarLancamento, getLancamento, reprovarLancamento } from '../../hooks/Lancamento';
 import { selectProjetos } from '../../hooks/Projeto';
 import { selectColaboradores, selectGestores } from '../../hooks/Colaborador';
 
@@ -62,19 +62,28 @@ export const DetalhesApontamento = () =>{
         setLancamento({...lancamento, [e.target.name]: e.target.options[e.target.selectedIndex].value,})
     }
 
+    const history = useNavigate();
     // Função para ativar inputs
     const[isDisabled, setIsDisabled] = useState(true);
     //Esconde botao alterar
     const[isHidden, setIsHidden] = useState(false);
    //Div dos botoes de concluir e cancelar
     const[isVisible, setIsVisible] = useState(true);
-    const editarUsuario = () => {
+    const editarLancamento = () => {
         setIsDisabled(!isDisabled)
         setIsHidden(!isHidden)
         setIsVisible(!isVisible)
     }
 
-    // const history = useNavigate();
+    const aprovar = async() => {
+        await aprovarLancamento(lancamento, id)
+        history("/aprovacao-lancamento") 
+    }
+
+    const reprovar = async() => {
+        await reprovarLancamento(lancamento, id)
+        history("/aprovacao-lancamento") 
+    }
 
     /*
     const cancelar = () => {
@@ -84,15 +93,14 @@ export const DetalhesApontamento = () =>{
 
     const cancelar = () => {
         setLancamento(lacamentoInicial)
-        editarUsuario()
+        editarLancamento()
     }
 
     const salvarLacamento = async() => {
         await atualizarLancamento(lancamento, id)
         setLacamentoIncial(lancamento)
-        editarUsuario()
+        editarLancamento()
     }
-
 
     return(
         <body>
@@ -199,7 +207,9 @@ export const DetalhesApontamento = () =>{
 
                     <hr className='linha'/>
 
-                    <button onClick={editarUsuario}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
+                    <button onClick={aprovar}  className='btn btn-success editar' hidden={isHidden}>Aprovar</button>
+                    <button onClick={editarLancamento}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
+                    <button onClick={reprovar}  className='btn btn-danger editar' hidden={isHidden}>Reprovar</button>
                     <div className='alteracao' hidden={isVisible}>
                         <button className='btn btn-danger' onClick={cancelar}>Cancelar</button>
                         <button onClick={salvarLacamento} className='btn btn-success'>Concluir</button>

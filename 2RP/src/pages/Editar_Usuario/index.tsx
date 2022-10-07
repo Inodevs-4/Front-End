@@ -45,7 +45,7 @@ export const Editar_Usuario = () =>{
         setIsVisible(!isVisible)
     }
 
-    const history = useNavigate();
+    //const history = useNavigate();
 
     /*
     const cancelar = () => {
@@ -69,7 +69,8 @@ export const Editar_Usuario = () =>{
             .then((resp) => resp.json())
             .then((data) => {
               console.log(data)
-              history('/tabela_usuarios')
+              setColaboradorInicial(colaborador)
+              editarUsuario()
             })
             .catch((err) => console.log(err))
     }

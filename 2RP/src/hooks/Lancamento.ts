@@ -26,10 +26,38 @@ export async function atualizarLancamento(lancamento: Lancamento | undefined , i
         .then((resp) => resp.json())
         .then((data) => {
             console.log(data)
-            if (data.id) {
-                return true
-            }
-            return false
+        })
+    .catch((err) => console.log(err))
+}
+
+// aprovar lancamento
+export async function aprovarLancamento(lancamento: Lancamento | undefined , id: string | undefined) {
+    return fetch(`${process.env.REACT_APP_SERVER}/aprovarLancamento/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(lancamento),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+            console.log(data)
+        })
+    .catch((err) => console.log(err))
+}
+
+// reprovar lancamento
+export async function reprovarLancamento(lancamento: Lancamento | undefined , id: string | undefined) {
+    return fetch(`${process.env.REACT_APP_SERVER}/reprovarLancamento/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(lancamento),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+            console.log(data)
         })
     .catch((err) => console.log(err))
 }
