@@ -5,6 +5,7 @@ import { useForm, FormActions } from '../../../contexts/FormContext';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Colaborador } from '../../../types/Types'
 import Navbar from '../../../components/menu/Navbar';
+import { selectColaboradores } from '../../../hooks/Colaborador';
 // import Menu from "../../../components/menu";
 
 
@@ -17,16 +18,10 @@ export const Etapa2Form = () => {
     const [ colaboradores, setColaboradores ] = useState<Colaborador[]>([])
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/selectColaboradores`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
-            setColaboradores(data)
-          })
+        const hookColaborador = async() => {
+            setColaboradores(await selectColaboradores())
+        }   
+        hookColaborador()
       }, [])
 
     useEffect(() => {
@@ -74,7 +69,6 @@ export const Etapa2Form = () => {
             type: FormActions.setAcionado,
             payload: e.target.value 
         });
-        console.log(state.acionado)
     }
 
     const handleColaboratorChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -120,7 +114,7 @@ export const Etapa2Form = () => {
                 <p>Foi acionado mais de uma vez?</p>
                     <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleAcionadoChange}>
                         <option value="sim" >Sim</option>
-                        <option value="nao" selected >Não</option>
+                        <option value="nao" selected>Não</option>
                     </select>
                 {state.acionado === 'sim'  && (
                     <>

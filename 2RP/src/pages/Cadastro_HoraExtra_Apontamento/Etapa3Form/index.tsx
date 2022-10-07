@@ -5,9 +5,9 @@ import { Theme } from '../../../components/Theme';
 import { ChangeEvent, useEffect, useState, } from 'react';
 import { Colaborador, Projeto } from '../../../types/Types';
 import Navbar from '../../../components/menu/Navbar';
+import { selectGestores } from '../../../hooks/Colaborador';
+import { selectProjetos } from '../../../hooks/Projeto';
 // import Menu from "../../../components/menu";
-
-
 
 export const Etapa3Form = () => {
     const history = useNavigate();
@@ -17,29 +17,17 @@ export const Etapa3Form = () => {
     const [ gestores, setGestores ] = useState<Colaborador[]>([]);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/selectProjetos`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
-            setProjetos(data)
-          })
+        const hookProjeto = async() => {
+            setProjetos(await selectProjetos())
+        } 
+        hookProjeto()
       }, [])
 
       useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/selectGestores`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
-            setGestores(data)
-          })
+        const hookGestor = async() => {
+            setGestores(await selectGestores())
+        } 
+        hookGestor()
       }, [])
 
     useEffect(() => {

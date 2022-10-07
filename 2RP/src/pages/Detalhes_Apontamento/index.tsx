@@ -1,9 +1,12 @@
 import Navbar from '../../components/menu/Navbar';
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import "./styles.css";
-import { formatarDataHora } from "../../functions/formatar";
-import { Lancamento } from '../../types/Types'
-import { useNavigate, useParams } from 'react-router-dom';
+import { formatarDataHoraInput } from "../../functions/formatar";
+import { Colaborador, Lancamento, Projeto } from '../../types/Types'
+import { useParams } from 'react-router-dom';
+import { atualizarLancamento, getLancamento } from '../../hooks/Lancamento';
+import { selectProjetos } from '../../hooks/Projeto';
+import { selectColaboradores, selectGestores } from '../../hooks/Colaborador';
 
 
 export const DetalhesApontamento = () =>{
@@ -12,19 +15,42 @@ export const DetalhesApontamento = () =>{
 
     const [lancamento, setLancamento] = useState<Lancamento>()
     const [lacamentoInicial, setLacamentoIncial] = useState<Lancamento>()
+    const [projetos, setProjetos] = useState<Projeto[]>([])
+    const [gestores, setGestores] = useState<Colaborador[]>([])
+    const [colaboradores, setColaboradores] = useState<Colaborador[]>([])
 
+    // selecionando lancamento por id
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/getLancamento/${id}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
+        const hookLancamento = async() => {
+            const data = await getLancamento(id)
             setLancamento(data)
             setLacamentoIncial(data)
-          })
+        }
+        hookLancamento()
+      }, [])
+
+      // selecionando todos os projetos para o select
+      useEffect(() => {
+        const hookProjeto = async() => {
+            setProjetos(await selectProjetos())
+        } 
+        hookProjeto()
+      }, [])
+
+      // selecionando todos os gestores para o select
+      useEffect(() => {
+        const hookGestor = async() => {
+            setGestores(await selectGestores())
+        } 
+        hookGestor()
+      }, [])
+
+      // selecionando todos os colaboradores para o select
+      useEffect(() => {
+        const hookColaborador = async() => {
+            setColaboradores(await selectColaboradores())
+        }   
+        hookColaborador()
       }, [])
 
       
@@ -35,7 +61,7 @@ export const DetalhesApontamento = () =>{
     function handleSelect(e: any) {
         setLancamento({...lancamento, [e.target.name]: e.target.options[e.target.selectedIndex].value,})
     }
-    console.log(lancamento)
+
     // Função para ativar inputs
     const[isDisabled, setIsDisabled] = useState(true);
     //Esconde botao alterar
@@ -48,7 +74,7 @@ export const DetalhesApontamento = () =>{
         setIsVisible(!isVisible)
     }
 
-    const history = useNavigate();
+    // const history = useNavigate();
 
     /*
     const cancelar = () => {
@@ -61,20 +87,10 @@ export const DetalhesApontamento = () =>{
         editarUsuario()
     }
 
-    const salvarLacamento = () => {
-        fetch(`${process.env.REACT_APP_SERVER}/atualizarLancamento/${id}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(lancamento),
-          })
-            .then((resp) => resp.json())
-            .then((data) => {
-              console.log(data)
-              history('/aprovacao-lancamento')
-            })
-            .catch((err) => console.log(err))
+    const salvarLacamento = async() => {
+        await atualizarLancamento(lancamento, id)
+        setLacamentoIncial(lancamento)
+        editarUsuario()
     }
 
 
@@ -84,29 +100,36 @@ export const DetalhesApontamento = () =>{
             { /* Lançamento */}
             <div className="edit">
                 <h3>Lançamento</h3>
+
+  
                 <div className="form-floating mb-3">
-                    <input type="text" className="form-control" id="floatingInput"value={lancamento?.colaborador?.nome} disabled={isDisabled} name="nome"  />
-                    <label htmlFor="floatingInputGrid">Nome</label>
+                    <select  className="form-select" id="floatingInputGrid" disabled={isDisabled} value={lancamento?.colaborador?.matricula} onChange={handleSelect} name="colaborador">
+                    {colaboradores.map((colaborador) => (
+                        <option value={colaborador.matricula} key={colaborador.matricula}>{colaborador.nome}</option>
+                    ))}
+                    </select>
+                    <label htmlFor="floatingInputGrid">Nome do Colaborador</label>
                 </div>
                 { /* Modalidade && Tipo && 2º acionamento*/}
                 <div className="row g-2">
                 <div className="col-md">
                         <div className="form-floating">
                             <select  className="form-select" id="floatingInputGrid" disabled={isDisabled} value={lancamento?.modalidade}  onChange={handleChange} name="modalidade">
-                            <option value="Hora_Extra">Hora Extra</option>
-                            <option value="avisso">Sob avisso</option>
+                            <option value="hora extra">Hora Extra</option>
+                            <option value="sobreaviso">Sobreaviso</option>
                             </select>
+                            <label htmlFor="floatingInputGrid">Modalidade</label>
                         </div>
                     </div>  
                         
                     
                     <div className="col-md">                        
                 <div className="form-floating">
-                    <label className="eu" htmlFor="floatingInputGrid">Acionamento</label>
-                            <select className="form-select" aria-label="Disabled select example" disabled={isDisabled} value={lancamento?.acionado} onChange={handleSelect} name="Acionamento" >
-                            <option value="Nao">Não</option>
-                            <option value="Sim">Sim</option>
+                            <select className="form-select" aria-label="Disabled select example" disabled={isDisabled} value={lancamento?.acionado} onChange={handleSelect} name="acionado" >
+                            <option value="nao">Não</option>
+                            <option value="sim">Sim</option>
                             </select>
+                            <label htmlFor="floatingInputGrid">Foi acionado mais de uma vez?</label>
                         </div>
                     </div>
                 </div>
@@ -114,50 +137,54 @@ export const DetalhesApontamento = () =>{
                 <div className="row g-2">
                     <div className="col-md">
                         <div className="form-floating">
-                            <input type="text" className="form-control"  disabled={isDisabled} value={formatarDataHora(String(lancamento?.data_inicio))}   onChange={handleChange} name="incio" />
-                            <label htmlFor="floatingInputGrid">Inicio</label>
+                            <input type="datetime-local" className="form-control"  disabled={isDisabled} value={formatarDataHoraInput(String(lancamento?.data_inicio))}   onChange={handleChange} name="data_inicio" />
+                            <label htmlFor="floatingInputGrid">Data de Inicio</label>
                         </div>
                     </div>
                     <div className="col-md">
                         <div className="form-floating">
-                            <input type="text" className="form-control"  disabled={isDisabled} value={formatarDataHora(String(lancamento?.data_fim))}   onChange={handleChange} name="fim"/>
-                            <label htmlFor="floatingInputGrid">Fim</label>
+                            <input type="datetime-local" className="form-control"  disabled={isDisabled} value={formatarDataHoraInput(String(lancamento?.data_fim))}   onChange={handleChange} name="data_fim"/>
+                            <label htmlFor="floatingInputGrid">Data de Fim</label>
                         </div>
                     </div>
                 </div>
                 { /* Inicio2 && Fim2 */}
-                <div className="row g-2">
+                {lancamento?.acionado === "sim" && (
+                    <div className="row g-2">
                     <div className="col-md">
                         <div className="form-floating">
-                            <input type="text" className="form-control"  disabled={isDisabled} value={formatarDataHora(String(lancamento?.data_inicio2))}  onChange={handleChange} name="inicio2"/>
-                            <label htmlFor="floatingInputGrid">2º Inicio</label>
+                            <input type="datetime-local" className="form-control"  disabled={isDisabled} value={formatarDataHoraInput(String(lancamento?.data_inicio2))}  onChange={handleChange} name="data_inicio2"/>
+                            <label htmlFor="floatingInputGrid">Data de 2º Inicio</label>
                         </div>
                     </div>
                     <div className="col-md">
                         <div className="form-floating">
-                            <input type="text" className="form-control"  disabled={isDisabled} value={formatarDataHora(String(lancamento?.data_fim2))}  onChange={handleChange} name="fim2"/>
-                            <label htmlFor="floatingInputGrid">2º Fim</label>
+                            <input type="datetime-local" className="form-control"  disabled={isDisabled} value={formatarDataHoraInput(String(lancamento?.data_fim2))}  onChange={handleChange} name="data_fim2"/>
+                            <label htmlFor="floatingInputGrid">Data de 2º Fim</label>
                         </div>
                     </div>
                 </div>
+                )}
                 { /* Projeto && Gestor */}
                 <div className="row g-2">
                     <div className="col-md">
                         <div className="form-floating">
-                            <select  className="form-select" id="floatingInputGrid" disabled={isDisabled} value={lancamento?.projeto?.nome}  onChange={handleSelect} name="projeto" >
-                            <option value="Projeto_1">Projeto</option>
-                            <option value="Projeto_2">Projeto 2</option>
-                            <option value="Projeto_3">Projeto 3</option>
-                            </select>
-                           
+                            <select className="form-select" id="floatingInputGrid" disabled={isDisabled} value={lancamento?.projeto?.id}  onChange={handleSelect} name="projeto" >
+                            {projetos.map((projeto) => (
+                                <option value={projeto.id} key={projeto.id}>{projeto.nome}</option>
+                             ))}
+                             </select>
+                            <label htmlFor="floatingInputGrid">Projeto</label>
                         </div>
                     </div>
                     <div className="col-md">
                         <div className="form-floating">
-                            <select  className="form-select" id="floatingInputGrid" disabled={isDisabled} defaultValue="Gestor 1"  onChange={handleSelect} name="gestor">
-                            <option value="Gestor_1">Gestor 1</option>
-                            <option value="Gestor_2">Gestor 2</option>
+                            <select className="form-select" id="floatingInputGrid" disabled={isDisabled} value={lancamento?.gestor?.matricula} onChange={handleSelect} name="gestor">
+                            {gestores.map((gestor) => (
+                                <option value={gestor.matricula} key={gestor.matricula}>{gestor.nome}</option>
+                             ))}
                             </select>
+                            <label htmlFor="floatingInputGrid">Gestor</label>
                         </div>
                     </div>
                 </div>
