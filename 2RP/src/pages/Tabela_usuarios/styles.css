@@ -70,14 +70,14 @@ hr {
 
 .btn.btn-primary.cadastrar {
     align-items: right;
-    margin-left: 92% !important;
-    width: 3.5em !important;
+    margin-left: 92%;
+    width: 3.5em;
     display: inline-flex;
-    padding-top: 15px !important;
-    font-size: 16px !important;
+    padding-top: 15px;
+    font-size: 16px;
     font-weight: bold;
-    height: 2.5em !important;
-    margin-bottom: -1% !important;
+    height: 2.5em;
+    margin-bottom: -1%;
 }
 .icon {
     font-weight: bold;

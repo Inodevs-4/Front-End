@@ -102,13 +102,13 @@ export const CadastroUsuario = () =>{
                     </div>
 
                 </div> 
-                <div className="form-floating mb-3">
+                <div className="form-floating mb-3 pb-2">
                         <input type="password" className="form-control" id="floatingInput" value={colaborador?.senha} onChange={handleChange} name='senha'/>
                         <label htmlFor="floatingInput">Senha</label>
                     </div>
                     <hr className='linha'/>
                     {/* Botão Cadastrar */}
-                    <button onClick={salvarColaborador}  className='btn btn-primary cadastrar'>Cadastrar</button>
+                    <button onClick={salvarColaborador}  className='btn btn-primary cadastrar1'>Cadastrar</button>
             </div>
     </body>
     )

@@ -209,7 +209,7 @@ export const DetalhesApontamento = () =>{
 
                     <button onClick={aprovar}  className='btn btn-success editar' hidden={isHidden}>Aprovar</button>
                     <button onClick={editarLancamento}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
-                    <button onClick={reprovar}  className='btn btn-danger editar' hidden={isHidden}>Reprovar</button>
+                    <button onClick={reprovar}  className='btn btn-danger editar mb-3' hidden={isHidden}>Reprovar</button>
                     <div className='alteracao' hidden={isVisible}>
                         <button className='btn btn-danger' onClick={cancelar}>Cancelar</button>
                         <button onClick={salvarLacamento} className='btn btn-success'>Concluir</button>
