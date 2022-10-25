@@ -7,7 +7,7 @@ import { Etapa2Form } from "./pages/Cadastro_HoraExtra_Apontamento/Etapa2Form";
 import { Etapa3Form } from "./pages/Cadastro_HoraExtra_Apontamento/Etapa3Form";
 import { FormProvider } from "./contexts/FormContext";
 import Aprovacao from "./pages/Aprovacao_Lancamento";
-
+import Projeto from "./pages/Cadastro_Projeto"; 
 import DetalhesApontamento from "./pages/Detalhes_Apontamento";
 import { RequireAuth } from "./login/RequireAuth";
 import Tabela_usuario from "./pages/Tabela_usuarios";
@@ -30,6 +30,7 @@ export const App = () => {
         <Route path="/etapa3" element={<RequireAuth><Etapa3Form/></RequireAuth>}/>
         <Route path="/tabela_usuarios" element={<RequireAuth><Tabela_usuario/></RequireAuth>}/>
         <Route path="/aprovacao-lancamento" element={<RequireAuth><Aprovacao/></RequireAuth>} />
+        <Route path="/projetos" element={<RequireAuth><Projeto/></RequireAuth>} />
         <Route path="/aprovacao-lancamento/viewDetails" element={<RequireAuth><DetalhesApontamento/></RequireAuth>} />
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/editUsuario/:matricula" element={<RequireAuth><Editar_Usuario/></RequireAuth>} />

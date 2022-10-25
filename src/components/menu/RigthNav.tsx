@@ -58,7 +58,7 @@ function RightNav(props: Props) {
       <S.Li> <PlaylistAddCheckIcon  color='primary'/>Tabela Usuários</S.Li>
     </NavLink>
     <NavLink
-      to='/tabela_usuario'
+      to='/projetos'
    
     >
       {/* <GroupIcon  color='primary'/> */}
