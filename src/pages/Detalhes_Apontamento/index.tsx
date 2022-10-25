@@ -120,7 +120,7 @@ export const DetalhesApontamento = () =>{
                 </div>
                 { /* Modalidade && Tipo && 2º acionamento*/}
                 <div className="row g-2">
-                <div className="col-md">
+                    <div className="col-md">
                         <div className="form-floating">
                             <select  className="form-select" id="floatingInputGrid" disabled={isDisabled} value={lancamento?.modalidade}  onChange={handleChange} name="modalidade">
                             <option value="hora extra">Hora Extra</option>
