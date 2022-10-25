@@ -47,7 +47,7 @@ export const CadastroUsuario = () =>{
                     <div className="col-md">
                         <div className="form-floating">
                         <input type="text" className="form-control matricula" id="floatingInputGrid matricula" value={colaborador?.matricula} name='matricula' onChange={handleChange} />
-                        <label htmlFor="floatingInputGrid">Matrícula</label>
+                        <label htmlFor="floatingInputGrid">ID :</label>
                         </div>
                     </div>
                     <div className="col-md">
@@ -114,4 +114,3 @@ export const CadastroUsuario = () =>{
     )
     }
     export default CadastroUsuario
-    
