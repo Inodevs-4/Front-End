@@ -13,6 +13,8 @@ import { RequireAuth } from "./login/RequireAuth";
 import Tabela_usuario from "./pages/Tabela_usuarios";
 import Editar_Usuario from "./pages/Editar_Usuario";
 import CadastroUsuario from "./pages/CadastroUsuario";
+import Manipulacao from "./pages/ManipulacaoHoraSobreAviso";
+import Cliente from "./pages/Cadastro_Cliente";
 
 
 
@@ -36,6 +38,8 @@ export const App = () => {
         <Route path="/editUsuario/:matricula" element={<RequireAuth><Editar_Usuario/></RequireAuth>} />
         <Route path="/Detalhes_Apontamento/:id" element={<RequireAuth><DetalhesApontamento/></RequireAuth>} />
         <Route path="/cadastro-usuario" element={<RequireAuth><CadastroUsuario/></RequireAuth>}/>
+        <Route path="/manipulacao-hora-sobreaviso" element={<RequireAuth><Manipulacao/></RequireAuth>}/>
+        <Route path="/clientes" element={<RequireAuth><Cliente/></RequireAuth>}/>
       </Switch>
     </BrowserRouter>
     </FormProvider>

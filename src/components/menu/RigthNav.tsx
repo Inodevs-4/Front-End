@@ -3,6 +3,7 @@ import CottageIcon from '@mui/icons-material/Cottage';
 import AddIcon from '@mui/icons-material/Add';
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import GroupIcon from '@mui/icons-material/Group';
+import PersonIcon from '@mui/icons-material/Person';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -64,9 +65,16 @@ function RightNav(props: Props) {
       {/* <GroupIcon  color='primary'/> */}
       <S.Li> <GroupIcon  color='primary'/>Projetos</S.Li>
     </NavLink>
+    <NavLink
+      to='/clientes'
+   
+    >
+      {/* <GroupIcon  color='primary'/> */}
+      <S.Li> <PersonIcon  color='primary'/>Clientes</S.Li>
+    </NavLink>
 
     <NavLink
-      to='/menu4'
+      to='/manipulacao-hora-sobreaviso'
    
     >
       {/* <ModeEditIcon  color='primary'/> */}
