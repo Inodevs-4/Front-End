@@ -19,7 +19,6 @@ export const Projeto = () =>{
         <Navbar/>
         <div className="edit">
                 <h3>Cadastro Projetos</h3>
-                {/* Matricula && Perfil */}
                 <div className="row g-2">
                     <div className="col-md">
                         <div className="form-floating">
@@ -30,7 +29,7 @@ export const Projeto = () =>{
                   
                 </div>
 
-                {/* Nome */}
+            
                 <div className="row g-2">
 
 
@@ -42,13 +41,14 @@ export const Projeto = () =>{
                     </div>
 
                     <div className="col-md">
-
-                    <select className="form-select perfil" aria-label="Disabled select example" name='perfil'>
-                            <option value="colaborador">Cliente</option>
-                            <option value="gestor">Gestor</option>
-                            <option value="administrador">Administrador</option>
-                    </select>
-                   </div>
+                        <div className="form-floating">
+                            <select  className="form-select" id="floatingInputGrid" name="modalidade">
+                            <option value="hora extra">1</option>
+                            <option value="sobreaviso">2</option>
+                            </select>
+                            <label htmlFor="floatingInputGrid">Cliente</label>
+                        </div>
+                    </div>  
 
                     
 
@@ -80,7 +80,7 @@ export const Projeto = () =>{
                
                     <hr className='linha'/>
                     {/* Botão Cadastrar */}
-                    {/* <button onClick={salvarColaborador}  className='btn btn-primary cadastrar1'>Cadastrar</button> */}
+                    <button  className='btn btn-success cadastrar1'>Cadastrar</button>
             </div>
     </body>
     );

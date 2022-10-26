@@ -25,9 +25,9 @@ h3 {
     margin: 2em;
 }
 
-.form-control.matricula{
-    width: 50%;
-}
+/* .form-control.matricula{
+    width: 10%;
+} */
 
 .form-select.turno{
     width: 40%;
@@ -66,7 +66,7 @@ h3 {
     
 }
 
-.btn.btn-primary.cadastrar1{
+.btn.btn-success.cadastrar1{
     width: 10.5%;
     margin-bottom: 2%;
     margin-left: 44%;
