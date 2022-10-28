@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
 import Navbar from "../../components/menu/Navbar";
 import { formatarDataHora, formatarInicial } from "../../functions/formatar";
+import { todosLancamentos } from "../../hooks/Lancamento";
 import { Lancamento } from "../../types/Types";
 import './styles.css'
 
@@ -11,17 +12,10 @@ export const Aprovacao = () => {
     const [removeLoading, setRemoveLoading] = useState(false)
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/todosLancamentos`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
-            setLancamentos(data)
-            setRemoveLoading(true)
-          })
+        (async() => {
+            setLancamentos(await todosLancamentos())
+        })()
+        setRemoveLoading(true)
       }, [])
 
     return(

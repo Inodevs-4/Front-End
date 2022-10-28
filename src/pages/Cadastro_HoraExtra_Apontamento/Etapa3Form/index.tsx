@@ -7,6 +7,7 @@ import { Colaborador, Projeto } from '../../../types/Types';
 import Navbar from '../../../components/menu/Navbar';
 import { selectGestores } from '../../../hooks/Colaborador';
 import { selectProjetos } from '../../../hooks/Projeto';
+import { salvarLancamento } from '../../../hooks/Lancamento';
 // import Menu from "../../../components/menu";
 
 export const Etapa3Form = () => {
@@ -39,21 +40,9 @@ export const Etapa3Form = () => {
 
     const handleNextStep = () => {
         if(state.projeto !== '' /*&& state.gestor !== ''*/){
-            console.log(state)
-            fetch(`${process.env.REACT_APP_SERVER}/salvarLancamento`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(state),
-              })
-                .then((resp) => resp.json())
-                .then((data) => {
-                  console.log(data)
-                  history('/pagina-inicial')
-                })
-                .catch((err) => console.log(err))
-            }
+            salvarLancamento(state)
+            history('/pagina-inicial')
+        }
         else{
             alert("Preencha todos os campos")
         }

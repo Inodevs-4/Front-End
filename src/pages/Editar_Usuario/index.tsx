@@ -1,8 +1,9 @@
 import Navbar from '../../components/menu/Navbar';
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import "./styles.css";
 import { Colaborador} from '../../types/Types'
-import { useNavigate, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
+import { atualizarColaborador, getColaborador } from '../../hooks/Colaborador';
 export const Editar_Usuario = () =>{
 
     const { matricula } = useParams()
@@ -11,20 +12,13 @@ export const Editar_Usuario = () =>{
     const [colaboradorInicial, setColaboradorInicial] = useState<Colaborador>()
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/getColaborador/${matricula}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
+        (async() => {
+            const data = await getColaborador(matricula)
             setColaborador(data)
-            setColaboradorInicial(data)
-          })
-      }, [])
+            setColaboradorInicial(data)  
+        })()
+    }, [])
 
-      
     function handleChange(e: any) {
         setColaborador({...colaborador, [e.target.name]: e.target.value})
     }
@@ -59,20 +53,9 @@ export const Editar_Usuario = () =>{
     }
 
     const salvarColaborador = () => {
-        fetch(`${process.env.REACT_APP_SERVER}/atualizarColaborador/${matricula}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(colaborador),
-          })
-            .then((resp) => resp.json())
-            .then((data) => {
-              console.log(data)
-              setColaboradorInicial(colaborador)
-              editarUsuario()
-            })
-            .catch((err) => console.log(err))
+        atualizarColaborador(matricula, colaborador)
+        setColaboradorInicial(colaborador)
+        editarUsuario()
     }
 
     return(

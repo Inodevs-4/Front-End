@@ -9,6 +9,7 @@ import { Lancamento } from '../../types/Types'
 import { AuthContext } from '../../login/AuthContext';
 import { formatarDataHora, formatarInicial } from '../../functions/formatar';
 import Loading from '../../components/Loading';
+import { meusLancamentos } from '../../hooks/Lancamento';
 
 export const Home = () =>{
 
@@ -18,17 +19,10 @@ export const Home = () =>{
   const auth = useContext(AuthContext)
 
     useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER}/meusLancamentos/${auth.colaborador?.matricula}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setLancamentos(data)
+      (async() => {
+        setLancamentos(await meusLancamentos(String(auth.colaborador?.matricula)))
         setRemoveLoading(true)
-      })
+      })()
   }, [])
 
     return(

@@ -1,47 +1,27 @@
 import { AuthContext } from './AuthContext'
 import { useState, useEffect } from 'react'
 import { Colaborador } from '../types/Types'
+import { login, validateToken } from '../hooks/Login'
 
 export const AuthProvider = ({children} : {children: JSX.Element}) => {
 
     const [colaborador, setColaborador] = useState<Colaborador | null>(null) 
 
     useEffect(() => {
-        const validateToken = async () => {
+        const validarToken = async () => {
             const storageData = localStorage.getItem('token')
             if (storageData) {
-                const data = await fetch(`${process.env.REACT_APP_SERVER}/validateToken`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${storageData}`
-                    }
-                }).then(resp => resp.json())
-                .then((data) => {
-                    return data
-                }).catch(err => console.log(err))
+                const data = await validateToken(storageData)
                 if (data.matricula) {
                     setColaborador(data);
                 }
             }
         }
-        validateToken();
+        validarToken();
     }, []);
 
-
     const signin = async (email: string, senha: string) => {
-        const data = await fetch(`${process.env.REACT_APP_SERVER}/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({email, senha}),
-        })
-            .then((resp) => resp.json())
-            .then((data) => {
-                return data
-            })
-            .catch((err) => console.log(err))
+        const data = await login(email, senha)
         
         if (data.usuario && data.token) {
             setColaborador(data.usuario);

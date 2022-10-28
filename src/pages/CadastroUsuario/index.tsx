@@ -1,12 +1,12 @@
 // import Menu from "../../components/menu";
 import Navbar from '../../components/menu/Navbar';
-import { useContext, useEffect, useState } from 'react'
+import { useState } from 'react'
 // import Calendar from 'react-calendar';
 import "./styles.css";
-import { Colaborador, Lancamento } from '../../types/Types'
-import { useNavigate, useParams } from 'react-router-dom';
+import { Colaborador} from '../../types/Types'
+import { useNavigate} from 'react-router-dom';
+import { salvarColaborador } from '../../hooks/Colaborador';
 export const CadastroUsuario = () =>{
-
 
     const [colaborador, setColaborador] = useState<Colaborador>()
       
@@ -20,21 +20,10 @@ export const CadastroUsuario = () =>{
 
     const history = useNavigate();
 
-    const salvarColaborador = () => {
-        console.log(colaborador)
-        fetch(`${process.env.REACT_APP_SERVER}/salvarColaborador`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(colaborador),
-          })
-            .then((resp) => resp.json())
-            .then((data) => {
-              console.log(data)
-              history('/tabela_usuarios')
-            })
-            .catch((err) => console.log(err))
+    const salvandoColaborador = () => {
+        salvarColaborador(colaborador)
+        history('/tabela_usuarios')
+
     }
 
     return(
@@ -108,7 +97,7 @@ export const CadastroUsuario = () =>{
                     </div>
                     <hr className='linha'/>
                     {/* Botão Cadastrar */}
-                    <button onClick={salvarColaborador}  className='btn btn-primary cadastrar1'>Cadastrar</button>
+                    <button onClick={salvandoColaborador}  className='btn btn-primary cadastrar1'>Cadastrar</button>
             </div>
     </body>
     )
