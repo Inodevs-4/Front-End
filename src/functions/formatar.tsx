@@ -4,7 +4,13 @@ export const formatarDataHora = (dataHora: string | undefined | null) => {
     return ''
   }
   else {
-    const horas = String(Number(dataHora.split('T')[1].split(':')[0]) - 3)
+    let horas = Number(dataHora.split('T')[1].split(':')[0])
+    if (horas < 3){
+      horas += 21
+    }
+    else {
+      horas -= 3
+    }
     const minutos = dataHora.split('T')[1].split(':')[1]
     const ano = dataHora.split('T')[0].split('-')[0]
     const mes = dataHora.split('T')[0].split('-')[1]
@@ -25,7 +31,13 @@ export const formatarDataHoraInput = (dataHora: string) => {
   if (dataHora === "undefined" || dataHora === "null"){
       return ''
   } else {
-    const horas = String(Number(dataHora.split('T')[1].split(':')[0]) - 3)
+    let horas = Number(dataHora.split('T')[1].split(':')[0])
+    if (horas < 3){
+      horas += 21
+    }
+    else {
+      horas -= 3
+    }
     const minutos = dataHora.split('T')[1].split(':')[1]
     const ano = dataHora.split('T')[0].split('-')[0]
     const mes = dataHora.split('T')[0].split('-')[1]

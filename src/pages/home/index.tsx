@@ -9,12 +9,14 @@ import { Lancamento } from '../../types/Types'
 import { AuthContext } from '../../login/AuthContext';
 import { formatarDataHora, formatarInicial } from '../../functions/formatar';
 import Loading from '../../components/Loading';
-import { meusLancamentos } from '../../hooks/Lancamento';
+import { horasTrabalhadas, meusLancamentos } from '../../hooks/Lancamento';
 
 export const Home = () =>{
 
   const [lancamentos, setLancamentos] = useState<Lancamento[]>([])
+  const [horas, setHoras] = useState<{horas: number}>({horas: -1})
   const [removeLoading, setRemoveLoading] = useState(false)
+  const [removeLoading2, setRemoveLoading2] = useState(false)
 
   const auth = useContext(AuthContext)
 
@@ -24,6 +26,13 @@ export const Home = () =>{
         setRemoveLoading(true)
       })()
   }, [])
+
+  useEffect(() => {
+    (async() => {
+      setHoras(await horasTrabalhadas(String(auth.colaborador?.matricula)))
+      setRemoveLoading2(true)
+    })()
+    }, [])
 
     return(
     <body>
@@ -50,7 +59,8 @@ export const Home = () =>{
        <div className="item1 row "> 
        <div className="horas">
        <p className="fort"> Horas Trabalhadas</p>
-       <h1 className="numero">12 H</h1>
+       {!removeLoading && <Loading/>}
+       {(!removeLoading2 || horas.horas !== -1) && <h1 className="numero">{horas.horas} H</h1>}
        </div>
        <div className="apontamento">
         <h1>Últimos Apontamentos</h1>

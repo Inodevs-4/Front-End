@@ -105,3 +105,17 @@ export async function reprovarLancamento(lancamento: Lancamento | undefined , id
         })
     .catch((err) => console.log(err))
 }
+
+// pegar a soma das horas trabalhadas do usuario logado
+export async function horasTrabalhadas(id: string | undefined) {
+  return fetch(`${process.env.REACT_APP_SERVER}/horasTrabalhadas/${id}`, {
+      method: 'GET',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+  })
+      .then((resp) => resp.json())
+      .then((data) => {
+          return data
+  })
+}
