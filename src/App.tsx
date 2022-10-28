@@ -30,16 +30,16 @@ export const App = () => {
         <Route path="/etapa1" element={<RequireAuth><Etapa1Form/></RequireAuth>}/>
         <Route path="/etapa2" element={<RequireAuth><Etapa2Form/></RequireAuth>}/>
         <Route path="/etapa3" element={<RequireAuth><Etapa3Form/></RequireAuth>}/>
-        <Route path="/tabela_usuarios" element={<RequireAuth><Tabela_usuario/></RequireAuth>}/>
-        <Route path="/aprovacao-lancamento" element={<RequireAuth><Aprovacao/></RequireAuth>} />
-        <Route path="/projetos" element={<RequireAuth><Projeto/></RequireAuth>} />
-        <Route path="/aprovacao-lancamento/viewDetails" element={<RequireAuth><DetalhesApontamento/></RequireAuth>} />
+        <Route path="/tabela_usuarios" element={<RequireAuth nivel="administrador"><Tabela_usuario/></RequireAuth>}/>
+        <Route path="/aprovacao-lancamento" element={<RequireAuth nivel="gestor"><Aprovacao/></RequireAuth>} />
+        <Route path="/projetos" element={<RequireAuth nivel="gestor"><Projeto/></RequireAuth>} />
+        <Route path="/aprovacao-lancamento/viewDetails" element={<RequireAuth nivel="gestor"><DetalhesApontamento/></RequireAuth>} />
         <Route path="*" element={<Navigate to="/" />} />
-        <Route path="/editUsuario/:matricula" element={<RequireAuth><Editar_Usuario/></RequireAuth>} />
-        <Route path="/Detalhes_Apontamento/:id" element={<RequireAuth><DetalhesApontamento/></RequireAuth>} />
-        <Route path="/cadastro-usuario" element={<RequireAuth><CadastroUsuario/></RequireAuth>}/>
-        <Route path="/manipulacao-hora-sobreaviso" element={<RequireAuth><Manipulacao/></RequireAuth>}/>
-        <Route path="/clientes" element={<RequireAuth><Cliente/></RequireAuth>}/>
+        <Route path="/editUsuario/:matricula" element={<RequireAuth nivel="administrador"><Editar_Usuario/></RequireAuth>} />
+        <Route path="/Detalhes_Apontamento/:id" element={<RequireAuth nivel="gestor"><DetalhesApontamento/></RequireAuth>} />
+        <Route path="/cadastro-usuario" element={<RequireAuth nivel="administrador"><CadastroUsuario/></RequireAuth>}/>
+        <Route path="/manipulacao-hora-sobreaviso" element={<RequireAuth nivel="gestor"><Manipulacao/></RequireAuth>}/>
+        <Route path="/clientes" element={<RequireAuth nivel="gestor"><Cliente/></RequireAuth>}/>
       </Switch>
     </BrowserRouter>
     </FormProvider>
