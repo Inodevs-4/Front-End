@@ -91,7 +91,9 @@ export const Home = () =>{
           <div className='mb-2' key={lancamento.id}>
             <p className="cor">{formatarInicial(lancamento.modalidade)}</p>
             <div className="containerhora">
-            <p className="analise esq">{formatarInicial(lancamento.status)}</p>
+            {lancamento.status === 'aprovado' && <p className="aprovado esq">Aprovado</p>}
+            {lancamento.status === 'reprovado' && <p className="reprovado esq">Reprovado</p>}
+            {lancamento.status === 'pendente' && <p className="analise esq">Pendente</p>}
             <p>Início: {formatarDataHora(String(lancamento.data_inicio))}</p>
             <p>Fim: {formatarDataHora(String(lancamento.data_fim))}</p>
             </div>

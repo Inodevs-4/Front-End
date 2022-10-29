@@ -41,7 +41,9 @@ export const Aprovacao = () => {
                     <div className="col">{formatarInicial(lancamento.modalidade)}</div>
                     <div className="col">{formatarDataHora(String(lancamento.data_inicio))}</div>
                     <div className="col">{formatarDataHora(String(lancamento.data_fim))}</div>
-                    <div className="col">{formatarInicial(lancamento.status)}</div>
+                    {lancamento.status === 'aprovado' && <div className="col aprovado">Aprovado</div>}
+                    {lancamento.status === 'reprovado' && <div className="col reprovado">Reprovado</div>}
+                    {lancamento.status === 'pendente' && <div className="col pendente">Pendente</div>}
                     <div className="col">
                         <a className="btn btn-primary" href={`/Detalhes_Apontamento/${lancamento.id}`}>Visualizar</a>
                     </div>

@@ -54,4 +54,14 @@ hr {
     margin-right: auto;
 }
 
+.pendente {
+    color: #FFA800;
+}
 
+.aprovado {
+    color:#168F02;
+}
+
+.reprovado {
+    color: red;
+}
