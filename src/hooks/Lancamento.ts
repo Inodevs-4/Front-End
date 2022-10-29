@@ -119,3 +119,17 @@ export async function horasTrabalhadas(id: string | undefined) {
           return data
   })
 }
+
+// pegar os lancamentos de um gestor
+export async function gestorLancamentos(matricula: string | undefined){
+  return fetch(`${process.env.REACT_APP_SERVER}/gestorLancamentos/${matricula}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      return data
+    })
+}
