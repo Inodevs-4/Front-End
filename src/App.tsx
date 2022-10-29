@@ -7,12 +7,13 @@ import { Etapa2Form } from "./pages/Cadastro_HoraExtra_Apontamento/Etapa2Form";
 import { Etapa3Form } from "./pages/Cadastro_HoraExtra_Apontamento/Etapa3Form";
 import { FormProvider } from "./contexts/FormContext";
 import Aprovacao from "./pages/Aprovacao_Lancamento";
-import Projeto from "./pages/Cadastro_Projeto"; 
+import Projeto from "./pages/tabela_projetos"; 
 import DetalhesApontamento from "./pages/Detalhes_Apontamento";
 import { RequireAuth } from "./login/RequireAuth";
 import Tabela_usuario from "./pages/Tabela_usuarios";
 import Editar_Usuario from "./pages/Editar_Usuario";
 import CadastroUsuario from "./pages/CadastroUsuario";
+import Editar_Projeto from "./pages/Editar_Projetos";
 import Manipulacao from "./pages/ManipulacaoHoraSobreAviso";
 import Cliente from "./pages/Cadastro_Cliente";
 
@@ -35,6 +36,7 @@ export const App = () => {
         <Route path="/projetos" element={<RequireAuth nivel="gestor"><Projeto/></RequireAuth>} />
         <Route path="/aprovacao-lancamento/viewDetails" element={<RequireAuth nivel="gestor"><DetalhesApontamento/></RequireAuth>} />
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/Editar_Projetos/:id" element={<RequireAuth><Editar_Projeto/></RequireAuth>} />
         <Route path="/editUsuario/:matricula" element={<RequireAuth nivel="administrador"><Editar_Usuario/></RequireAuth>} />
         <Route path="/Detalhes_Apontamento/:id" element={<RequireAuth nivel="gestor"><DetalhesApontamento/></RequireAuth>} />
         <Route path="/cadastro-usuario" element={<RequireAuth nivel="administrador"><CadastroUsuario/></RequireAuth>}/>
