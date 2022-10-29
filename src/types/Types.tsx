@@ -49,3 +49,16 @@ export type Verba = {
     fim?: Date,
 	lancamentos?: Lancamento[]
 }
+
+export type Cliente = {
+    cnpj?: string,
+    numero?: number,
+    contato?: string,
+    projetos?: Projeto[]
+}
+
+export type CR = {
+    numero?: number,
+    nome?: string,
+    colaboradores ?: Colaborador[]
+}
