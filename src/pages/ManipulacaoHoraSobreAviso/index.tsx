@@ -10,7 +10,7 @@ export const Tabela_projetos = () => {
     const [colaboradores, setColaboradores] = useState<Verba[]>([])
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/todosLancamentos`, {
+        fetch(`${process.env.REACT_APP_SERVER}/todasVerbas`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -43,8 +43,8 @@ export const Tabela_projetos = () => {
                 <div key={Colaborador?.id} className="row items">
                     <div className="col"><p className="matricula">{Colaborador?.id}</p></div>
                     <div className="col">{Colaborador?.numero}</div>
-                    {/* <div className="col">{formatarDataHora(String(Colaborador.inicio))}</div> */}
-                    {/* <div className="col">{formatarDataHora(String(Colaborador.fim))}</div> */}
+                    <div className="col">{formatarDataHora(String(Colaborador.inicio))}</div>
+                    <div className="col">{formatarDataHora(String(Colaborador.fim))}</div>
                     <div className="col">{Colaborador?.adicional}</div>
                     <div className="col">
                         <a className="btn btn-primary" href={`/Editar_Projetos/${Colaborador?.id}`}>Visualizar</a>
