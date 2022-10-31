@@ -15,8 +15,10 @@ import Editar_Usuario from "./pages/Editar_Usuario";
 import CadastroUsuario from "./pages/CadastroUsuario";
 import Editar_Projeto from "./pages/Editar_Projetos";
 import Manipulacao from "./pages/ManipulacaoHoraSobreAviso";
-import Cliente from "./pages/Cadastro_Cliente";
+import Cliente from "./pages/Tabela_clientes";
+import Cadastro_Cliente from "./pages/Cadastro_Cliente";
 import Cadastro_Projeto from "./pages/Cadastro_projeto";
+
 
 
 
@@ -43,7 +45,10 @@ export const App = () => {
         <Route path="/cadastro-usuario" element={<RequireAuth nivel="administrador"><CadastroUsuario/></RequireAuth>}/>
         <Route path="/Cadastro_projeto" element={<RequireAuth nivel="administrador"><Cadastro_Projeto/></RequireAuth>}/>
         <Route path="/manipulacao-hora-sobreaviso" element={<RequireAuth nivel="gestor"><Manipulacao/></RequireAuth>}/>
+        {/* Cliente */}
         <Route path="/clientes" element={<RequireAuth nivel="gestor"><Cliente/></RequireAuth>}/>
+        <Route path="/cadastro-cliente" element={<RequireAuth nivel="administrador"><Cadastro_Cliente/></RequireAuth>}/>
+
       </Switch>
     </BrowserRouter>
     </FormProvider>

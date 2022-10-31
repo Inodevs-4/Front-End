@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loading from "../../components/Loading";
 import Navbar from "../../components/menu/Navbar";
 import { formatarDataHora, formatarInicial } from "../../functions/formatar";
-import { todosLancamentos } from "../../hooks/Lancamento";
+import { gestorLancamentos, todosLancamentos } from "../../hooks/Lancamento";
+import { AuthContext } from "../../login/AuthContext";
 import { Lancamento } from "../../types/Types";
 import './styles.css'
 
@@ -10,10 +11,16 @@ export const Aprovacao = () => {
 
     const [lancamentos, setLancamentos] = useState<Lancamento[]>([])
     const [removeLoading, setRemoveLoading] = useState(false)
+    const auth = useContext(AuthContext)
+
 
     useEffect(() => {
         (async() => {
-            setLancamentos(await todosLancamentos())
+            if (auth.colaborador?.perfil === 'gestor') {
+                setLancamentos(await gestorLancamentos(String(auth.colaborador?.matricula)))
+            } else {
+                setLancamentos(await todosLancamentos())
+            }
         })()
         setRemoveLoading(true)
       }, [])

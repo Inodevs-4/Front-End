@@ -1,7 +1,5 @@
-// import Menu from "../../components/menu";
 import Navbar from '../../components/menu/Navbar';
 import { useState } from 'react'
-// import Calendar from 'react-calendar';
 import "./styles.css";
 import { Colaborador} from '../../types/Types'
 import { useNavigate} from 'react-router-dom';
