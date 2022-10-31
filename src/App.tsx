@@ -18,6 +18,7 @@ import Manipulacao from "./pages/ManipulacaoHoraSobreAviso";
 import Cliente from "./pages/Tabela_clientes";
 import Cadastro_Cliente from "./pages/Cadastro_Cliente";
 import Cadastro_Projeto from "./pages/Cadastro_projeto";
+import { CadastroCR } from "./pages/CadastroCR";
 
 
 
@@ -48,7 +49,7 @@ export const App = () => {
         {/* Cliente */}
         <Route path="/clientes" element={<RequireAuth nivel="gestor"><Cliente/></RequireAuth>}/>
         <Route path="/cadastro-cliente" element={<RequireAuth nivel="administrador"><Cadastro_Cliente/></RequireAuth>}/>
-
+        <Route path="/cadastro-cr" element={<RequireAuth nivel="gestor"><CadastroCR/></RequireAuth>}/>
       </Switch>
     </BrowserRouter>
     </FormProvider>
