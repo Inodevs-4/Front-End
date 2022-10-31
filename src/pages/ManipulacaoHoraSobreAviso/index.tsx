@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/menu/Navbar";
 import './styles.css'
-import { Verba } from "../../types/Types";
+import { Lancamento } from "../../types/Types";
 import { formatarDataHora } from "../../functions/formatar";
 export const Tabela_projetos = () => {
 
 
 
-    const [colaboradores, setColaboradores] = useState<Verba[]>([])
+    const [colaboradores, setColaboradores] = useState<Lancamento[]>([])
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/todasVerbas`, {
+        fetch(`${process.env.REACT_APP_SERVER}/todosLancamentos`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -42,10 +42,10 @@ export const Tabela_projetos = () => {
                 {colaboradores.map((Colaborador) => (
                 <div key={Colaborador?.id} className="row items">
                     <div className="col"><p className="matricula">{Colaborador?.id}</p></div>
-                    <div className="col">{Colaborador?.numero}</div>
-                    <div className="col">{formatarDataHora(String(Colaborador.inicio))}</div>
-                    <div className="col">{formatarDataHora(String(Colaborador.fim))}</div>
-                    <div className="col">{Colaborador?.adicional}</div>
+                    <div className="col">{Colaborador.verbas?.numero}</div>
+                    {/* <div className="col">{formatarDataHora(String(Colaborador.verbas?.inicio))}</div>
+                    <div className="col">{formatarDataHora(String(Colaborador.verbas?.fim))}</div> */}
+                    <div className="col">{Colaborador.verbas?.adicional}</div>
                     <div className="col">
                         <a className="btn btn-primary" href={`/Editar_Projetos/${Colaborador?.id}`}>Visualizar</a>
                     </div>

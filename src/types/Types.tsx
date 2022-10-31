@@ -35,9 +35,9 @@ export type Lancamento = {
     observacoes?: string,
     status?: Status,
 	colaborador?: Colaborador,
-	projeto?: Projeto
-	verbas?: Verba[]
-	gestor?: Colaborador
+	projeto?: Projeto,
+	verbas?: Verba,
+	gestor?: Colaborador,
 }
 
 export type Verba = {
