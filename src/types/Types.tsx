@@ -41,6 +41,7 @@ export type Lancamento = {
 }
 
 export type Verba = {
+    id?:number,
     numero?: number,
     verba?: number,
     adicional?: number,
