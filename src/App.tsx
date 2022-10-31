@@ -16,6 +16,7 @@ import CadastroUsuario from "./pages/CadastroUsuario";
 import Editar_Projeto from "./pages/Editar_Projetos";
 import Manipulacao from "./pages/ManipulacaoHoraSobreAviso";
 import Cliente from "./pages/Cadastro_Cliente";
+import Cadastro_Projeto from "./pages/Cadastro_projeto";
 
 
 
@@ -36,10 +37,11 @@ export const App = () => {
         <Route path="/projetos" element={<RequireAuth nivel="gestor"><Projeto/></RequireAuth>} />
         <Route path="/aprovacao-lancamento/viewDetails" element={<RequireAuth nivel="gestor"><DetalhesApontamento/></RequireAuth>} />
         <Route path="*" element={<Navigate to="/" />} />
-        <Route path="/Editar_Projetos/:id" element={<RequireAuth><Editar_Projeto/></RequireAuth>} />
+        <Route path="/Editar_Projetos/:id" element={<RequireAuth nivel="=administrador"><Editar_Projeto/></RequireAuth>} />
         <Route path="/editUsuario/:matricula" element={<RequireAuth nivel="administrador"><Editar_Usuario/></RequireAuth>} />
         <Route path="/Detalhes_Apontamento/:id" element={<RequireAuth nivel="gestor"><DetalhesApontamento/></RequireAuth>} />
         <Route path="/cadastro-usuario" element={<RequireAuth nivel="administrador"><CadastroUsuario/></RequireAuth>}/>
+        <Route path="/Cadastro_projeto" element={<RequireAuth nivel="administrador"><Cadastro_Projeto/></RequireAuth>}/>
         <Route path="/manipulacao-hora-sobreaviso" element={<RequireAuth nivel="gestor"><Manipulacao/></RequireAuth>}/>
         <Route path="/clientes" element={<RequireAuth nivel="gestor"><Cliente/></RequireAuth>}/>
       </Switch>

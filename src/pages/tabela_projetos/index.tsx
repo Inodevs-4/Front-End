@@ -26,7 +26,7 @@ export const Tabela_projetos = () => {
         <body>
             <Navbar/>
             <p className="h3">Tabela Projetos</p>
-            <a href="/cadastro-usuario" className='btn btn-primary cadastrar' data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novo Usuário"><p className="icon">+</p></a>
+            <a href="/Cadastro_projeto" className='btn btn-primary cadastrar' data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novo Usuário"><p className="icon">+</p></a>
 
             <hr />
             <div className="apontamentos">
