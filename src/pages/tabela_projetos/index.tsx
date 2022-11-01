@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/menu/Navbar";
 import './styles.css'
 import {  Projeto } from "../../types/Types";
+import { todosProjetos} from '../../hooks/Projeto';
 // import { formatarInicial } from "../../functions/formatar";
 export const Tabela_projetos = () => {
 
 
 
-    const [colaboradores, setColaboradores] = useState<Projeto[]>([])
+    const [projetos, setProjetos] = useState<Projeto[]>([])
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/selectProjetos`, {
+        fetch(`${process.env.REACT_APP_SERVER}/todosProjetos`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -18,10 +19,9 @@ export const Tabela_projetos = () => {
         })
           .then((resp) => resp.json())
           .then((data) => {
-            setColaboradores(data)
+            setProjetos(data)
           })
       }, [])
-
     return(
         <body>
             <Navbar/>
@@ -33,21 +33,18 @@ export const Tabela_projetos = () => {
                 <div className="row titles">
                     <div className="col">ID</div>
                     <div className="col">Nome</div>
-                    {/* <div className="col">Cliente</div> */}
-                    {/* <div className="col">CR</div> */}
                     <div className="col">Status</div>
                     <div className="col">Ações</div>
                 </div>
 
-                {colaboradores.map((Colaborador) => (
-                <div key={Colaborador?.id} className="row items">
-                    <div className="col"><p className="matricula">{Colaborador?.id}</p></div>
-                    <div className="col">{Colaborador?.nome}</div>
-                    {/* <div className="col">{Colaborador.cr?.nome}</div> */}
-                    {Colaborador.status === 'ativo' && <div className="col aprovado">Aprovado</div>}
-                    {Colaborador.status === 'inativo' && <div className="col reprovado">Reprovado</div>}
+                {projetos.map((Projetos) => (
+                <div key={Projetos?.id} className="row items">
+                    <div className="col"><p className="matricula">{Projetos?.id}</p></div>
+                    <div className="col">{Projetos?.nome}</div>
+                    {Projetos.status === 'ativo' && <div className="col aprovado">Aprovado</div>}
+                    {Projetos.status === 'inativo' && <div className="col reprovado">Reprovado</div>}
                     <div className="col">
-                        <a className="btn btn-primary" href={`/Editar_Projetos/${Colaborador.id}`}>Visualizar</a>
+                        <a className="btn btn-primary" href={`/Editar_Projetos/${Projetos.id}`}>Visualizar</a>
                     </div>
                 </div>
                 ))}
