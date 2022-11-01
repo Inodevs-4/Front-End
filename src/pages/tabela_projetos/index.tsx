@@ -3,25 +3,17 @@ import Navbar from "../../components/menu/Navbar";
 import './styles.css'
 import {  Projeto } from "../../types/Types";
 import { todosProjetos} from '../../hooks/Projeto';
-// import { formatarInicial } from "../../functions/formatar";
+
 export const Tabela_projetos = () => {
-
-
-
+  
     const [projetos, setProjetos] = useState<Projeto[]>([])
 
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/todosProjetos`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
-            setProjetos(data)
-          })
-      }, [])
+      useEffect(() => {
+        (async() => {
+            setProjetos(await todosProjetos())
+        })()
+    }, [])  
+
     return(
         <body>
             <Navbar/>
