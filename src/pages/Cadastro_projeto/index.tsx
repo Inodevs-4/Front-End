@@ -1,15 +1,25 @@
 // import Menu from "../../components/menu";
 import Navbar from '../../components/menu/Navbar';
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 // import Calendar from 'react-calendar';
 import "./styles.css";
-import { Projeto} from '../../types/Types'
+import { Projeto , CR} from '../../types/Types'
 import { useNavigate} from 'react-router-dom';
 import { salvarProjeto } from '../../hooks/Projeto';
+import { getCR, todosCRs } from '../../hooks/CR';
 export const Cadastro_Projeto = () =>{
 
     const [colaborador, setColaborador] = useState<Projeto>()
-      
+    const [colaboradores, setColaboradores] = useState<CR[]>()
+
+    useEffect(() => {
+        (async() => {
+            setColaboradores(await todosCRs())
+        })()
+    }, [])  
+
+
+
     function handleChange(e: any) {
         setColaborador({...colaborador, [e.target.name]: e.target.value})
     }
@@ -52,9 +62,11 @@ export const Cadastro_Projeto = () =>{
                     <div className="col-md">
                         <div className="form-floating">
                             <select  className="form-select" id="floatingInputGrid" onChange={handleSelect} value={colaborador?.cr} name="cr">
-                            <option value="tribo">Tribo</option>
-                            <option value="squad">Squad</option>
-                            <option value="departemento">Departamento</option>
+                            {colaboradores && 
+                        (colaboradores.map((c) => (
+                        
+                            <option value={c.numero} key={c.numero}>{c.nome}</option>
+                        )))}
                             </select>
                             <label htmlFor="floatingInputGrid">CR</label>
                         </div>
