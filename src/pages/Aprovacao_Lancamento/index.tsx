@@ -56,31 +56,6 @@ export const Aprovacao = () => {
                     </div>
                 </div>
                 ))}
-                {/*
-                <div className="row items">
-                    <div className="col">32312312</div>
-                    <div className="col">Fulano Ciclano Beltrano</div>
-                    <div className="col">Hora extra</div>
-                    <div className="col">XX/XX/XXXX</div>
-                    <div className="col">XX/XX/XXXX</div>
-                    <div className="col"><span className="badge bg-warning text-light">Pendente</span></div>
-                    <div className="col">
-                        <a className="btn btn-primary" href="/aprovacao-lancamento/viewDetails">Visualizar</a>
-                    </div>
-                </div>
-
-                <div className="row items">
-                    <div className="col">32312312</div>
-                    <div className="col">Fulano Ciclano Beltrano</div>
-                    <div className="col">Hora extra</div>
-                    <div className="col">XX/XX/XXXX</div>
-                    <div className="col">XX/XX/XXXX</div>
-                    <div className="col"><span className="badge bg-danger text-light">Reprovado</span></div>
-                    <div className="col">
-                        <a className="btn btn-primary">Visualizar</a>
-                    </div>
-                </div>
-                */}
             </div>
 
         </body>
