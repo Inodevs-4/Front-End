@@ -17,7 +17,7 @@ export const Area = styled.div`
     padding: 20px;
     margin-top: 20px;
     border-radius: 20px;
-    box-shadow: 8px -8px rgba(0,0,0,.5);
+    box-shadow: 4px -4px rgba(0,0,0,.5);
 
 `;
 

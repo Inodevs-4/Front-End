@@ -1,0 +1,64 @@
+
+body{ 
+    background-color: rgb(221, 218, 218);
+}
+
+
+.area {
+    background-color: rgb(255, 255, 255);
+    width: 80%;
+    min-height: 30em;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.form-control {
+    width: 20em;
+}
+
+.form-group {
+    margin-left: 30px;
+    display: inline-block;
+}
+
+.titulo {
+    margin-top: 20px !important;
+    font-size: 20px;
+    color:rgba(0, 0, 0, 0.74);
+}
+
+.form-check-label {
+    color: black;
+    font-size: 17px;
+    margin-left: 7px;
+}
+
+.form-check-input {
+    width: 20px;
+    height  : 20px;
+    margin-left: 1px !important;
+}
+
+.form-check{
+    margin-left: 30px;
+    display: inline-block;
+}
+
+.linha p {
+    margin-top: 10px;
+    color:rgba(0, 0, 0, 0.74);
+    font-size: 20px;
+    margin-left: 30px;
+}
+
+.aviso {
+    background-color: blue;
+    width: 20em;
+    height: 10em;
+    position: static;
+    display: inline;
+}

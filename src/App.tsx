@@ -19,6 +19,7 @@ import Cliente from "./pages/Tabela_clientes";
 import Cadastro_Cliente from "./pages/Cadastro_Cliente";
 import Cadastro_Projeto from "./pages/Cadastro_projeto";
 import { CadastroCR } from "./pages/CadastroCR";
+import Cadastro_verba from "./pages/Cadastro_verba";
 
 
 
@@ -45,7 +46,8 @@ export const App = () => {
         <Route path="/Detalhes_Apontamento/:id" element={<RequireAuth nivel="gestor"><DetalhesApontamento/></RequireAuth>} />
         <Route path="/cadastro-usuario" element={<RequireAuth nivel="administrador"><CadastroUsuario/></RequireAuth>}/>
         <Route path="/Cadastro_projeto" element={<RequireAuth nivel="administrador"><Cadastro_Projeto/></RequireAuth>}/>
-        <Route path="/manipulacao-hora-sobreaviso" element={<RequireAuth nivel="gestor"><Manipulacao/></RequireAuth>}/>
+        <Route path="/manipulacao-hora-sobreaviso" element={<RequireAuth nivel="gestor"><Manipulacao/></RequireAuth>}/>7
+        <Route path="/cadastro-verba" element={<RequireAuth nivel="administrador"><Cadastro_verba/></RequireAuth>}/>7
         {/* Cliente */}
         <Route path="/clientes" element={<RequireAuth nivel="gestor"><Cliente/></RequireAuth>}/>
         <Route path="/cadastro-cliente" element={<RequireAuth nivel="administrador"><Cadastro_Cliente/></RequireAuth>}/>
