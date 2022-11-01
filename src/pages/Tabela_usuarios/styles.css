@@ -94,3 +94,10 @@ hr {
     text-align: center !important;
     border-radius: 5px;
 }
+.aprovado {
+    color:#168F02;
+}
+
+.reprovado {
+    color: red;
+}

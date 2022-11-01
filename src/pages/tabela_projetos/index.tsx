@@ -44,7 +44,8 @@ export const Tabela_projetos = () => {
                     <div className="col"><p className="matricula">{Colaborador?.id}</p></div>
                     <div className="col">{Colaborador?.nome}</div>
                     {/* <div className="col">{Colaborador.cr?.nome}</div> */}
-                    <div className="col">{Colaborador?.status}</div>
+                    {Colaborador.status === 'ativo' && <div className="col aprovado">Aprovado</div>}
+                    {Colaborador.status === 'inativo' && <div className="col reprovado">Reprovado</div>}
                     <div className="col">
                         <a className="btn btn-primary" href={`/Editar_Projetos/${Colaborador.id}`}>Visualizar</a>
                     </div>

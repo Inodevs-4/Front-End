@@ -74,3 +74,10 @@ h3 {
     padding-top: 0.5em;
     padding-bottom: 1em;
 }
+.aprovado {
+    color:#168F02;
+}
+
+.reprovado {
+    color: red;
+}
