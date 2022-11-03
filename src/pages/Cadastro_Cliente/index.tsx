@@ -35,12 +35,17 @@ export const Cadastro_Cliente = () => {
                             <label htmlFor="floatingInputGrid">CNPJ</label>
                         </div>
                     </div>
+   
                     <div className="col-md">
                         <div className="form-floating">
                             <input type="text" className="form-control contato" onChange={handleChange} value={cliente?.contato} id="floatingInputGrid" name="contato"/>
                             <label htmlFor="floatingInputGrid">Contato</label>
                         </div>
                     </div>
+                       
+                   
+                    <div className="col-md">                        
+
                 </div>
                 <div className="form-floating mb-3">
                     <input type="text" className="form-control nome" id="floatingInputGrid nome" onChange={handleChange} value={cliente?.nome} name='nome' />
@@ -49,9 +54,8 @@ export const Cadastro_Cliente = () => {
                 <button className="btn btn-primary cadastrar1" onClick={salvandoCliente}>Cadastrar</button>
 
             </div>
-
-        </body>
+            </div>
+    </body>
     )
-}
-
-export default Cadastro_Cliente;
+    }
+    export default Cadastro_Cliente;

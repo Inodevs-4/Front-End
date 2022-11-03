@@ -2,7 +2,7 @@
 import Navbar from '../../components/menu/Navbar';
 import { useState , useEffect } from 'react'
 // import Calendar from 'react-calendar';
-import "./styles.css";
+import "./styled.css";
 import { Projeto , CR, Cliente} from '../../types/Types'
 import { useNavigate} from 'react-router-dom';
 import { salvarProjeto } from '../../hooks/Projeto';
@@ -54,7 +54,7 @@ export const Cadastro_Projeto = () =>{
                <div className="row g-2">
                 <div className="col-md">
                         <div className="form-floating">
-                            <input type="tel" className="form-control" id="floatingInputGrid" onChange={handleChange} value={colaborador?.nome} name='nome'/>
+                            <input type="tel" className="form-control nome" id="floatingInputGrid" onChange={handleChange} value={colaborador?.nome} name='nome'/>
                             <label htmlFor="floatingInputGrid">Nome</label>
                         </div>
                     </div>
@@ -97,7 +97,7 @@ export const Cadastro_Projeto = () =>{
               
                     <hr className='linha'/>
                        <div className='alteracao' >
-                           <button onClick={salvandoColaborador} className='btn btn-success'>Concluir</button>
+                           <button onClick={salvandoColaborador} className='btn btn-success'>Cadastrar</button>
                        </div>
             </div>
     </body>

@@ -61,5 +61,6 @@ export type Cliente = {
 export type CR = {
     numero?: number,
     nome?: string,
-    colaboradores ?: Colaborador[]
+    colaboradores ?: Colaborador[],
+    status ?: StatusUsuario
 }
