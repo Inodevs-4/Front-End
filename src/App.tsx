@@ -21,6 +21,7 @@ import Cadastro_Projeto from "./pages/Cadastro_projeto";
 import { CadastroCR } from "./pages/CadastroCR";
 import Cadastro_verba from "./pages/Cadastro_verba";
 import Crs from "./pages/Tabela_crs";
+import Editar_Clientes from "./pages/Editar_Clientes";
 
 
 
@@ -43,6 +44,7 @@ export const App = () => {
         <Route path="/aprovacao-lancamento/viewDetails" element={<RequireAuth nivel="gestor"><DetalhesApontamento/></RequireAuth>} />
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/Editar_Projetos/:id" element={<RequireAuth nivel="=administrador"><Editar_Projeto/></RequireAuth>} />
+        <Route path="/Editar_Clientes/:cnpj" element={<RequireAuth nivel="=administrador"><Editar_Clientes/></RequireAuth>} />
         <Route path="/editUsuario/:matricula" element={<RequireAuth nivel="administrador"><Editar_Usuario/></RequireAuth>} />
         <Route path="/Detalhes_Apontamento/:id" element={<RequireAuth nivel="gestor"><DetalhesApontamento/></RequireAuth>} />
         <Route path="/cadastro-usuario" element={<RequireAuth nivel="administrador"><CadastroUsuario/></RequireAuth>}/>

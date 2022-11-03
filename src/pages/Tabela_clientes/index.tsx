@@ -17,7 +17,7 @@ export const Tabela_Clientes = () => {
     return(
         <body>
             <Navbar/>
-            <p className="h3">Tabela Projetos</p>
+            <p className="h3">Tabela Clientes</p>
             <a href="/cadastro-cliente" className='btn btn-primary cadastrar' data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novo Usuário"><p className="icon">+</p></a>
 
             <hr />
@@ -26,7 +26,7 @@ export const Tabela_Clientes = () => {
                     <div className="col">Nome</div>
                     <div className="col">CNPJ</div>
                     <div className="col">Contato</div>
-                    <div className="col">Status</div>
+                    {/* <div className="col">Status</div> */}
                     <div className="col">Ações</div>
                 </div>
 
@@ -35,9 +35,9 @@ export const Tabela_Clientes = () => {
                     <div className="col"><p className="matricula">{Projetos?.nome}</p></div>
                     <div className="col">{Projetos?.cnpj}</div>
                     <div className="col">{Projetos?.contato}</div>
-                    <div className="col">{Projetos?.status}</div>
+                    {/* <div className="col">{Projetos?.status}</div> */}
                     <div className="col">
-                        <a className="btn btn-primary" href={`/Editar_Projetos/${Projetos.cnpj}`}>Visualizar</a>
+                        <a className="btn btn-primary" href={`/Editar_Clientes/${Projetos.cnpj}`}>Visualizar</a>
                     </div>
                 </div>
                 ))}
