@@ -1,6 +1,6 @@
 .client {
     width: 65%;
-    min-height: 30em;
+    min-height: 28em;
     margin-bottom: 3em;
     background-color: rgb(255, 255, 255);
     margin-left: auto;
@@ -32,7 +32,8 @@ h3 {
     width: 90%;
 }
 .form-control.nome{
-    width: 50%;
+    width: 100%;
+    font-size: 18px;
 }
 .form-select.turno{
     width: 40%;
@@ -73,9 +74,9 @@ h3 {
 
 .btn.btn-primary.cadastrar1{    
     width: 10.5%;
-    margin-top: 15%;
+    margin-top: 5%;
     margin-left: 44%;
-    font-size: 15px;
+    font-size: 18px !important;
     padding-top: 0.5em;
-    padding-bottom: 1em;
+    padding-bottom: 0.5em !important;
 }
