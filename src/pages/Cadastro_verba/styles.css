@@ -11,9 +11,9 @@ body{
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 3em;
     border-radius: 10px;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
 }
 
 .form-control {
@@ -23,6 +23,8 @@ body{
 .form-group {
     margin-left: 30px;
     display: inline-block;
+    margin-bottom: 15px;
+
 }
 
 .titulo {
@@ -35,12 +37,15 @@ body{
     color: black;
     font-size: 17px;
     margin-left: 7px;
+    margin-top: 10px;
 }
 
 .form-check-input {
     width: 20px;
     height  : 20px;
     margin-left: 1px !important;
+    margin-bottom: 20px;
+    margin-top: 12px;
 }
 
 .form-check{
@@ -55,10 +60,44 @@ body{
     margin-left: 30px;
 }
 
-.aviso {
-    background-color: blue;
-    width: 20em;
-    height: 10em;
-    position: static;
-    display: inline;
+.aviso  {
+    background-color: #0b2d7249;
+    width: 25%;
+    min-height: 10em;
+    color: rgb(0, 0, 0);
+    margin-top: 1%;
+    margin-left: 53%;    
+    position: absolute;
+    border-radius: 8px;
+    border: 1px solid #2132332f;
+}
+
+.aviso h3 {
+    color: rgb(255, 15, 15);
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.aviso hr {
+    width: 90%;
+}
+
+.aviso li {
+    font-size: 18px;
+}
+
+.bottons {
+    margin-top: 2%;
+    margin-left: 0%;
+
+}
+.bottons .form-group{
+    margin-right: 1%;
+}
+
+.bottons a {
+    /* margin-bottom: 10px; */
+    width: 15%;
+    height: 34px;
+    font-size: 100%;
 }

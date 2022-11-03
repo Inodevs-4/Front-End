@@ -6,25 +6,27 @@ import "./styled.css";
 import { Projeto , CR, Cliente} from '../../types/Types'
 import { useNavigate} from 'react-router-dom';
 import { salvarProjeto } from '../../hooks/Projeto';
-import { getCR, todosCRs } from '../../hooks/CR';
+import { todosCRs } from '../../hooks/CR';
 import { todosClientes } from '../../hooks/Clientes';
+
 export const Cadastro_Projeto = () =>{
 
     const [colaborador, setColaborador] = useState<Projeto>()
-    const [colaboradores, setColaboradores] = useState<CR[]>()
-    const [clientes, setClientes] = useState<Cliente[]>()
+    const [cr, setCr] = useState<CR[]>()
+    // const [clientes, setClientes] = useState<Cliente[]>()
+    const[isDisabled] = useState(true);
 
     useEffect(() => {
         (async() => {
-            setColaboradores(await todosCRs())
+            setCr(await todosCRs())
         })()
     }, [])  
 
-    useEffect(() => {
-        (async() => {
-            setClientes(await todosClientes())
-        })()
-    }, [])  
+    // useEffect(() => {
+    //     (async() => {
+    //         setClientes(await todosClientes())
+    //     })()
+    // }, [])  
 
 
 
@@ -58,33 +60,27 @@ export const Cadastro_Projeto = () =>{
                     </div>
    
                     <div className="col-md">
-                        <div className="form-floating">
-                            <select  className="form-select" id="cliente" onChange={handleSelect} value={colaborador?.cliente} name="cliente">
-                            {clientes && 
-                        (clientes.map((c) => (
-                        
-                            <option value={c.cnpj} key={c.cnpj}>{c.numero}</option>
-                        )))}
-                            </select>
-                            <label htmlFor="floatingInputGrid">Cliente</label>
-                        </div>
-                    </div>  
+                     <div className="form-floating">
+                         <input type="tel" className="form-select" id="floatingInputGrid" onChange={handleChange} disabled={isDisabled} value={colaborador?.cliente} name='cliente'/>
+                         <label htmlFor="floatingInputGrid">Cliente</label>
+                     </div>
+                 </div>
                    
    
                 </div>
                 <div className="row g-2">
-                    <div className="col-md">
+                <div className="col-md">
                         <div className="form-floating">
-                            <select  className="form-select" id="floatingInputGrid" onChange={handleSelect} value={colaborador?.cr} name="cr">
-                            {colaboradores && 
-                        (colaboradores.map((c) => (
+                            <select  className="form-select" id="cliente" onChange={handleSelect}  value={colaborador?.cliente} name="cliente">
+                            {cr && 
+                        (cr.map((c) => (
                         
                             <option value={c.numero} key={c.numero}>{c.nome}</option>
                         )))}
                             </select>
                             <label htmlFor="floatingInputGrid">CR</label>
                         </div>
-                    </div>  
+                    </div>   
                        
                    
                     <div className="col-md">                        

@@ -20,6 +20,7 @@ import Cadastro_Cliente from "./pages/Cadastro_Cliente";
 import Cadastro_Projeto from "./pages/Cadastro_projeto";
 import { CadastroCR } from "./pages/CadastroCR";
 import Cadastro_verba from "./pages/Cadastro_verba";
+import Crs from "./pages/Tabela_crs";
 
 
 
@@ -50,7 +51,8 @@ export const App = () => {
         <Route path="/cadastro-verba" element={<RequireAuth nivel="administrador"><Cadastro_verba/></RequireAuth>}/>7
         {/* Cliente */}
         <Route path="/clientes" element={<RequireAuth nivel="gestor"><Cliente/></RequireAuth>}/>
-        <Route path="/cadastro-cliente" element={<RequireAuth nivel="administrador"><Cadastro_Cliente/></RequireAuth>}/>
+        <Route path="/cadastro-cliente" element={<RequireAuth nivel="gestor"><Cadastro_Cliente/></RequireAuth>}/>
+        <Route path="/crs" element={<RequireAuth nivel="gestor"><Crs/></RequireAuth>}/>
         <Route path="/cadastro-cr" element={<RequireAuth nivel="gestor"><CadastroCR/></RequireAuth>}/>
       </Switch>
     </BrowserRouter>

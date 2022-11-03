@@ -74,6 +74,15 @@ function RightNav(props: Props) {
     </NavLink>
 
     <NavLink
+      to='/crs'
+   
+    >
+      {/* <GroupIcon  color='primary'/> */}
+      <S.Li> <PersonIcon  color='primary'/>Crs</S.Li>
+    </NavLink>
+
+
+    <NavLink
       to='/manipulacao-hora-sobreaviso'
    
     >

@@ -1,7 +1,8 @@
 import Navbar from '../../components/menu/Navbar';
 import { useContext, useEffect, useState } from 'react'
 import "./styles.css";
-import {  Projeto} from '../../types/Types'
+import {  Projeto , CR} from '../../types/Types'
+import { todosCRs } from '../../hooks/CR';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const Editar_Projeto = () =>{
@@ -10,6 +11,7 @@ export const Editar_Projeto = () =>{
 
 
     const [projeto, setProjeto] = useState<Projeto>()
+    const [colaboradores, setColaboradores] = useState<CR[]>()
     const [projetoInicial, setProjetoInicial] = useState<Projeto>()
 
     useEffect(() => {
@@ -25,6 +27,11 @@ export const Editar_Projeto = () =>{
             setProjetoInicial(data)
           })
       }, [])
+      useEffect(() => {
+        (async() => {
+            setColaboradores(await todosCRs())
+        })()
+    }, [])  
 
 
     function handleChange(e: any) {
@@ -100,34 +107,22 @@ return(
                      </div>
                  </div>
 
-
-
-
-                 {/* <div className="col-md">
-                     <div className="form-floating">
-                         <select  className="form-select" id="floatingInputGrid" onChange={handleSelect}disabled={isDisabled} value={projeto?.cliente} name="modalidade">
-                         <option value="hora extra">1</option>
-                         <option value="sobreaviso">2</option>
-                         </select>
-                         <label htmlFor="floatingInputGrid">Cliente</label>
-                     </div>
-                 </div>   */}
-
                 
 
              </div>
-             {/* Turno && Email */}
              <div className="row g-2">
-                 <div className="col-md">
-                     <div className="form-floating">
-                         <select  className="form-select" id="floatingInputGrid" onChange={handleSelect} disabled={isDisabled} value={projeto?.cr} name="cr">
-                         <option value="tribo">Tribo</option>
-                         <option value="squad">Squad</option>
-                         <option value="departemento">Departamento</option>
-                         </select>
-                         <label htmlFor="floatingInputGrid">CR</label>
-                     </div>
-                 </div>  
+             <div className="col-md">
+                        <div className="form-floating">
+                            <select  className="form-select" id="cliente" onChange={handleSelect} disabled={isDisabled} value={projeto?.cliente} name="cliente">
+                            {colaboradores && 
+                        (colaboradores.map((c) => (
+                        
+                            <option value={c.numero} key={c.numero}>{c.nome}</option>
+                        )))}
+                            </select>
+                            <label htmlFor="floatingInputGrid">CR</label>
+                        </div>
+                    </div>  
                     
                 
                  <div className="col-md">                        
