@@ -52,8 +52,8 @@ export type Verba = {
 }
 
 export type Cliente = {
-    cnpj?: string,
-    numero?: number,
+    cnpj?: number,
+    nome?: string,
     contato?: string,
     projetos?: Projeto[]
 }

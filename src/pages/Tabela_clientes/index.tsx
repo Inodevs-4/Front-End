@@ -5,8 +5,9 @@ export const Cliente = () => {
     return(
         <body>
             <Navbar/>
-            <a href="/cadastro-cliente" className="btn btn-primary"> + </a>
-            <h3>Clientes</h3>
+            <p className="h3">Tabela Clientes</p>
+            <a href="/cadastro-cliente" className='btn btn-primary cadastrar' data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novo Usuário"><p className="icon">+</p></a>
+
             <hr />
 
             <div className="clientes">
