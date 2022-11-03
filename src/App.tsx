@@ -47,8 +47,8 @@ export const App = () => {
         <Route path="/Detalhes_Apontamento/:id" element={<RequireAuth nivel="gestor"><DetalhesApontamento/></RequireAuth>} />
         <Route path="/cadastro-usuario" element={<RequireAuth nivel="administrador"><CadastroUsuario/></RequireAuth>}/>
         <Route path="/Cadastro_projeto" element={<RequireAuth nivel="administrador"><Cadastro_Projeto/></RequireAuth>}/>
-        <Route path="/manipulacao-hora-sobreaviso" element={<RequireAuth nivel="gestor"><Manipulacao/></RequireAuth>}/>7
-        <Route path="/cadastro-verba" element={<RequireAuth nivel="administrador"><Cadastro_verba/></RequireAuth>}/>7
+        <Route path="/manipulacao-hora-sobreaviso" element={<RequireAuth nivel="gestor"><Manipulacao/></RequireAuth>}/>
+        <Route path="/cadastro-verba" element={<RequireAuth nivel="administrador"><Cadastro_verba/></RequireAuth>}/>
         {/* Cliente */}
         <Route path="/clientes" element={<RequireAuth nivel="gestor"><Cliente/></RequireAuth>}/>
         <Route path="/cadastro-cliente" element={<RequireAuth nivel="gestor"><Cadastro_Cliente/></RequireAuth>}/>
