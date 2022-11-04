@@ -1,6 +1,6 @@
 import Navbar from '../../components/menu/Navbar';
 import { useContext, useEffect, useState } from 'react'
-import "./styles.css";
+import "./projeto.css";
 import {  Projeto , CR} from '../../types/Types'
 import { todosCRs } from '../../hooks/CR';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -113,7 +113,7 @@ return(
              <div className="row g-2">
              <div className="col-md">
                         <div className="form-floating">
-                            <select  className="form-select" id="cliente" onChange={handleSelect} disabled={isDisabled} value={projeto?.cliente} name="cliente">
+                            <select  className="form-control" id="cliente" onChange={handleSelect} disabled={isDisabled} value={projeto?.cliente} name="cliente">
                             {colaboradores && 
                         (colaboradores.map((c) => (
                         
@@ -127,7 +127,7 @@ return(
                 
                  <div className="col-md">                        
              <div className="form-floating">
-                         <select className="form-select" aria-label="Disabled select example"  onChange={handleSelect} disabled={isDisabled} value={projeto?.status} name="status" >
+                         <select className="form-control" aria-label="Disabled select example"  onChange={handleSelect} disabled={isDisabled} value={projeto?.status} name="status" >
                          <option value="ativo">Ativo</option>
                          <option value="inativo">Inativo</option>
                          </select>
@@ -142,8 +142,8 @@ return(
                  {/* <button onClick={editarUsuario}  className='btn btn-primary editar' hidden={isHidden}>Editar</button> */}
                  <button onClick={editarUsuario}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
                     <div className='alteracao' hidden={isVisible}>
-                        <button className='btn btn-danger' onClick={cancelar}>Cancelar</button>
-                        <button onClick={salvarProjeto} className='btn btn-success'>Concluir</button>
+                        <button className='btn btn-danger' id='btn' onClick={cancelar}>Cancelar</button>
+                        <button onClick={salvarProjeto} id='btn' className='btn btn-success'>Concluir</button>
                     </div>
          </div>
  </body>

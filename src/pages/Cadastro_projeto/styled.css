@@ -91,3 +91,11 @@ h3 {
 body {
     background-color: rgb(186, 126, 126);
 }
+
+#btn{
+    margin-bottom: 3vh !important;
+}
+
+.btn.btn-danger{
+    margin-left: -2.5vh !important;
+}
