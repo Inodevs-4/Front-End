@@ -25,6 +25,7 @@ export const Aprovacao = () => {
         setRemoveLoading(true)
       }, [])
 
+
     return(
         <body>
             <Navbar/>
