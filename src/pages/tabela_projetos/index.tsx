@@ -17,7 +17,7 @@ export const Tabela_projetos = () => {
     return(
         <body>
             <Navbar/>
-            <p className="h3">Tabela Projetos</p>
+            <p className="h3">Tabela de Projetos</p>
             <a href="/Cadastro_projeto" className='btn btn-primary cadastrar' data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novo projeto"><p className="icon">+</p></a>
 
             <hr />

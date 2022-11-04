@@ -28,14 +28,14 @@ export const Theme = ({children}: Props) => {
                          
                         />
                         <SidebarItem 
-                        title="Horario"
-                        description="Informações do colabordor"
+                        title="Horário"
+                        description="Informações do colaborador"
                         icon="calendar"
                         path="/etapa2"
                         active={state.currentStep === 2}
                         />
                         <SidebarItem 
-                        title="Descricao"
+                        title="Descrição"
                         description="informações para aprovação"
                         icon="people"
                         path="/etapa3"

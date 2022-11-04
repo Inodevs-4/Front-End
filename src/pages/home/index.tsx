@@ -40,9 +40,9 @@ export const Home = () =>{
 
     <div className="container grid">
        <div className="item">
-        <p className="Acoes">Bem vindo, {auth.colaborador?.nome} </p>
+        <p className="Acoes">Bem-vindo(a), {auth.colaborador?.nome}! </p>
         <AccountCircleIcon sx={{ fontSize:150 }} />    
-        <p className="Acoes">Matricula: {auth.colaborador?.matricula} </p>
+        <p className="Acoes">Matrícula: {auth.colaborador?.matricula} </p>
         <ul>
           <li>
           <a href="/etapa1">
@@ -100,7 +100,7 @@ export const Home = () =>{
           </div>
           ))
           ) : (
-            <p>Não há lançamentos cadastrados.</p>
+            <p>Não há lançamentos cadastrados</p>
           )
         }
 

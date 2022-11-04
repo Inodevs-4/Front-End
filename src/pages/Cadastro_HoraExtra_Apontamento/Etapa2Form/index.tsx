@@ -98,7 +98,7 @@ export const Etapa2Form = () => {
     <Theme>
             <C.Container>
                 <h4>Passo 2/3</h4>
-                <p>Defina  a data de inicio e fim e horário</p>
+                <p>Defina as datas de início, fim e o horário</p>
                <hr/>
                 <select name="colaborador" id="colaborador" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleColaboratorChange}>
                     <option disabled selected>Selecione um colaborador</option>
@@ -106,7 +106,7 @@ export const Etapa2Form = () => {
                         <option value={colaborador.matricula} key={colaborador.matricula}>{colaborador.nome}</option>
                     ))}
                 </select>
-                <p>Inicio </p>
+                <p>Início </p>
                 <input type="datetime-local" name="" id="" onChange={handleDateStartsChange} value={state.data_inicio}/>
                 <hr />
                 <p>Fim</p>
@@ -118,7 +118,7 @@ export const Etapa2Form = () => {
                     </select>
                 {state.acionado === 'sim'  && (
                     <>
-                        <p>2º Inicio</p>
+                        <p>2º Início</p>
                         <input type="datetime-local" name="" id="" onChange={handleDateStarts2Change} value={state.data_inicio2}/>
                         <p>2º Fim</p>
                         <input type="datetime-local" className='mb-4' name="" id=""  onChange={handleDateEnds2Change} value={state.data_fim2}/> 
