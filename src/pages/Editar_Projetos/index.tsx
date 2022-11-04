@@ -1,9 +1,11 @@
 import Navbar from '../../components/menu/Navbar';
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import "./projeto.css";
-import {  Projeto , CR} from '../../types/Types'
+import {  Projeto , CR, Cliente} from '../../types/Types'
 import { todosCRs } from '../../hooks/CR';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { getProjeto } from '../../hooks/Projeto';
+import { todosClientes } from '../../hooks/Clientes';
 
 export const Editar_Projeto = () =>{
 
@@ -11,25 +13,17 @@ export const Editar_Projeto = () =>{
 
 
     const [projeto, setProjeto] = useState<Projeto>()
-    const [colaboradores, setColaboradores] = useState<CR[]>()
+    const [crs, setCrs] = useState<CR[]>()
+    const [clientes, setClientes] = useState<Cliente[]>()
     const [projetoInicial, setProjetoInicial] = useState<Projeto>()
 
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/getProjeto/${id}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
-            setProjeto(data)
-            setProjetoInicial(data)
-          })
-      }, [])
       useEffect(() => {
         (async() => {
-            setColaboradores(await todosCRs())
+            const data = await getProjeto(id)
+            setProjeto(data)
+            setProjetoInicial(data)
+            setCrs(await todosCRs())
+            setClientes(await todosClientes())
         })()
     }, [])  
 
@@ -102,7 +96,13 @@ return(
 
                  <div className="col-md">
                      <div className="form-floating">
-                         <input type="tel" className="form-control" id="floatingInputGrid" onChange={handleChange} disabled={isDisabled} value={projeto?.cliente} name='cliente'/>
+                     <select  className="form-select" id="cliente" onChange={handleSelect}  value={projeto?.cliente.cnpj} name="cliente" disabled={isDisabled}>
+                        {clientes && 
+                        (clientes.map((c) => (
+                            
+                            <option value={c.cnpj} key={c.cnpj}>{c.nome}</option>
+                        )))}
+                            </select>
                          <label htmlFor="floatingInputGrid">Cliente</label>
                      </div>
                  </div>
@@ -113,9 +113,9 @@ return(
              <div className="row g-2">
              <div className="col-md">
                         <div className="form-floating">
-                            <select  className="form-control" id="cliente" onChange={handleSelect} disabled={isDisabled} value={projeto?.cliente} name="cliente">
-                            {colaboradores && 
-                        (colaboradores.map((c) => (
+                            <select  className="form-control" id="cr" onChange={handleSelect} disabled={isDisabled} value={projeto?.cr?.numero} name="cr">
+                            {crs && 
+                        (crs.map((c) => (
                         
                             <option value={c.numero} key={c.numero}>{c.nome}</option>
                         )))}

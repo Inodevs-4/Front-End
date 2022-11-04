@@ -13,12 +13,14 @@ export const Cadastro_Projeto = () =>{
 
     const [colaborador, setColaborador] = useState<Projeto>()
     const [cr, setCr] = useState<CR[]>()
+    const [clientes, setClientes] = useState<Cliente[]>()
     // const [clientes, setClientes] = useState<Cliente[]>()
     const[isDisabled] = useState(true);
 
     useEffect(() => {
         (async() => {
             setCr(await todosCRs())
+            setClientes(await todosClientes())
         })()
     }, [])  
 
@@ -42,7 +44,7 @@ export const Cadastro_Projeto = () =>{
 
     const salvandoColaborador = () => {
         salvarProjeto(colaborador)
-        history('/tabela_Projeto')
+        history('/projetos')
 
     }
 
@@ -52,44 +54,39 @@ export const Cadastro_Projeto = () =>{
         <div className="edit">
                 <h3>Cadastro Projetos</h3>
                <div className="row g-2">
-                <div className="col-md">
                         <div className="form-floating">
-                            <input type="tel" className="form-control nome" id="floatingInputGrid" onChange={handleChange} value={colaborador?.nome} name='nome'/>
+                            <input type="tel" className="form-control" id="floatingInputGrid" onChange={handleChange} value={colaborador?.nome} name='nome'/>
                             <label htmlFor="floatingInputGrid">Nome</label>
-                        </div>
                     </div>
-   
-                    <div className="col-md">
-                     <div className="form-floating">
-                         <input type="tel" className="form-select" id="floatingInputGrid" onChange={handleChange} disabled={isDisabled} value={colaborador?.cliente} name='cliente'/>
-                         <label htmlFor="floatingInputGrid">Cliente</label>
-                     </div>
-                 </div>
-                   
    
                 </div>
                 <div className="row g-2">
                 <div className="col-md">
                         <div className="form-floating">
-                            <select  className="form-select" id="cliente" onChange={handleSelect}  value={colaborador?.cliente} name="cliente">
+                            <select  className="form-select" id="cr" onChange={handleSelect}  value={colaborador?.cr} name="cr">
+                            <option value="0" disabled selected>Selecione um centro de resultado</option>
                             {cr && 
                         (cr.map((c) => (
                         
                             <option value={c.numero} key={c.numero}>{c.nome}</option>
                         )))}
                             </select>
-                            <label htmlFor="floatingInputGrid">CR</label>
+                            <label htmlFor="floatingInputGrid">Centro de Resultado</label>
                         </div>
                     </div>   
                        
                    
                     <div className="col-md">                        
                 <div className="form-floating">
-                            <select className="form-select" aria-label="Disabled select example"  onChange={handleSelect} value={colaborador?.status} name="status" >
-                            <option value="ativo">Ativo</option>
-                            <option value="inativo">Inativo</option>
+                <select  className="form-select" id="cliente" onChange={handleSelect}  value={colaborador?.cliente} name="cliente">
+                        <option value="0" disabled selected>Selecione um cliente</option>
+                        {clientes && 
+                        (clientes.map((c) => (
+                            
+                            <option value={c.cnpj} key={c.cnpj}>{c.nome}</option>
+                        )))}
                             </select>
-                            <label htmlFor="floatingInputGrid">Status</label>
+                            <label htmlFor="floatingInputGrid">Cliente</label>
                         </div>
                     </div>
                 </div>

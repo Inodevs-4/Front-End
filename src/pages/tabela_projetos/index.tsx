@@ -33,8 +33,8 @@ export const Tabela_projetos = () => {
                 <div key={Projetos?.id} className="row items">
                     <div className="col"><p className="matricula">{Projetos?.id}</p></div>
                     <div className="col">{Projetos?.nome}</div>
-                    {Projetos.status === 'ativo' && <div className="col aprovado">Aprovado</div>}
-                    {Projetos.status === 'inativo' && <div className="col reprovado">Reprovado</div>}
+                    {Projetos.status === 'ativo' && <div className="col aprovado">Ativo</div>}
+                    {Projetos.status === 'inativo' && <div className="col reprovado">Inativo</div>}
                     <div className="col">
                         <a className="btn btn-primary" href={`/Editar_Projetos/${Projetos.id}`}>Visualizar</a>
                     </div>
