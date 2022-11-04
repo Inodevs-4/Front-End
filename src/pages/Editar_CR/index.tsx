@@ -101,7 +101,7 @@ export const Editar_Crs = () =>{
     <body>
         <Navbar/>
         <div className="edit">
-                <h3>Centros de resultados</h3>
+                <h3>Centros de Resultados</h3>
                 {/* {Numero && Nome} */}
                 <div className="row g-2">
                     <div className="col-md">
