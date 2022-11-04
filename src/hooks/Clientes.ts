@@ -45,8 +45,8 @@ export async function getCliente(id: string | undefined) {
 }
 
 // atualizar cliente
-export async function atualizarCliente(cliente: Cliente | undefined , id: string | undefined) {
-    return fetch(`${process.env.REACT_APP_SERVER}/atualizarCliente/${id}`, {
+export async function atualizarCliente(cliente: Cliente | undefined , cnpj: string | undefined) {
+    return fetch(`${process.env.REACT_APP_SERVER}/atualizarCliente/${cnpj}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
