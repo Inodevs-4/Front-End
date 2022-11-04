@@ -22,6 +22,7 @@ import { CadastroCR } from "./pages/CadastroCR";
 import Cadastro_verba from "./pages/Cadastro_verba";
 import Crs from "./pages/Tabela_crs";
 import Editar_Clientes from "./pages/Editar_Clientes";
+import Editar_Crs from "./pages/Editar_CR";
 
 
 
@@ -56,6 +57,7 @@ export const App = () => {
         <Route path="/cadastro-cliente" element={<RequireAuth nivel="gestor"><Cadastro_Cliente/></RequireAuth>}/>
         <Route path="/crs" element={<RequireAuth nivel="gestor"><Crs/></RequireAuth>}/>
         <Route path="/cadastro-cr" element={<RequireAuth nivel="gestor"><CadastroCR/></RequireAuth>}/>
+        <Route path="/editar-cr/:numero" element={<RequireAuth nivel="gestor"><Editar_Crs/></RequireAuth>}/>
       </Switch>
     </BrowserRouter>
     </FormProvider>

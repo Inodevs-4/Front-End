@@ -36,7 +36,7 @@ export const CRs = () => {
                     {CR.status === 'ativo' && <div className="col aprovado">Ativo</div>}
                     {CR.status === 'inativo' && <div className="col reprovado">Inativo</div>}
                     <div className="col">
-                        <a className="btn btn-primary" href={`/Editar_Crs/${CR.numero}`}>Visualizar</a>
+                        <a className="btn btn-primary" href={`/editar-cr/${CR.numero}`}>Visualizar</a>
                     </div>
                 </div>
                 )))} 
