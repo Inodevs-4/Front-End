@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/menu/Navbar";
 import './styles.css'
-import { Lancamento } from "../../types/Types";
+import { Verba } from "../../types/Types";
 import { formatarDataHora } from "../../functions/formatar";
 export const Tabela_projetos = () => {
 
 
 
-    const [colaboradores, setColaboradores] = useState<Lancamento[]>([])
+    const [verbas, setVerbas] = useState<Verba[]>([])
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/todosLancamentos`, {
+        fetch(`${process.env.REACT_APP_SERVER}/todasVerbas`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ export const Tabela_projetos = () => {
         })
           .then((resp) => resp.json())
           .then((data) => {
-            setColaboradores(data)
+            setVerbas(data)
           })
       }, [])
 
@@ -39,15 +39,15 @@ export const Tabela_projetos = () => {
                     <div className="col">Ações</div>
                 </div>
 
-                {colaboradores.map((Colaborador) => (
-                <div key={Colaborador?.id} className="row items">
-                    <div className="col"><p className="matricula">{Colaborador?.id}</p></div>
-                    <div className="col">{Colaborador.verbas?.numero}</div>
-                    {/* <div className="col">{formatarDataHora(String(Colaborador.verbas?.inicio))}</div>
-                    <div className="col">{formatarDataHora(String(Colaborador.verbas?.fim))}</div> */}
-                    <div className="col">{Colaborador.verbas?.adicional}</div>
+                {verbas.map((Verba) => (
+                <div key={Verba?.numero} className="row items">
+                    <div className="col"><p className="matricula">{Verba?.numero}</p></div>
+                    <div className="col">{Verba?.numero}</div>
+                    <div className="col">{formatarDataHora(String(Verba?.inicio))}</div>
+                    <div className="col">{formatarDataHora(String(Verba?.fim))}</div>
+                    <div className="col">{Verba?.adicional}</div>
                     <div className="col">
-                        <a className="btn btn-primary" href={`/Editar_Projetos/${Colaborador?.id}`}>Visualizar</a>
+                        <a className="btn btn-primary" href={`/Editar_Verba/${Verba?.id}`}>Visualizar</a>
                     </div>
                 </div>
                 ))}
