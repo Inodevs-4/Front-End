@@ -17,6 +17,16 @@ h3 {
     padding-top: 1em;
 }
 
+h5 {
+    text-align: center;
+    position: relative;
+    padding-top: 1em;
+}
+
+.form-select {
+    width: 85%;
+}
+
 .form-floating.mb-3{
     margin: 2em;
 }
@@ -54,6 +64,8 @@ h3 {
     margin-left: 35%;
     margin-right: 0;
     font-size: 15px;
+    margin-top: 30px;
+    margin-bottom: 40px;
 }
 
 .linha {
@@ -62,8 +74,49 @@ h3 {
 
 .alteracao {
     margin-left: 40%;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     
+}
+
+.left {
+    flex: left;
+    width: 47.5%;
+    display: inline-block;
+}
+
+.right {
+    flex: right;
+    width: 47.5%;
+    display: inline-block;
+    margin-left: 4%;
+}
+
+.remover {
+    background-color: red;
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 15px;
+    position: absolute;
+    top: 25%;
+    left: 87%;
+}
+
+.adicionar {
+    background-color: green;
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    top: 25%;;
+    left: 87%;
 }
 
 /* .edit {

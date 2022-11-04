@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react'
 import "./EditarCR.css";
 import { CR, Colaborador } from '../../types/Types'
 import {  useParams } from 'react-router-dom';
-import { atualizarCR, getCR } from '../../hooks/CR';
-import { selectColaboradores } from '../../hooks/Colaborador';
+import { atualizarCR, getCR, selectColaboradoresCr } from '../../hooks/CR';
 export const Editar_Crs = () =>{
 
     const { numero } = useParams()
@@ -12,13 +11,16 @@ export const Editar_Crs = () =>{
     const [crInicial, setCrsInicial] = useState<CR>()
     const [colaborador, setColaborador] = useState<number[]>([0,0])
     const [colaboradores, setColaboradores] = useState<Colaborador[]>()
+    const [colaboradoresInicial, setColaboradoresInicial] = useState<Colaborador[]>()
 
     useEffect(() => {
         (async() => {
-            const data = await getCR(numero)
-            setCrs(data)
-            setCrsInicial(data)
-            setColaboradores(await selectColaboradores())
+            const dataCR = await getCR(numero)
+            setCrs(dataCR)
+            setCrsInicial(dataCR)
+            const dataColaboradores = await selectColaboradoresCr(String(numero))
+            setColaboradores(dataColaboradores)
+            setColaboradoresInicial(dataColaboradores)
         })()
     }, [])
 
@@ -52,11 +54,13 @@ export const Editar_Crs = () =>{
 
     const cancelar = () => {
         setCrs(crInicial)
+        setColaboradores(colaboradoresInicial)
         EditarCr()
     }
 
     const editarCr = () => {
         atualizarCR(cr, numero)
+        console.log(cr)
         /*setCrsInicial(colaborador)*/
         EditarCr()
     }
@@ -110,57 +114,104 @@ export const Editar_Crs = () =>{
                             <label htmlFor="floatingInputGrid">Numero</label>
                         </div>
                     </div>
+                    <div className="col-md"></div>
+                </div>
+                {/* {Colaborador && Status} */}
+
+                <div className="row g-2">
                     <div className="col-md">
                         <div className="form-floating">
                         <input type="text" className="form-control" id="floatingInputGrid" value={cr?.nome} disabled={isDisabled} onChange={handleChange} name='nome'/>
                         <label htmlFor="floatingInput">Nome</label>
                         </div>
                     </div>
-                </div>
-                {/* {Colaborador && Status} */}
-
-                <div className="row g-2">
-                    <div className="col-md">
-                    <div className="form-floating">
-                        <select name="colaborador" id="floatingInputGrid" className="form-select" aria-label=".form-select-lg example" disabled={isDisabled} onChange={handleSelectColaborador} value={colaborador[1]}>
-                            <option value="0" disabled selected>Selecione um colaborador</option>
-                            {colaboradores && 
-                            (colaboradores.map((c) => (
-                                <option value={c.matricula} key={c.matricula}>{c.nome}</option>
-                            )
-                            ))}
-                        </select>
-                        <label>Colaboradores</label>
-                        {isHidden && <button onClick={adicionarColaborador}>Adicionar</button>}
-                        {cr?.colaboradores && cr?.colaboradores.map((colaborador) => (
-                            <div key={colaborador.matricula}>
-                                <p>{colaborador.nome}</p>
-                                {isHidden && <button id={String(colaborador.matricula)} onClick={removerColaborador}>Remover</button>}
-                        </div>
-                         ))}
-                         </div>
-                    </div>
                     <div className="col-md">        
                         <div className="form-floating">
-                            <select className="form-select" aria-label="Disabled select example"  disabled={isDisabled} onChange={handleChange} name="status" >
+                            <select className="form-select" aria-label="Disabled select example"  disabled={isDisabled} onChange={handleSelect} name="status" value={cr?.status}>
                                 <option value="ativo">Ativo</option>
                                 <option value="inativo">Inativo</option>
                             </select>
                             <label htmlFor="floatingInputGrid">Status</label>
                         </div>
                     </div>
+                </div>
 
+                <h5>Colaboradores:</h5>
+                
+                        {cr?.colaboradores && cr?.colaboradores.map((colaborador, index) => (
+                            <>
+                            {index % 2 === 0 ? (
+                            <div className="left">
+                                <div key={colaborador.matricula} className="col-md">
+                                    <div className="form-floating">
+                                        <input type="text" className="form-control" id="floatingInputGrid" disabled value={colaborador.nome} name='colaborador'/>
+                                        {isHidden && <button className="remover" id={String(colaborador.matricula)} onClick={removerColaborador}>&#8212;</button>}
+                                    </div>  
+                                </div>
+                            </div>) : 
+                            (
+                            <div className="right">
+                              <div key={colaborador.matricula} className="col-md">
+                              <div className="form-floating">
+                                  <input type="text" className="form-control" id="floatingInputGrid" disabled value={colaborador.nome} name='colaborador'/>
+                                  {isHidden && <button className="remover" id={String(colaborador.matricula)} onClick={removerColaborador}>&#8212;</button>}
+                              </div>  
+                            </div>  
+                            </div>
+                            )}
+                            </>
+                    ))}
+
+                        {isHidden && (
+                            <>
+                            {cr?.colaboradores && cr?.colaboradores.length % 2 === 0 ? (
+                                <div className='left'>
+                                    <div className="col-md">
+                                        <div className="form-floating">
+                                            <select name="colaborador" id="floatingInputGrid" className="form-select" aria-label=".form-select-lg example" onChange={handleSelectColaborador} value={colaborador[1]}>
+                                                <option value="0" disabled selected>Selecione um colaborador</option>
+                                                {colaboradores && 
+                                                (colaboradores.map((c) => (
+                                                    <option value={c.matricula} key={c.matricula}>{c.nome}</option>
+                                                )
+                                            ))}
+                                            </select>
+                                            <label>Novo colaborador</label>
+                                            <button className="adicionar" onClick={adicionarColaborador}>+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className='right'>
+                                    <div className="col-md">
+                                        <div className="form-floating">
+                                            <select name="colaborador" id="floatingInputGrid" className="form-select" aria-label=".form-select-lg example" onChange={handleSelectColaborador} value={colaborador[1]}>
+                                                <option value="0" disabled selected>Selecione um colaborador</option>
+                                                {colaboradores && 
+                                                (colaboradores.map((c) => (
+                                                    <option value={c.matricula} key={c.matricula}>{c.nome}</option>
+                                                )
+                                            ))}
+                                            </select>
+                                            <label>Novo colaborador</label>
+                                            <button className="adicionar" onClick={adicionarColaborador}>+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                            </>
+                        )}
+                         
                 {/* Colaboradores */}
                 <div className="row g-2">
                     {/* Botão Editar */}
-                    <button onClick={EditarCr}  className='btn btn-primary editar right' hidden={isHidden}>Editar</button>
+                    <button onClick={EditarCr}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
                     <div className='alteracao' hidden={isVisible}>
                         <button className='btn btn-danger' onClick={cancelar}>Cancelar</button>
                         <button onClick={editarCr} className='btn btn-success'>Concluir</button>
                     </div>
                 </div> 
             </div>
-        </div>
     </body>
     )
     }
