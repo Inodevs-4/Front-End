@@ -30,10 +30,11 @@ export const CRs = () => {
                     <div className="col">Ações</div>
                  </div>
 
-                {crs && (crs.map((CR) => (
+                 {crs && (crs.map((CR) => (
                 <div key={CR?.numero} className="row items">
-                    <div className="col"><p className="numero">{CR?.numero}</p></div>
-                    <div className="nome">{CR?.nome}</div>
+                    <div className="col"><p className="matricula">{CR?.numero}</p></div>
+                    <div className="col nome">{CR?.nome}</div>
+                    {/* <div className="col nome">{CR.colaboradores?.nome}</div> */}
                     {CR.status === 'ativo' && <div className="col aprovado">Ativo</div>}
                     {CR.status === 'inativo' && <div className="col reprovado">Inativo</div>}
                     <div className="col">
