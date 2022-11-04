@@ -18,29 +18,30 @@ export const Tabela_Clientes = () => {
         <body>
             <Navbar/>
             <p className="h3">Tabela Clientes</p>
-            <a href="/cadastro-cliente" className='btn btn-primary cadastrar' data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novo Usuário"><p className="icon">+</p></a>
+            <a href="/cadastro-cliente" className='btn btn-primary cadastrar' data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novo Cliente"><p className="icon">+</p></a>
 
             <hr />
-            <div className="apontamentos">
+            <div className="cliente">
                 <div className="row titles">
-                    <div className="col">Nome</div>
                     <div className="col">CNPJ</div>
+                    <div className="col">Nome</div>
                     <div className="col">Contato</div>
-                    {/* <div className="col">Status</div> */}
+                    <div className="col">Status</div>
                     <div className="col">Ações</div>
                 </div>
 
-                {clientes.map((Projetos) => (
-                <div key={Projetos?.cnpj} className="row items">
-                    <div className="col"><p className="matricula">{Projetos?.nome}</p></div>
-                    <div className="col">{Projetos?.cnpj}</div>
-                    <div className="col">{Projetos?.contato}</div>
-                    {/* <div className="col">{Projetos?.status}</div> */}
+                {clientes && (clientes.map((Clientes) => (
+                <div key={Clientes?.cnpj} className="row items">
+                    <div className="col">{Clientes?.cnpj}</div>
+                    <div className="col">{Clientes?.nome}</div>
+                    <div className="col">{Clientes?.contato}</div>
+                    {Clientes.status === 'ativo' && <div className="col aprovado">Ativo</div>}
+                    {Clientes.status === 'inativo' && <div className="col reprovado">Inativo</div>}
                     <div className="col">
-                        <a className="btn btn-primary" href={`/Editar_Clientes/${Projetos.cnpj}`}>Visualizar</a>
+                        <a className="btn btn-primary" href={`/Editar_Clientes/${Clientes.cnpj}`}>Visualizar</a>
                     </div>
                 </div>
-                ))}
+                )))}
             </div>
 
         </body>

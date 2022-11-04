@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/menu/Navbar";
-import "./styles.css";
+import "./cliente.css";
 import { CR } from "../../types/Types";
 import { todosCRs } from "../../hooks/CR";
 
@@ -27,6 +27,7 @@ export const CRs = () => {
                     <div className="col">Nome</div>
                     <div className="col">Colaboradores</div>
                     <div className="col">Status</div>
+                    <div className="col">Ações</div>
                  </div>
 
                 {crs && (crs.map((CR) => (
