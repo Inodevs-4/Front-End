@@ -56,13 +56,6 @@ export const CadastroUsuario = () =>{
                 {/* Turno && Email */}
                 <div className="row g-2">
                     <div className="col-md">
-                    <select className="form-select status" aria-label="Disabled select example" value={colaborador?.status} onChange={handleSelect} name='status'>
-                            <option value="ativo">Ativo</option>
-                            <option value="inativo">Inativo</option>
-
-                    </select>
-                    </div>
-                    <div className="col-md">
                         <div className="form-floating">
                             <input type="email" className="form-control" id="floatingInputGrid" value={colaborador?.email} onChange={handleChange} name='email'/>
                             <label htmlFor="floatingInputGrid">Email</label>

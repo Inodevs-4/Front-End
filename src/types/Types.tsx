@@ -36,7 +36,7 @@ export type Lancamento = {
     status?: Status,
 	colaborador?: Colaborador,
 	projeto?: Projeto,
-	verbas?: Verba,
+	verbas?: Verba[],
 	gestor?: Colaborador,
 }
 
@@ -54,7 +54,7 @@ export type Verba = {
 export type Cliente = {
     cnpj?: string,
     nome?: string,
-    status?: StatusUsuario,
+    status?: string,
     contato?: string,
     projetos?: Projeto[]
 }

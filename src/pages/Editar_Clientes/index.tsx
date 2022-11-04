@@ -79,7 +79,7 @@ export const Editar_Clientes = () =>{
                     </div>
                     <div className="col-md">        
                         <div className="form-floating">
-                            <select className="form-select" aria-label="Disabled select example" value={cliente?.status} disabled={isDisabled} onChange={handleChange} name="status" >
+                            <select className="form-select" aria-label="Disabled select example"  disabled={isDisabled} onChange={handleSelect} name="status" value={cliente?.status}>
                                 <option value="ativo">Ativo</option>
                                 <option value="inativo">Inativo</option>
                             </select>
