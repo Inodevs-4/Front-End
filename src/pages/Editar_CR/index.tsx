@@ -101,28 +101,28 @@ export const Editar_Crs = () =>{
     <body>
         <Navbar/>
         <div className="edit">
-            <h3>Centro de Resultados</h3>
-            {/* Matricula && Perfil */}
-            <div className="row g-2">
-                <div className="col-mb">
-                    <div className="form-floating left">
-                        <input type="text" className="form-control" disabled value={cr?.numero} name='numero'/>
-                        <label htmlFor="floatingInputGrid">Número</label>
+                <h3>Centros de resultados</h3>
+                {/* {Numero && Nome} */}
+                <div className="row g-2">
+                    <div className="col-md">
+                        <div className="form-floating">
+                            <input type="number" className="form-control" id="floatingInputGrid" disabled value={cr?.numero} name='numero'/>
+                            <label htmlFor="floatingInputGrid">Numero</label>
+                        </div>
                     </div>
-                    <div className="form-floating mb-3 right">
+                    <div className="col-md">
+                        <div className="form-floating">
                         <input type="text" className="form-control" id="floatingInputGrid" value={cr?.nome} disabled={isDisabled} onChange={handleChange} name='nome'/>
                         <label htmlFor="floatingInput">Nome</label>
+                        </div>
                     </div>
                 </div>
-            </div>
+                {/* {Colaborador && Status} */}
 
-            {/* Nome */}
-
-            {/* Status */}
-            <div className="row g-2">
-                <div className="col-md">
-                    <div className="form-floating select">
-                        <select name="colaborador" id="colaborador" className="form-select left" aria-label=".form-select-lg example" disabled={isDisabled} onChange={handleSelectColaborador} value={colaborador[1]}>
+                <div className="row g-2">
+                    <div className="col-md">
+                    <div className="form-floating">
+                        <select name="colaborador" id="floatingInputGrid" className="form-select" aria-label=".form-select-lg example" disabled={isDisabled} onChange={handleSelectColaborador} value={colaborador[1]}>
                             <option value="0" disabled selected>Selecione um colaborador</option>
                             {colaboradores && 
                             (colaboradores.map((c) => (
@@ -136,15 +136,19 @@ export const Editar_Crs = () =>{
                             <div key={colaborador.matricula}>
                                 <p>{colaborador.nome}</p>
                                 {isHidden && <button id={String(colaborador.matricula)} onClick={removerColaborador}>Remover</button>}
-                            </div>
-                        ))}
+                        </div>
+                         ))}
+                         </div>
                     </div>
-                
-                    <select className="form-select status right" aria-label="Disabled select example" disabled={isDisabled} value={cr?.status} onChange={handleSelect} name='status'>
-                        <option value="ativo">Ativo</option>
-                        <option value="inativo">Inativo</option>
-                    </select>
-                </div>
+                    <div className="col-md">        
+                        <div className="form-floating">
+                            <select className="form-select" aria-label="Disabled select example"  disabled={isDisabled} onChange={handleChange} name="status" >
+                                <option value="ativo">Ativo</option>
+                                <option value="inativo">Inativo</option>
+                            </select>
+                            <label htmlFor="floatingInputGrid">Status</label>
+                        </div>
+                    </div>
 
                 {/* Colaboradores */}
                 <div className="row g-2">
