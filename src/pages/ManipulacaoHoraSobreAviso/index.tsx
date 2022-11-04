@@ -47,7 +47,7 @@ export const Tabela_projetos = () => {
                     <div className="col">{formatarDataHora(String(Verba?.fim))}</div>
                     <div className="col">{Verba?.adicional}</div>
                     <div className="col">
-                        <a className="btn btn-primary" href={`/Editar_Verba/${Verba?.id}`}>Visualizar</a>
+                        <a className="btn btn-primary" href={`/Editar_Verba/${Verba?.numero}`}>Visualizar</a>
                     </div>
                 </div>
                 ))}
