@@ -63,7 +63,7 @@ export const CadastroCR = () =>{
 
     const salvandoCr = () => {
         salvarCR(cr)
-        history('/tabela-crs')
+        history('/crs')
     }
 
     return(
@@ -71,41 +71,86 @@ export const CadastroCR = () =>{
         <Navbar/>
         <div className="edit">
             <h3>Centro de Resultados</h3>
-            {/* Matricula && Perfil */}
-            <div className="row g-2">
-                <div className="col-md">
-                    <div className="form-floating">
-                    <input type="text" className="form-control numero" id="floatingInputGrid numero" value={cr?.numero} name='numero' onChange={handleChange} />
-                    <label htmlFor="floatingInputGrid">Número</label>
+                {/* {Colaborador && Status} */}
+
+                <div className="row g-2">
+                    <div className="col-md">
+                        <div className="form-floating">
+                            <input type="number" className="form-control" id="floatingInputGrid" value={cr?.numero} name='numero' onChange={handleChange}/>
+                            <label htmlFor="floatingInputGrid">Numero</label>
+                        </div>
+                    </div>
+                    <div className="col-md">
+                        <div className="form-floating">
+                        <input type="text" className="form-control" id="floatingInputGrid" value={cr?.nome} onChange={handleChange} name='nome'/>
+                        <label htmlFor="floatingInput">Nome</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {/* Nome */}
-            <div className="form-floating mb-3">
-                <input type="text" className="form-control" id="floatingInput" value={cr?.nome} onChange={handleChange} name='nome'/>
-                <label htmlFor="floatingInput">Nome</label>
-            </div>
-            <div className="form-floating mb-3">
-                    <select name="colaborador" id="colaborador" className="form-select form-select-lg mb-3 mt-3" aria-label=".form-select-lg example" onChange={handleSelectColaborador} value={colaborador[1]}>
-                        <option value="0" disabled selected>Selecione um colaborador</option>
-                        {colaboradores && 
-                        (colaboradores.map((c) => (
-                            <option value={c.matricula} key={c.matricula}>{c.nome}</option>
-                        )
-                        ))}
-                    </select>
-                    <label>Colaboradores</label>
-                    <button onClick={adicionarColaborador}>Adicionar</button>
-                    {cr?.colaboradores && cr?.colaboradores.map((colaborador) => (
-                        <div key={colaborador.matricula}>
-                            <p>{colaborador.nome}</p>
-                            <button id={String(colaborador.matricula)} onClick={removerColaborador}>Remover</button>
-                        </div>
+
+                <h5>Colaboradores:</h5>
+                
+                        {cr?.colaboradores && cr?.colaboradores.map((colaborador, index) => (
+                            <>
+                            {index % 2 === 0 ? (
+                            <div className="left">
+                                <div key={colaborador.matricula} className="col-md">
+                                    <div className="form-floating">
+                                        <input type="text" className="form-control" id="floatingInputGrid" disabled value={colaborador.nome} name='colaborador'/>
+                                        <button className="remover" id={String(colaborador.matricula)} onClick={removerColaborador}>&#8212;</button>
+                                    </div>  
+                                </div>
+                            </div>) : 
+                            (
+                            <div className="right">
+                              <div key={colaborador.matricula} className="col-md">
+                              <div className="form-floating">
+                                  <input type="text" className="form-control" id="floatingInputGrid" disabled value={colaborador.nome} name='colaborador'/>
+                                  <button className="remover" id={String(colaborador.matricula)} onClick={removerColaborador}>&#8212;</button>
+                              </div>  
+                            </div>  
+                            </div>
+                            )}
+                            </>
                     ))}
-                </div>
+                            {cr?.colaboradores && cr?.colaboradores.length % 2 === 0 ? (
+                                <div className='left'>
+                                    <div className="col-md">
+                                        <div className="form-floating">
+                                            <select name="colaborador" id="floatingInputGrid" className="form-select" aria-label=".form-select-lg example" onChange={handleSelectColaborador} value={colaborador[1]}>
+                                                <option value="0" disabled selected>Selecione um colaborador</option>
+                                                {colaboradores && 
+                                                (colaboradores.map((c) => (
+                                                    <option value={c.matricula} key={c.matricula}>{c.nome}</option>
+                                                )
+                                            ))}
+                                            </select>
+                                            <label>Novo colaborador</label>
+                                            <button className="adicionar" onClick={adicionarColaborador}>+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className='right'>
+                                    <div className="col-md">
+                                        <div className="form-floating">
+                                            <select name="colaborador" id="floatingInputGrid" className="form-select" aria-label=".form-select-lg example" onChange={handleSelectColaborador} value={colaborador[1]}>
+                                                <option value="0" disabled selected>Selecione um colaborador</option>
+                                                {colaboradores && 
+                                                (colaboradores.map((c) => (
+                                                    <option value={c.matricula} key={c.matricula}>{c.nome}</option>
+                                                )
+                                            ))}
+                                            </select>
+                                            <label>Novo colaborador</label>
+                                            <button className="adicionar" onClick={adicionarColaborador}>+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
             <hr className='linha'/>
             {/* Botão Cadastrar */}
-            <button onClick={salvandoCr}  className='btn btn-primary cadastrar1'>Cadastrar</button>
+            <button onClick={salvandoCr}  className='btn btn-primary editar'>Cadastrar</button>
         </div>
     </body>
     )

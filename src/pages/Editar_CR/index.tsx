@@ -137,7 +137,7 @@ export const Editar_Crs = () =>{
                 </div>
 
                 <h5>Colaboradores:</h5>
-                
+                        {(!isHidden && cr?.colaboradores && cr?.colaboradores.length === 0) && <p className="texto">Não há colaboradores neste Centro de Resultado.</p>}
                         {cr?.colaboradores && cr?.colaboradores.map((colaborador, index) => (
                             <>
                             {index % 2 === 0 ? (
