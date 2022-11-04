@@ -16,6 +16,19 @@ export async function salvarCR(cr: CR | undefined) {
     .catch((err) => console.log(err))
 }
 
+export async function selectColaboradoresCr(numero: string) {
+  return fetch(`${process.env.REACT_APP_SERVER}/selectColaboradoresCr/${numero}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      return data
+  })
+}
+
 // pegar todos os clientes
 export async function todosCRs() {
   return fetch(`${process.env.REACT_APP_SERVER}/todosCRs`, {
