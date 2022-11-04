@@ -23,20 +23,20 @@ export const CRs = () => {
 
             <div className="crs">
                  <div className="row titles">
-                    <div className="col">Número</div>
-                    <div className="col">Nome</div>
-                    <div className="col">Status</div>
-                    <div className="col">Ações</div>
+                    <div className="col center">Número</div>
+                    <div className="col center">Nome</div>
+                    <div className="col center">Status</div>
+                    <div className="col center">Ações</div>
                  </div>
 
                  {crs && (crs.map((CR) => (
                 <div key={CR?.numero} className="row items">
-                    <div className="col"><p className="matricula">{CR?.numero}</p></div>
-                    <div className="col nome">{CR?.nome}</div>
-                    {CR.status === 'ativo' && <div className="col aprovado">Ativo</div>}
-                    {CR.status === 'inativo' && <div className="col reprovado">Inativo</div>}
+                    <div className="col"><p className="matricula center">{CR?.numero}</p></div>
+                    <div className="col nome center">{CR?.nome}</div>
+                    {CR.status === 'ativo' && <div className="col aprovado center">Ativo</div>}
+                    {CR.status === 'inativo' && <div className="col reprovado center">Inativo</div>}
                     <div className="col">
-                        <a className="btn btn-primary" href={`/editar-cr/${CR.numero}`}>Visualizar</a>
+                        <a className="btn btn-primary center" href={`/editar-cr/${CR.numero}`}>Visualizar</a>
                     </div>
                 </div>
                 )))} 

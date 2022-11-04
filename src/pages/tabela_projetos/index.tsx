@@ -23,20 +23,20 @@ export const Tabela_projetos = () => {
             <hr />
             <div className="apontamentos">
                 <div className="row titles">
-                    <div className="col">ID</div>
-                    <div className="col">Nome</div>
-                    <div className="col">Status</div>
-                    <div className="col">Ações</div>
+                    <div className="col center">ID</div>
+                    <div className="col center">Nome</div>
+                    <div className="col center">Status</div>
+                    <div className="col center ">Ações</div>
                 </div>
 
                 {projetos.map((Projetos) => (
                 <div key={Projetos?.id} className="row items">
-                    <div className="col"><p className="matricula">{Projetos?.id}</p></div>
-                    <div className="col">{Projetos?.nome}</div>
-                    {Projetos.status === 'ativo' && <div className="col aprovado">Ativo</div>}
-                    {Projetos.status === 'inativo' && <div className="col reprovado">Inativo</div>}
+                    <div className="col center"><p className="matricula center">{Projetos?.id}</p></div>
+                    <div className="col  center">{Projetos?.nome}</div>
+                    {Projetos.status === 'ativo' && <div className="col aprovado center">Ativo</div>}
+                    {Projetos.status === 'inativo' && <div className="col reprovado center">Inativo</div>}
                     <div className="col">
-                        <a className="btn btn-primary" href={`/Editar_Projetos/${Projetos.id}`}>Visualizar</a>
+                        <a className="btn btn-primary center" href={`/Editar_Projetos/${Projetos.id}`}>Visualizar</a>
                     </div>
                 </div>
                 ))}
