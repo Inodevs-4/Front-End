@@ -101,35 +101,28 @@ export const Editar_Crs = () =>{
     <body>
         <Navbar/>
         <div className="edit">
-                <h3>Centro de Resultados</h3>
-                {/* Matricula && Perfil */}
-                <div className="row g-2">
-                    <div className="col-md">
-                        <div className="form-floating">
-                        <input type="text" className="form-control matricula" id="floatingInputGrid numero" disabled value={cr?.numero} name='numero'/>
+            <h3>Centro de Resultados</h3>
+            {/* Matricula && Perfil */}
+            <div className="row g-2">
+                <div className="col-mb">
+                    <div className="form-floating left">
+                        <input type="text" className="form-control" disabled value={cr?.numero} name='numero'/>
                         <label htmlFor="floatingInputGrid">Número</label>
-                        </div>
+                    </div>
+                    <div className="form-floating mb-3 right">
+                        <input type="text" className="form-control" id="floatingInputGrid" value={cr?.nome} disabled={isDisabled} onChange={handleChange} name='nome'/>
+                        <label htmlFor="floatingInput">Nome</label>
                     </div>
                 </div>
+            </div>
 
-                {/* Nome */}
-                <div className="form-floating mb-3">
-                    <input type="text" className="form-control" id="floatingInput" value={cr?.nome} disabled={isDisabled} onChange={handleChange} name='nome'/>
-                    <label htmlFor="floatingInput">Nome</label>
-                </div>
-                {/* Status */}
-                <div className="row g-2">
-                    <div className="col-md">
-                    <select className="form-select status" aria-label="Disabled select example" disabled={isDisabled} value={cr?.status} onChange={handleSelect} name='status'>
-                            <option value="ativo">Ativo</option>
-                            <option value="inativo">Inativo</option>
-                    </select>
-                </div>
+            {/* Nome */}
 
-                {/* Colaboradores */}
-                <div className="row g-2">
-                    <div className="form-floating mb-3">
-                        <select name="colaborador" id="colaborador" className="form-select form-select-lg mb-3 mt-3" aria-label=".form-select-lg example" disabled={isDisabled} onChange={handleSelectColaborador} value={colaborador[1]}>
+            {/* Status */}
+            <div className="row g-2">
+                <div className="col-md">
+                    <div className="form-floating select">
+                        <select name="colaborador" id="colaborador" className="form-select left" aria-label=".form-select-lg example" disabled={isDisabled} onChange={handleSelectColaborador} value={colaborador[1]}>
                             <option value="0" disabled selected>Selecione um colaborador</option>
                             {colaboradores && 
                             (colaboradores.map((c) => (
@@ -146,10 +139,17 @@ export const Editar_Crs = () =>{
                             </div>
                         ))}
                     </div>
-                    
-                    <hr className='linha'/>
+                
+                    <select className="form-select status right" aria-label="Disabled select example" disabled={isDisabled} value={cr?.status} onChange={handleSelect} name='status'>
+                        <option value="ativo">Ativo</option>
+                        <option value="inativo">Inativo</option>
+                    </select>
+                </div>
+
+                {/* Colaboradores */}
+                <div className="row g-2">
                     {/* Botão Editar */}
-                    <button onClick={EditarCr}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
+                    <button onClick={EditarCr}  className='btn btn-primary editar right' hidden={isHidden}>Editar</button>
                     <div className='alteracao' hidden={isVisible}>
                         <button className='btn btn-danger' onClick={cancelar}>Cancelar</button>
                         <button onClick={editarCr} className='btn btn-success'>Concluir</button>
