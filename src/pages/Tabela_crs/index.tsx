@@ -31,7 +31,7 @@ export const CRs = () => {
 
                  {crs && (crs.map((CR) => (
                 <div key={CR?.numero} className="row items">
-                    <div className="col"><p className="matricula center">{CR?.numero}</p></div>
+                    <div className="col center"><p className="matricula center">{CR?.numero}</p></div>
                     <div className="col nome center">{CR?.nome}</div>
                     {CR.status === 'ativo' && <div className="col aprovado center">Ativo</div>}
                     {CR.status === 'inativo' && <div className="col reprovado center">Inativo</div>}

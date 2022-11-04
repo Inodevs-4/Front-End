@@ -32,7 +32,7 @@ export const Tabela_Clientes = () => {
 
                 {clientes && (clientes.map((Clientes) => (
                 <div key={Clientes?.cnpj} className="row items">
-                    <div className="col matricula center">{Clientes?.cnpj}</div>
+                      <div className="col center"><p className="matricula center">{Clientes?.cnpj}</p></div>
                     <div className="col center">{Clientes?.nome}</div>
                     <div className="col center">{Clientes?.contato}</div>
                     {Clientes.status === 'ativo' && <div className="col aprovado center">Ativo</div>}
