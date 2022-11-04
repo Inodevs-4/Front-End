@@ -50,7 +50,7 @@ export const Cadastro_Projeto = () =>{
         <body >
         <Navbar/>
         <div className="edit">
-                <h3>Cadastro Projetos</h3>
+                <h3>Cadastro de Projetos</h3>
                <div className="row g-2">
                 <div className="col-md">
                         <div className="form-floating">

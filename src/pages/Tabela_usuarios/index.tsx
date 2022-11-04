@@ -25,15 +25,15 @@ export const Tabela_usuario = () => {
     return(
         <body>
             <Navbar/>
-            <p className="h3">Tabela Usuarios</p>
+            <p className="h3">Tabela de Usuários</p>
             <a href="/cadastro-usuario" className='btn btn-primary cadastrar' data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novo Usuário"><p className="icon">+</p></a>
 
             <hr />
             <div className="apontamentos">
                 <div className="row titles">
-                    <div className="col">Matricula</div>
+                    <div className="col">Matrícula</div>
                     <div className="col">Nome</div>
-                    <div className="col">Nivel de acesso</div>
+                    <div className="col">Nível de acesso</div>
                     <div className="col">Email</div>
                     <div className="col">Turno</div>
                     <div className="col">Status</div>
