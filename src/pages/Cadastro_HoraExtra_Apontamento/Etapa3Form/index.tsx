@@ -77,7 +77,7 @@ export const Etapa3Form = () => {
 
             <C.Container>
                 <h4>Passo {state.currentStep}/3</h4>
-                <p>Preencha o campo abaixo com seu nome completo.</p>
+                <p>Preencha o campo abaixo com seu nome completo</p>
 
                 <hr/>
 
