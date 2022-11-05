@@ -41,7 +41,6 @@ export const Tabela_projetos = () => {
                 {verbas.map((Verba) => (
                 <div key={Verba?.numero} className="row items">
                     <div className="col"><p className="matricula">{Verba?.numero}</p></div>
-                    <div className="col">{Verba?.numero}</div>
                     <div className="col">{formatarHora(String(Verba?.inicio))}</div>
                     <div className="col">{formatarHora(String(Verba?.fim))}</div>
                     <div className="col">{Verba?.adicional}</div>

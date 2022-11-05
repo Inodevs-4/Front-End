@@ -4,7 +4,6 @@ import "./editar-verba.css";
 import {  Verba } from '../../types/Types'
 import {  useParams } from 'react-router-dom';
 import { atualizarVerba, getVerba } from '../../hooks/Verba';
-import { formatarHoraInput } from '../../functions/formatar';
 export const Editar_Verbas = () =>{
 
     const { numero } = useParams()
@@ -24,8 +23,12 @@ export const Editar_Verbas = () =>{
         setVerba({...verba, [e.target.name]: e.target.value})
     }
 
-    function handleSelect(e: any) {
-        setVerba({...verba, [e.target.name]: e.target.options[e.target.selectedIndex].value,})
+    function handleEvento(e: any){
+        if(verba?.evento === 1){
+            setVerba({...verba, [e.target.name]: 0})
+        } else {
+            setVerba({...verba, [e.target.name]: 1})
+        }
     }
 
     // Função para ativar inputs
@@ -69,62 +72,53 @@ export const Editar_Verbas = () =>{
                 </div>
                 <div className="form-group ">
                     <label className="titulo"htmlFor="exampleFormControlInput1">Número</label>
-                    <input type="number" className="form-control" onChange={handleChange} disabled={isDisabled} id="numero" value={verba?.numero} />
+                    <input type="number" className="form-control" id="numero" onChange={handleChange} disabled value={verba?.numero} />
                 </div>
                 <div className="form-group ">
                     <label className="titulo"htmlFor="exampleFormControlInput1">Adicional</label>
-                    <input type="number" className="form-control" onChange={handleChange} id="adicional"  disabled={isDisabled} value={verba?.adicional} placeholder='0%' />
+                    <input type="number" name="adicional" className="form-control" onChange={handleChange} id="adicional"  disabled={isDisabled} value={verba?.adicional} placeholder='0%' />
                 </div>
             </div>
             <div className="linha">
                 <div className="form-group ">
                     <label className="titulo"htmlFor="exampleFormControlInput1">Início</label>
-                    <input type="time" className="form-control" id="Inicio" onChange={handleChange} disabled={isDisabled}  value={formatarHoraInput(String(verba?.inicio))} name="inicio"  />
+                    <input type="time" className="form-control" id="Inicio" onChange={handleChange} disabled={isDisabled}  value={(String(verba?.inicio))} name="inicio"  />
                 </div>
                 <div className="form-group ">
                     <label className="titulo"htmlFor="exampleFormControlInput1">Fim</label>
-                    <input type="time" className="form-control" onChange={handleChange} disabled={isDisabled} value={formatarHoraInput(String(verba?.fim))} id="fim" name="fim" />
+                    <input type="time" className="form-control" onChange={handleChange} disabled={isDisabled} value={(String(verba?.fim))} id="fim" name="fim" />
                 </div>
             </div>
             <div className="linha">
-                <p>Eventos:</p> 
+                <p>Eventos:</p>
                 <div className="form-check">
-                    <input className="form-check-input" onChange={handleSelect}disabled={isDisabled}  type="checkbox" id="gridCheck"/>
+                    <input className="form-check-input" onChange={handleEvento} disabled={isDisabled} type="checkbox" id="gridCheck" name="evento" checked={Boolean(verba?.evento)}/>
                     <label className="form-check-label" htmlFor="gridCheck">
                         Feriado
                     </label>
                 </div>
                 <p>Período Semanal:</p>
-                <div className="form-check">
-                    <input className="form-check-input" onChange={handleSelect} disabled={isDisabled} type="radio" name="gridRadios" id="gridRadios1" value="option1" />
-                    <label className="form-check-label" htmlFor="gridRadios1">
-                        Segunda à Sexta
-                    </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input" onChange={handleSelect} disabled={isDisabled} type="radio" name="gridRadios" id="gridRadios1" value="option2" />
-                    <label className="form-check-label" htmlFor="gridRadios1">
-                        Sábado
-                    </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input"  onChange={handleSelect} disabled={isDisabled} type="radio" name="gridRadios" id="gridRadios2" value="option3"/>
-                    <label className="form-check-label"htmlFor="gridRadios2">
-                        Domingo
-                    </label>
-                </div>
+                <div className="form-floating">
+                         <select className="form-control" aria-label="Disabled select example"  onChange={handleChange} disabled={isDisabled} value={verba?.periodo} name="periodo" >
+                         <option value="segunda_sexta">Segunda a Sexta</option>
+                         <option value="sabado">Sábado</option>
+                         <option value="domingo">Domingo</option>
+                         </select>
+                         <label htmlFor="floatingInputGrid">Período Semanal</label>
+                     </div>
                 <hr />
             </div>
             
-            <div className="bottons">
-                <div className="form-group">
+            <div className="buttons">
+                {/* <div className="form-group">
                     <label className='titulo'  htmlFor="exampleFormControlInput1">Cálculo(R$)</label>
                     <input className="form-control" type="text" disabled={isDisabled} onChange={handleChange} placeholder="00,00" id='exampleFormControlInput1' readOnly/>
-                </div>
-                <div className='alteracao' hidden={isVisible}>
-                    <button className='btn btn-danger' onClick={cancelar}>Cancelar</button>
-                    <button onClick={salvarVerba} className='btn btn-success'>Concluir</button>
-                </div>
+                </div> */}
+                <button onClick={editarVerba}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
+                    <div className='alteracao' hidden={isVisible}>
+                        <button className='btn btn-danger' onClick={cancelar}>Cancelar</button>
+                        <button onClick={salvarVerba} className='btn btn-success'>Concluir</button>
+                    </div>
                 </div>
         </div>
     </body>

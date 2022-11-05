@@ -1,6 +1,6 @@
 import Navbar from '../../components/menu/Navbar';
 import { useEffect, useState } from 'react'
-import "./styles.css";
+import "./edi_usuario.css";
 import { Colaborador} from '../../types/Types'
 import {  useParams } from 'react-router-dom';
 import { atualizarColaborador, getColaborador } from '../../hooks/Colaborador';
@@ -67,7 +67,7 @@ export const Editar_Usuario = () =>{
                 <div className="row g-2">
                     <div className="col-md">
                         <div className="form-floating">
-                        <input type="text" className="form-control matricula" id="floatingInputGrid matricula" disabled value={colaborador?.matricula} name='matricula'/>
+                        <input type="text" className="form-control colabmatri" id="floatingInputGrid matricula" disabled value={colaborador?.matricula} name='matricula'/>
                         <label htmlFor="floatingInputGrid">Matrícula</label>
                         </div>
                     </div>

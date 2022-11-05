@@ -25,8 +25,8 @@ h3 {
     margin: 2em;
 }
 
-.form-control.matricula{
-    width: 50%;
+.form-control.colabmatri {
+    width: 30% !important;
 }
 
 .form-select.turno{
@@ -64,13 +64,4 @@ h3 {
     margin-left: 40%;
     margin-bottom: 10px;
     
-}
-
-.btn.btn-primary.cadastrar1{
-    width: 10.5%;
-    margin-bottom: 2%;
-    margin-left: 44%;
-    font-size: 15px;
-    padding-top: 0.5em;
-    padding-bottom: 1em;
 }

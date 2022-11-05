@@ -1,12 +1,13 @@
 import Navbar from '../../components/menu/Navbar';
 import { useEffect, useState } from 'react'
-import "./styles.css";
+import "./det_apon.css";
 import { formatarDataHoraInput } from "../../functions/formatar";
 import { Colaborador, Lancamento, Projeto, Status, Verba } from '../../types/Types'
 import { useNavigate, useParams } from 'react-router-dom';
 import { aprovarLancamento, atualizarLancamento, getLancamento, reprovarLancamento } from '../../hooks/Lancamento';
 import { selectProjetos } from '../../hooks/Projeto';
 import { selectColaboradores, selectGestores } from '../../hooks/Colaborador';
+import { todasVerbas } from '../../hooks/Verba';
 
 
 export const DetalhesApontamento = () =>{
@@ -53,6 +54,14 @@ export const DetalhesApontamento = () =>{
             setColaboradores(await selectColaboradores())
         }   
         hookColaborador()
+      }, [])
+
+      // seleciona todas as verbas para o select
+      useEffect(() => {
+        const hookVerba = async() => {
+            setVerbas(await todasVerbas())
+        }   
+        hookVerba()
       }, [])
 
       
@@ -308,9 +317,10 @@ export const DetalhesApontamento = () =>{
         
                     <hr className='linha'/>
 
-                    <button onClick={aprovar}  className='btn btn-success editar' hidden={isHidden}>Aprovar</button>
-                    <button onClick={editarLancamento}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
-                    <button onClick={reprovar}  className='btn btn-danger editar' hidden={isHidden}>Reprovar</button>
+                    <div className="buttons">
+                        <button onClick={aprovar}  className='btn btn-success editar' hidden={isHidden}>Aprovar</button>
+                        <button onClick={editarLancamento}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
+                        <button onClick={reprovar}  className='btn btn-danger editar' hidden={isHidden}>Reprovar</button></div>
                     <div className='alteracao' hidden={isVisible}>
                         <button className='btn btn-danger' onClick={cancelar}>Cancelar</button>
                         <button onClick={salvarLacamento} className='btn btn-success'>Concluir</button>

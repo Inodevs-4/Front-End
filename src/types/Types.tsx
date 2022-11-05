@@ -45,9 +45,10 @@ export type Verba = {
     numero?: number,
     verba?: number,
     adicional?: number,
-    quantidadehoras?: number,
     inicio?: Date,
     fim?: Date,
+    evento?: number,
+    periodo?: string,
 	lancamentos?: Lancamento[]
 }
 

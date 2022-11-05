@@ -17,7 +17,7 @@ export const CRs = () => {
     return(
         <body>
             <Navbar/>
-            <p className="h3">Tabela CRs</p>
+            <p className="h3">Centro de Resultados</p>
             <a href="/cadastro-cr" className='btn btn-primary cadastrar' data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novo CR"><p className="icon">+</p></a>
             <hr />
 

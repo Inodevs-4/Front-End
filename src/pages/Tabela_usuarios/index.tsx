@@ -47,8 +47,8 @@ export const Tabela_usuario = () => {
                     <div className="col">{formatarInicial(Colaborador?.perfil)}</div>
                     <div className="col">{Colaborador?.email}</div>
                     <div className="col">{Colaborador?.turno}</div>
-                    {Colaborador.status === 'ativo' && <div className="col aprovado">Aprovado</div>}
-                    {Colaborador.status === 'inativo' && <div className="col reprovado">Reprovado</div>}
+                    {Colaborador.status === 'ativo' && <div className="col aprovado">Ativo</div>}
+                    {Colaborador.status === 'inativo' && <div className="col reprovado">Inativo</div>}
                     <div className="col">
                         <a className="btn btn-primary" href={`/editUsuario/${Colaborador.matricula}`}>Visualizar</a>
                     </div>

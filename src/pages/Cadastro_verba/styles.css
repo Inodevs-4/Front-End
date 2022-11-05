@@ -53,6 +53,11 @@ body{
     display: inline-block;
 }
 
+.form-control.select{
+    width: 35% !important;
+    margin-left: 30px;
+}
+
 .linha p {
     margin-top: 10px;
     color:rgba(0, 0, 0, 0.74);
@@ -88,16 +93,16 @@ body{
 
 .bottons {
     margin-top: 2%;
-    margin-left: 0%;
-
+    margin-left: 40%;
+    margin-bottom: 30px !important;
 }
 .bottons .form-group{
     margin-right: 1%;
 }
 
-.bottons a {
-    /* margin-bottom: 10px; */
-    width: 15%;
+.bottons button {
+    margin-bottom: 10px;
+    width: 20%;
     height: 34px;
     font-size: 100%;
 }

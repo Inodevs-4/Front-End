@@ -59,3 +59,18 @@ h3 {
 .eu{
     font-size: x-small;
 }
+
+.buttons button{
+    display: inline;
+    width: 10em;
+}
+
+.btn.btn-primary.editar{
+    margin-right: auto;
+    margin-left: 15% !important;
+}
+
+.btn.btn-danger.editar{
+    margin-right: -10% !important;
+    margin-left: 16% !important;
+}

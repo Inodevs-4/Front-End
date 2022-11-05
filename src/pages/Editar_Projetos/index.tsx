@@ -96,7 +96,7 @@ return(
 
                  <div className="col-md">
                      <div className="form-floating">
-                     <select  className="form-select" id="cliente" onChange={handleSelect}  value={projeto?.cliente.cnpj} name="cliente" disabled={isDisabled}>
+                     <select  className="form-control" id="cliente" onChange={handleSelect}  value={projeto?.cliente.cnpj} name="cliente" disabled={isDisabled}>
                         {clientes && 
                         (clientes.map((c) => (
                             

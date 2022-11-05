@@ -45,7 +45,7 @@ export const App = () => {
         <Route path="/projetos" element={<RequireAuth nivel="gestor"><Projeto/></RequireAuth>} />
         <Route path="/aprovacao-lancamento/viewDetails" element={<RequireAuth nivel="gestor"><DetalhesApontamento/></RequireAuth>} />
         <Route path="*" element={<Navigate to="/" />} />
-        <Route path="/Editar_Verba:numero" element={<RequireAuth nivel="=administrador"><Editar_Verbas/></RequireAuth>} />
+        <Route path="/Editar_Verba/:numero" element={<RequireAuth nivel="=administrador"><Editar_Verbas/></RequireAuth>} />
         <Route path="/Editar_Projetos/:id" element={<RequireAuth nivel="=administrador"><Editar_Projeto/></RequireAuth>} />
         <Route path="/Editar_Clientes/:cnpj" element={<RequireAuth nivel="=administrador"><Editar_Clientes/></RequireAuth>} />
         <Route path="/editUsuario/:matricula" element={<RequireAuth nivel="administrador"><Editar_Usuario/></RequireAuth>} />

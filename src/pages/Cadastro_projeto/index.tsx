@@ -45,7 +45,7 @@ export const Cadastro_Projeto = () =>{
         <Navbar/>
         <div className="edit">
                 <h3>Cadastro de Projetos</h3>
-               <div className="row g-2">
+                <div className="col-md">
                         <div className="form-floating">
                             <input type="tel" className="form-control" id="floatingInputGrid" onChange={handleChange} value={colaborador?.nome} name='nome'/>
                             <label htmlFor="floatingInputGrid">Nome</label>

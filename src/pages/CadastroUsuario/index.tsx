@@ -1,6 +1,6 @@
 import Navbar from '../../components/menu/Navbar';
 import { useState } from 'react'
-import "./styles.css";
+import "./cad_usuarios.css";
 import { Colaborador} from '../../types/Types'
 import { useNavigate} from 'react-router-dom';
 import { salvarColaborador } from '../../hooks/Colaborador';
@@ -33,7 +33,7 @@ export const CadastroUsuario = () =>{
                 <div className="row g-2">
                     <div className="col-md">
                         <div className="form-floating">
-                        <input type="text" className="form-control matricula" id="floatingInputGrid matricula" value={colaborador?.matricula} name='matricula' onChange={handleChange} />
+                        <input type="text" className="form-control colabmatri" id="floatingInputGrid matricula" value={colaborador?.matricula} name='matricula' onChange={handleChange} />
                         <label htmlFor="floatingInputGrid">Matrícula</label>
                         </div>
                     </div>

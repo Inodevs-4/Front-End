@@ -15,10 +15,13 @@ export const Cadastro_verba = () => {
         setVerbas({...verbas, [e.target.name]: e.target.value})
     }
 
-    function handleSelect(e: any) {
-        setVerbas({...verbas, [e.target.name]: e.target.options[e.target.selectedIndex].value,})
+    function handleEvento(e: any){
+        if(verbas?.evento === 1){
+            setVerbas({...verbas, [e.target.name]: 0})
+        } else {
+            setVerbas({...verbas, [e.target.name]: 1})
+        }
     }
-
 
     const history = useNavigate()
 
@@ -28,7 +31,7 @@ export const Cadastro_verba = () => {
     const salvandoVerba = () => {
         salvarVerba(verbas)
         history('/manipulacao-horas-sobreavisso')
-
+        console.log(verbas)
     }
     
 
@@ -53,60 +56,47 @@ export const Cadastro_verba = () => {
                     </div>
                     <div className="form-group ">
                         <label className="titulo"htmlFor="exampleFormControlInput1">Número</label>
-                        <input type="number" className="form-control" onChange={handleChange} id="numero" value={verbas?.numero} />
+                        <input name="numero" type="number" className="form-control" onChange={handleChange} id="numero" value={verbas?.numero} />
                     </div>
                     <div className="form-group ">
                         <label className="titulo"htmlFor="exampleFormControlInput1">Adicional</label>
-                        <input type="number" className="form-control" onChange={handleChange} id="adicional" value={verbas?.adicional} placeholder='0%' />
+                        <input name="adicional" type="number" className="form-control" onChange={handleChange} id="adicional" value={verbas?.adicional} placeholder='0%' />
                     </div>
                 </div>
                 <div className="linha">
                     <div className="form-group ">
                         <label className="titulo"htmlFor="exampleFormControlInput1">Início</label>
-                        <input type="time" className="form-control" id="Inicio" onChange={handleChange}  value={formatarHoraInput(String(verbas?.inicio))} name="inicio"  />
+                        <input type="time" className="form-control" id="Inicio" onChange={handleChange}  value={(String(verbas?.inicio))} name="inicio"  />
                     </div>
                     <div className="form-group ">
                         <label className="titulo"htmlFor="exampleFormControlInput1">Fim</label>
-                        <input type="time" className="form-control" onChange={handleChange} value={formatarHoraInput(String(verbas?.fim))} id="fim" name="fim" />
+                        <input type="time" className="form-control" onChange={handleChange} value={(String(verbas?.fim))} id="fim" name="fim" />
                     </div>
                 </div>
                 <div className="linha">
                     <p>Eventos:</p> 
                     <div className="form-check">
-                        <input className="form-check-input" onChange={handleSelect} type="checkbox" id="gridCheck"/>
+                        <input name="evento" className="form-check-input" onChange={handleEvento} type="checkbox" id="gridCheck" />
                         <label className="form-check-label" htmlFor="gridCheck">
                             Feriado
                         </label>
                     </div>
                     <p>Período Semanal:</p>
-                    <div className="form-check">
-                        <input className="form-check-input" onChange={handleSelect} type="radio" name="gridRadios" id="gridRadios1" value="option1" />
-                        <label className="form-check-label" htmlFor="gridRadios1">
-                            Segunda à Sexta
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" onChange={handleSelect} type="radio" name="gridRadios" id="gridRadios1" value="option2" />
-                        <label className="form-check-label" htmlFor="gridRadios1">
-                            Sábado
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input"  onChange={handleSelect} type="radio" name="gridRadios" id="gridRadios2" value="option3"/>
-                        <label className="form-check-label"htmlFor="gridRadios2">
-                            Domingo
-                        </label>
-                    </div>
+                        <select className="form-control select" aria-label="Disabled select example"  onChange={handleChange} name="periodo" >
+                        <option value="segunda_sexta">Segunda a Sexta</option>
+                        <option value="sabado">Sábado</option>
+                        <option value="domingo">Domingo</option>
+                        </select>
                     <hr />
                 </div>
                 
                 <div className="bottons">
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label className='titulo' htmlFor="exampleFormControlInput1">Cálculo(R$)</label>
-                        <input className="form-control" type="text" onChange={handleChange} placeholder="00,00" id='exampleFormControlInput1' readOnly/>
-                    </div>
-                    <a href="" className='btn btn-primary' onClick={salvandoVerba}>Cadastrar</a>
-                    <a href="" className='btn btn-secondary' onClick={voltar}>Cancelar</a>
+                        <input className="form-control" name="calculo" type="text" onChange={handleChange} placeholder="00,00" id='exampleFormControlInput1' readOnly/>
+                    </div> */}
+                    <button className='btn btn-primary' onClick={salvandoVerba}>Cadastrar</button>
+                    <button className='btn btn-secondary' onClick={voltar}>Cancelar</button>
                 </div>
             </div>
         </body>

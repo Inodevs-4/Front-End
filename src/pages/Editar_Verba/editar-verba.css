@@ -1,6 +1,6 @@
 .edit {
     width: 65%;
-    min-height: 40em;
+    min-height: 42em;
     margin-bottom: 3em;
     background-color: rgb(255, 255, 255);
     margin-left: auto;
@@ -50,10 +50,11 @@ h3 {
 }
 
 .btn.btn-primary.editar{
-    width: 30%;
-    margin-left: 35%;
+    width: 20%;
+    margin-left: 38%;
     margin-right: 0;
     font-size: 15px;
+    transition: 1s !important;
 }
 
 .linha {
@@ -63,5 +64,22 @@ h3 {
 .alteracao {
     margin-left: 40%;
     margin-bottom: 10px;
-    
+}
+
+.btn.btn-danger {
+    margin-bottom: 40px !important;
+    font-size: 15px;
+    transition: 1s !important;
+    margin-top: 30px;
+}
+
+.btn.btn-success {
+    margin-bottom: 40px !important;
+    font-size: 15px;
+    transition: 1s !important;
+    margin-top: 30px;
+}
+
+.buttons {
+    margin-top: -30px;
 }
