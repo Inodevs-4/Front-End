@@ -2,10 +2,11 @@ import * as C from './styles';
 import { Theme } from '../../../components/Theme';
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm, FormActions } from '../../../contexts/FormContext';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { Colaborador } from '../../../types/Types'
 import Navbar from '../../../components/menu/Navbar';
 import { selectColaboradores } from '../../../hooks/Colaborador';
+import { AuthContext } from '../../../login/AuthContext';
 // import Menu from "../../../components/menu";
 
 
@@ -14,6 +15,7 @@ export const Etapa2Form = () => {
 
     const history = useNavigate();
     const { state, dispatch } = useForm();
+    const auth = useContext(AuthContext)
 
     const [ colaboradores, setColaboradores ] = useState<Colaborador[]>([])
 
@@ -86,6 +88,12 @@ export const Etapa2Form = () => {
                 alert("Conflito de horário!")
             }
             else{
+                if (auth.colaborador?.perfil === "colaborador"){
+                    dispatch({
+                        type: FormActions.setColaborador,
+                        payload: auth.colaborador?.matricula
+                    });
+                }
                 history('/etapa3')
             }
         }
@@ -100,12 +108,13 @@ export const Etapa2Form = () => {
                 <h4>Passo 2/3</h4>
                 <p>Defina as datas de início, fim e o horário</p>
                <hr/>
-                <select name="colaborador" id="colaborador" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleColaboratorChange}>
+               {(auth.colaborador?.perfil !== "colaborador") &&  (<select name="colaborador" id="colaborador" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleColaboratorChange}>
                     <option disabled selected>Selecione um colaborador</option>
                     {colaboradores.map((colaborador) => (
                         <option value={colaborador.matricula} key={colaborador.matricula}>{colaborador.nome}</option>
                     ))}
-                </select>
+                </select>)}
+               
                 <p>Início </p>
                 <input type="datetime-local" name="" id="" onChange={handleDateStartsChange} value={state.data_inicio}/>
                 <hr />
