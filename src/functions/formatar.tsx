@@ -45,3 +45,37 @@ export const formatarDataHoraInput = (dataHora: string) => {
     return ano + '-' + mes + '-' + dia + 'T' + horas + ':' + minutos
   }
 }
+
+export const formatarHoraInput = (Hora: string) => {
+  if (Hora === "undefined" || Hora === "null"){
+      return ''
+  } else {
+    let horas = Number(Hora.split(':')[0])
+    if (horas < 3){
+      horas += 21
+    }
+    else {
+      horas -= 3
+    }
+    const minutos = Hora.split(':')[1]
+    return  horas + ':' + minutos
+  }
+}
+
+
+export const formatarHora = (Hora: string | undefined | null) => {
+  if (Hora === undefined || Hora === null){
+    return ''
+  }
+  else {
+    let horas = Number(Hora.split(':')[0])
+    if (horas < 3){
+      horas += 21
+    }
+    else {
+      horas -= 3
+    }
+    const minutos = Hora.split(':')[1]
+    return horas + ':' + minutos 
+  }
+}

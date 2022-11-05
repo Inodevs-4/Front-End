@@ -1,7 +1,5 @@
-// import Menu from "../../components/menu";
 import Navbar from '../../components/menu/Navbar';
 import { useState , useEffect } from 'react'
-// import Calendar from 'react-calendar';
 import "./styled.css";
 import { Projeto , CR, Cliente} from '../../types/Types'
 import { useNavigate} from 'react-router-dom';
@@ -14,7 +12,6 @@ export const Cadastro_Projeto = () =>{
     const [colaborador, setColaborador] = useState<Projeto>()
     const [cr, setCr] = useState<CR[]>()
     const [clientes, setClientes] = useState<Cliente[]>()
-    // const [clientes, setClientes] = useState<Cliente[]>()
     const[isDisabled] = useState(true);
 
     useEffect(() => {
@@ -24,11 +21,6 @@ export const Cadastro_Projeto = () =>{
         })()
     }, [])  
 
-    // useEffect(() => {
-    //     (async() => {
-    //         setClientes(await todosClientes())
-    //     })()
-    // }, [])  
 
 
 

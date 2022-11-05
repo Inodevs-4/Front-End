@@ -4,18 +4,19 @@ import { salvarVerba} from '../../hooks/Verba';
 import './styles.css'
 import { Verba } from '../../types/Types';
 import { useState  } from 'react';
+import { formatarHoraInput } from '../../functions/formatar';
 
 export const Cadastro_verba = () => {
-    const [colaborador, setColaborador] = useState<Verba>()
+    const [verbas, setVerbas] = useState<Verba>()
 
 
 
     function handleChange(e: any) {
-        setColaborador({...colaborador, [e.target.name]: e.target.value})
+        setVerbas({...verbas, [e.target.name]: e.target.value})
     }
 
     function handleSelect(e: any) {
-        setColaborador({...colaborador, [e.target.name]: e.target.options[e.target.selectedIndex].value,})
+        setVerbas({...verbas, [e.target.name]: e.target.options[e.target.selectedIndex].value,})
     }
 
 
@@ -25,7 +26,7 @@ export const Cadastro_verba = () => {
         history('/manipulacao-hora-sobreaviso')
     }
     const salvandoVerba = () => {
-        salvarVerba(colaborador)
+        salvarVerba(verbas)
         history('/manipulacao-horas-sobreavisso')
 
     }
@@ -52,21 +53,21 @@ export const Cadastro_verba = () => {
                     </div>
                     <div className="form-group ">
                         <label className="titulo"htmlFor="exampleFormControlInput1">Número</label>
-                        <input type="number" className="form-control" onChange={handleChange} id="exampleFormControlInput1" value={colaborador?.numero} />
+                        <input type="number" className="form-control" onChange={handleChange} id="numero" value={verbas?.numero} />
                     </div>
                     <div className="form-group ">
                         <label className="titulo"htmlFor="exampleFormControlInput1">Adicional</label>
-                        <input type="number" className="form-control" onChange={handleChange} id="exampleFormControlInput1" value={colaborador?.adicional} placeholder='0%' />
+                        <input type="number" className="form-control" onChange={handleChange} id="adicional" value={verbas?.adicional} placeholder='0%' />
                     </div>
                 </div>
                 <div className="linha">
                     <div className="form-group ">
                         <label className="titulo"htmlFor="exampleFormControlInput1">Início</label>
-                        <input type="time" className="form-control" id="exampleFormControlInput1" onChange={handleChange}    />
+                        <input type="time" className="form-control" id="Inicio" onChange={handleChange}  value={formatarHoraInput(String(verbas?.inicio))} name="inicio"  />
                     </div>
                     <div className="form-group ">
                         <label className="titulo"htmlFor="exampleFormControlInput1">Fim</label>
-                        <input type="time" className="form-control" onChange={handleChange} id="exampleFormControlInput1" />
+                        <input type="time" className="form-control" onChange={handleChange} value={formatarHoraInput(String(verbas?.fim))} id="fim" name="fim" />
                     </div>
                 </div>
                 <div className="linha">
