@@ -45,7 +45,7 @@ export async function getVerba(numero: string | undefined) {
 }
 
 // atualizar projeto
-export async function atualizarProjeto(verba: Verba | undefined , numero: string | undefined) {
+export async function atualizarVerba(verba: Verba | undefined , numero: string | undefined) {
     return fetch(`${process.env.REACT_APP_SERVER}/atualizarVerba/${numero}`, {
         method: 'PUT',
         headers: {
