@@ -3,7 +3,7 @@ import Navbar from "../../components/menu/Navbar";
 import './styles.css'
 import { Colaborador } from "../../types/Types";
 import { formatarInicial } from "../../functions/formatar";
-import { Link } from "react-router-dom";
+import { selectColaboradores } from "../../hooks/Colaborador";
 export const Tabela_usuario = () => {
 
 
@@ -11,23 +11,16 @@ export const Tabela_usuario = () => {
     const [colaboradores, setColaboradores] = useState<Colaborador[]>([])
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/selectColaboradores`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
-            setColaboradores(data)
-          })
-      }, [])
+      (async() => {
+        setColaboradores(await selectColaboradores())
+      })()
+    }, [])
 
     return(
         <body>
             <Navbar/>
             <p className="h3">Tabela de Usuários</p>
-            <Link to="/cadastro-usuario" className='btn btn-primary cadastrar' data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novo Usuário"><p className="icon">+</p></Link>
+            <a href="/cadastro-usuario" className='btn btn-primary cadastrar' data-bs-toggle="tooltip" data-bs-placement="top" title="Cadastrar novo Usuário"><p className="icon">+</p></a>
 
             <hr />
             <div className="apontamentos">
@@ -51,7 +44,7 @@ export const Tabela_usuario = () => {
                     {Colaborador.status === 'ativo' && <div className="col aprovado">Ativo</div>}
                     {Colaborador.status === 'inativo' && <div className="col reprovado">Inativo</div>}
                     <div className="col">
-                        <Link className="btn btn-primary" to={`/editUsuario/${Colaborador.matricula}`}>Visualizar</Link>
+                        <a className="btn btn-primary" href={`/editUsuario/${Colaborador.matricula}`}>Visualizar</a>
                     </div>
                 </div>
                 ))}

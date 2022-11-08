@@ -15,10 +15,6 @@ export const Cadastro_Clientes = () =>{
         setCliente({...cliente, [e.target.name]: e.target.value})
     }
 
-    function handleSelect(e: any) {
-        setCliente({...cliente, [e.target.name]: e.target.options[e.target.selectedIndex].value,})
-    }
-
     const history = useNavigate();
 
     const salvandoCliente = () => {

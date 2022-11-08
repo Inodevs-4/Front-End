@@ -12,7 +12,6 @@ export const Cadastro_Projeto = () =>{
     const [colaborador, setColaborador] = useState<Projeto>()
     const [cr, setCr] = useState<CR[]>()
     const [clientes, setClientes] = useState<Cliente[]>()
-    const[isDisabled] = useState(true);
 
     useEffect(() => {
         (async() => {
