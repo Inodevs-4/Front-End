@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Navbar from "../../components/menu/Navbar";
 import { formatarDataHora, formatarInicial } from "../../functions/formatar";
@@ -53,7 +54,7 @@ export const Aprovacao = () => {
                     {lancamento.status === 'reprovado' && <div className="col reprovado">Reprovado</div>}
                     {lancamento.status === 'pendente' && <div className="col pendente">Pendente</div>}
                     <div className="col">
-                        <a className="btn btn-primary" href={`/Detalhes_Apontamento/${lancamento.id}`}>Visualizar</a>
+                        <Link className="btn btn-primary" to={`/Detalhes_Apontamento/${lancamento.id}`}>Visualizar</Link>
                     </div>
                 </div>
                 ))}

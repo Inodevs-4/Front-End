@@ -14,7 +14,7 @@ import { horasTrabalhadas, meusLancamentos } from '../../hooks/Lancamento';
 export const Home = () =>{
 
   const [lancamentos, setLancamentos] = useState<Lancamento[]>([])
-  const [horas, setHoras] = useState<{horas: number}>({horas: -1})
+  const [horas, setHoras] = useState<{horas?: number}>({})
   const [removeLoading, setRemoveLoading] = useState(false)
   const [removeLoading2, setRemoveLoading2] = useState(false)
 

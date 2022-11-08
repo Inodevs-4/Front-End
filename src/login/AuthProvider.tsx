@@ -5,6 +5,7 @@ import { login, validateToken } from '../hooks/Login'
 
 export const AuthProvider = ({children} : {children: JSX.Element}) => {
 
+    const [isLoading, setIsLoading] = useState(true)
     const [colaborador, setColaborador] = useState<Colaborador | null>(null) 
 
     useEffect(() => {
@@ -16,6 +17,7 @@ export const AuthProvider = ({children} : {children: JSX.Element}) => {
                     setColaborador(data);
                 }
             }
+            setIsLoading(false)
         }
         validarToken();
     }, []);
@@ -41,7 +43,7 @@ export const AuthProvider = ({children} : {children: JSX.Element}) => {
     }
 
     return (
-        <AuthContext.Provider value={{colaborador, signin, signout}}>
+        <AuthContext.Provider value={{colaborador, signin, signout, isLoading}}>
             {children}
         </AuthContext.Provider>
     )

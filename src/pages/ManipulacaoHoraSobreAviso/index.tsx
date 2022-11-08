@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/menu/Navbar";
 import './styles.css'
 import { Verba } from "../../types/Types";
-import { formatarDataHora, formatarHora } from "../../functions/formatar";
+import { formatarHora } from "../../functions/formatar";
 export const Tabela_projetos = () => {
 
 

@@ -21,7 +21,7 @@ export const Login = () =>{
       if (email) {
           const isLogged = await auth.signin(email, senha);
           if (isLogged) {
-              navigate('/pagina-inicial');
+              navigate('/');
           } else {
               alert("Email ou senha inválidos");
           }
