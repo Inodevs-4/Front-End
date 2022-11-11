@@ -29,9 +29,8 @@ function RightNav(props: Props) {
   return (
     <S.Ul open={props.open}>
        
-
     <NavLink
-      to='/pagina-inicial'
+      to='/'
   
     >
       {/* <CottageIcon color='primary'/> */}
@@ -44,6 +43,7 @@ function RightNav(props: Props) {
       {/* <AddIcon  color='primary'/> */}
       <S.Li> <AddIcon  color='primary'/>Cadastrar Horas</S.Li>
     </NavLink>
+    {(auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
     <NavLink
       to='/aprovacao-lancamento'
      
@@ -51,6 +51,9 @@ function RightNav(props: Props) {
       {/* <PlaylistAddCheckIcon  color='primary'/> */}
       <S.Li> <PlaylistAddCheckIcon  color='primary'/>Apontamentos</S.Li>
     </NavLink>
+    )}
+
+  {(auth.colaborador?.perfil === "administrador") && (
     <NavLink
       to='/tabela_usuarios'
      
@@ -58,6 +61,8 @@ function RightNav(props: Props) {
       {/* <PlaylistAddCheckIcon  color='primary'/> */}
       <S.Li> <PlaylistAddCheckIcon  color='primary'/>Tabela Usuários</S.Li>
     </NavLink>
+  )}
+  {(auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
     <NavLink
       to='/projetos'
    
@@ -65,6 +70,9 @@ function RightNav(props: Props) {
       {/* <GroupIcon  color='primary'/> */}
       <S.Li> <GroupIcon  color='primary'/>Projetos</S.Li>
     </NavLink>
+  )}
+
+  {(auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
     <NavLink
       to='/clientes'
    
@@ -72,7 +80,9 @@ function RightNav(props: Props) {
       {/* <GroupIcon  color='primary'/> */}
       <S.Li> <PersonIcon  color='primary'/>Clientes</S.Li>
     </NavLink>
+  )}
 
+  {(auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
     <NavLink
       to='/crs'
    
@@ -80,8 +90,9 @@ function RightNav(props: Props) {
       {/* <GroupIcon  color='primary'/> */}
       <S.Li> <PersonIcon  color='primary'/>Crs</S.Li>
     </NavLink>
+  )}
 
-
+  {(auth.colaborador?.perfil === "administrador") && (
     <NavLink
       to='/manipulacao-hora-sobreaviso'
    
@@ -89,10 +100,10 @@ function RightNav(props: Props) {
       {/* <ModeEditIcon  color='primary'/> */}
       <S.Li> <ModeEditIcon  color='primary'/> Manipulação Horas</S.Li>
     </NavLink>
+  )}
 
     <NavLink
       to='/menu4'
-   
     >
       {/* <DashboardIcon  color='primary'/> */}
       <S.Li> <DashboardIcon  color='primary'/>Dashboards</S.Li>
@@ -102,10 +113,10 @@ function RightNav(props: Props) {
       to='/menu4'
    
     >
+    
       {/* <HistoryToggleOffIcon  color='primary'/> */}
       <S.Li> <HistoryToggleOffIcon  color='primary'/>Histórico</S.Li>
     </NavLink>
-
     <button onClick={handleLogout}>Sair</button>
 
   </S.Ul>

@@ -4,7 +4,7 @@ import "./projeto.css";
 import {  Projeto , CR, Cliente} from '../../types/Types'
 import { todosCRs } from '../../hooks/CR';
 import { useParams } from 'react-router-dom';
-import { getProjeto } from '../../hooks/Projeto';
+import { atualizarProjeto, getProjeto } from '../../hooks/Projeto';
 import { todosClientes } from '../../hooks/Clientes';
 
 export const Editar_Projeto = () =>{
@@ -13,8 +13,8 @@ export const Editar_Projeto = () =>{
 
 
     const [projeto, setProjeto] = useState<Projeto>()
-    const [crs, setCrs] = useState<CR[]>()
-    const [clientes, setClientes] = useState<Cliente[]>()
+    const [crs, setCrs] = useState<CR[]>([])
+    const [clientes, setClientes] = useState<Cliente[]>([])
     const [projetoInicial, setProjetoInicial] = useState<Projeto>()
 
       useEffect(() => {
@@ -55,20 +55,9 @@ export const Editar_Projeto = () =>{
     }
 
     const salvarProjeto = () => {
-        fetch(`${process.env.REACT_APP_SERVER}/atualizarProjeto/${id}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(projeto),
-          })
-            .then((resp) => resp.json())
-            .then((data) => {
-              console.log(data)
-              setProjetoInicial(projeto)
-              editarUsuario()
-            })
-            .catch((err) => console.log(err))
+        atualizarProjeto(projeto, id)
+        setProjetoInicial(projeto)
+        editarUsuario()
     }
 
 return(
@@ -96,7 +85,7 @@ return(
 
                  <div className="col-md">
                      <div className="form-floating">
-                     <select  className="form-control" id="cliente" onChange={handleSelect}  value={projeto?.cliente.cnpj} name="cliente" disabled={isDisabled}>
+                     <select  className="form-control" id="cliente" onChange={handleSelect}  value={projeto?.cliente && projeto?.cliente.cnpj} name="cliente" disabled={isDisabled}>
                         {clientes && 
                         (clientes.map((c) => (
                             

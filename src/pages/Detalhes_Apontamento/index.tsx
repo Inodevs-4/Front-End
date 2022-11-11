@@ -2,7 +2,7 @@ import Navbar from '../../components/menu/Navbar';
 import { useEffect, useState } from 'react'
 import "./det_apon.css";
 import { formatarDataHoraInput } from "../../functions/formatar";
-import { Colaborador, Lancamento, Projeto, Status, Verba } from '../../types/Types'
+import { Colaborador, Lancamento, Projeto, Verba } from '../../types/Types'
 import { useNavigate, useParams } from 'react-router-dom';
 import { aprovarLancamento, atualizarLancamento, getLancamento, reprovarLancamento } from '../../hooks/Lancamento';
 import { selectProjetos } from '../../hooks/Projeto';

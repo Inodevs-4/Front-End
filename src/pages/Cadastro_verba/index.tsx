@@ -4,7 +4,6 @@ import { salvarVerba} from '../../hooks/Verba';
 import './styles.css'
 import { Verba } from '../../types/Types';
 import { useState  } from 'react';
-import { formatarHoraInput } from '../../functions/formatar';
 
 export const Cadastro_verba = () => {
     const [verbas, setVerbas] = useState<Verba>()

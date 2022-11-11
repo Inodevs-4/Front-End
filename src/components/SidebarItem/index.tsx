@@ -1,7 +1,6 @@
 import * as C from './styles';
 import {Link} from 'react-router-dom';
 import  {MdCardTravel, MdOutlineCalendarToday, MdPeople} from 'react-icons/md'
-import { ChangeEvent } from 'react'
 
 type Props = {
     title: string;

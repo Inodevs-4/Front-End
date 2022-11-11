@@ -3,6 +3,7 @@ import Navbar from "../../components/menu/Navbar";
 import './styles.css'
 import { Colaborador } from "../../types/Types";
 import { formatarInicial } from "../../functions/formatar";
+import { selectColaboradores } from "../../hooks/Colaborador";
 export const Tabela_usuario = () => {
 
 
@@ -10,17 +11,10 @@ export const Tabela_usuario = () => {
     const [colaboradores, setColaboradores] = useState<Colaborador[]>([])
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/selectColaboradores`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
-            setColaboradores(data)
-          })
-      }, [])
+      (async() => {
+        setColaboradores(await selectColaboradores())
+      })()
+    }, [])
 
     return(
         <body>

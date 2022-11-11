@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/menu/Navbar";
 import './styles.css'
 import { Verba } from "../../types/Types";
-import { formatarDataHora, formatarHora } from "../../functions/formatar";
+import { formatarHora } from "../../functions/formatar";
+import { todasVerbas } from "../../hooks/Verba";
 export const Tabela_projetos = () => {
 
 
@@ -10,17 +11,10 @@ export const Tabela_projetos = () => {
     const [verbas, setVerbas] = useState<Verba[]>([])
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER}/todasVerbas`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((resp) => resp.json())
-          .then((data) => {
-            setVerbas(data)
-          })
-      }, [])
+      (async() => {
+        setVerbas(await todasVerbas())
+      })()
+    }, [])
 
     return(
         <body>
