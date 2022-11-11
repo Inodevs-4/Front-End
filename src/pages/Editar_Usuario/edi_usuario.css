@@ -51,7 +51,7 @@ h3 {
 
 .btn.btn-primary.editar{
     width: 30%;
-    margin-left: 35%;
+    margin-left: 40% !important;
     margin-right: 0;
     font-size: 15px;
 }

@@ -9,7 +9,7 @@ import { Lancamento } from '../../types/Types'
 import { AuthContext } from '../../login/AuthContext';
 import { formatarDataHora, formatarInicial } from '../../functions/formatar';
 import Loading from '../../components/Loading';
-import { horasTrabalhadas, meusLancamentos } from '../../hooks/Lancamento';
+import { horasTrabalhadas, meusLancamentos, todosLancamentos } from '../../hooks/Lancamento';
 
 export const Home = () =>{
 
@@ -33,7 +33,17 @@ export const Home = () =>{
       setRemoveLoading2(true)
     })()
     }, [])
+    
+    const [mLancamentos, setMLancamentos] = useState<Lancamento[]>([])
 
+    useEffect(() => {
+      (async() => {
+          setMLancamentos(await todosLancamentos())
+      })()
+  }, [])  
+
+
+    console.log(mLancamentos)
     return(
     <body>
     <Navbar/>

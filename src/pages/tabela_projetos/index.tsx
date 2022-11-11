@@ -14,6 +14,7 @@ export const Tabela_projetos = () => {
         })()
     }, [])  
 
+    console.log(projetos)
     return(
         <body>
             <Navbar/>

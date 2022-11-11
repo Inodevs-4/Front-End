@@ -30,7 +30,7 @@ export const Cadastro_verba = () => {
     }
     const salvandoVerba = () => {
         salvarVerba(verbas)
-        history('/manipulacao-horas-sobreavisso')
+        history('/manipulacao-hora-sobreaviso')
         console.log(verbas)
     }
     
