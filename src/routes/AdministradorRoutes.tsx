@@ -21,6 +21,7 @@ import Manipulacao from "../pages/ManipulacaoHoraSobreAviso";
 import Cadastro_Cliente from "../pages/Cadastro_Cliente";
 import CadastroCR from "../pages/CadastroCR";
 import Editar_Crs from "../pages/Editar_CR";
+import Dashboard from "../pages/Dashboard";
 
 function AdminstradorRoutes() {
     return (
@@ -50,6 +51,7 @@ function AdminstradorRoutes() {
         <Route path="/crs" element={<Crs/>}/>
         <Route path="/cadastro-cr" element={<CadastroCR/>}/>
         <Route path="/editar-cr/:numero" element={<Editar_Crs/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Switch>
     </BrowserRouter>
     )
