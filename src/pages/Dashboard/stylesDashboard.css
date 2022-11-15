@@ -1,7 +1,7 @@
 .hora {
     background-color: white;
-    width: 35%;
-    height: 17em;
+    width: 40%;
+    min-height: 17em;
     margin-top: 2em;
     margin-left: 2em;
     border-radius: 10px;
@@ -12,6 +12,47 @@
 }
 
 .scroll {
-    max-height: 15em;
+    max-height: 18em;
     overflow-y: auto;
+}
+h4{
+    text-align: center;
+}
+
+h5 {
+    margin-top: -10px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: -10px;
+    text-align: right;
+
+}
+
+.horasobre {
+    margin-top: -10px;
+    text-align: right;
+
+}
+
+span {
+    background-color: #0B2D72;
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-left: 65%;
+}
+
+.dados {
+    text-align: left;
+}
+
+hr {
+    width: 80%;
+}
+
+.icone {
+    margin-left: 15%;
+    margin-top: 10%;
+    color: #0B2D72;
 }
