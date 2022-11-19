@@ -43,7 +43,6 @@ export const Home = () =>{
   }, [])  
 
 
-    console.log(mLancamentos)
     return(
     <body>
     <Navbar/>

@@ -5,6 +5,7 @@ export type AuthContextType = {
     colaborador: Colaborador | null;
     signin: (email: string, password: string) => Promise<boolean>;
     signout: () => void;
+    signinGoogle: (email: string, token: string, id: string, nome: string) => Promise<boolean>;
     isLoading: boolean
 }
 

@@ -107,6 +107,20 @@ form input[type="button"]{
    background-color: hsl(221, 79%, 17%);
   }
 
+  span {
+    background-color: #fff !important;
+    padding: 5px;
+    color: #000 !important;
+    border-radius: 10px;
+    font-weight: bold;
+    margin: 0% !important;
+  }
+
+  .google-btn {
+    margin-top: 5%;
+    margin-bottom: -5%;
+  }
+
 /* Resposive */
 
 

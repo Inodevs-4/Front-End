@@ -1,10 +1,10 @@
 
-import './style.css';
+import './styleLogin.css';
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../login/AuthContext';
 import Loading from '../../components/Loading';
-
+import GoogleLogin from 'react-google-login';
 
 export const Login = () =>{
   
@@ -18,7 +18,7 @@ export const Login = () =>{
   const handleLogin = async (e: any) => {
       setRemoveLoading(false)
       e.preventDefault()
-      if (email) {
+      if (email && senha) {
           const isLogged = await auth.signin(email, senha);
           if (isLogged) {
               navigate('/');
@@ -26,9 +26,33 @@ export const Login = () =>{
               alert("Email ou senha inválidos");
           }
       } else {
-          alert("Preencha o email");
+          alert("Email e/ou senha obrigatórios!");
       }
       setRemoveLoading(true)
+  }
+
+  const clientId = "543027514884-ept5i2fd8qfui6t372cdov2p327rh511.apps.googleusercontent.com"
+
+  const responseSuccess = async (resp: any) => {
+    setRemoveLoading(false)
+    let nome = ''
+    if (resp.profileObj.givenName) {
+      nome += resp.profileObj.givenName + ' '
+    }
+    if (resp.profileObj.familyName) {
+      nome += resp.profileObj.familyName
+    }
+    const isLogged = await auth.signinGoogle(resp.profileObj.email, resp.accessToken, resp.googleId, nome)
+    if (isLogged) {
+      navigate('/');
+    } else {
+      alert("ERRO AO LOGAR!");
+    }
+    setRemoveLoading(true)
+  }
+
+  const responseFailure = (resp: any) => {
+    console.log('ERROR/n', resp);
   }
 
     return(
@@ -54,6 +78,15 @@ export const Login = () =>{
               <a href="/pagina-inicial">
               <input  type="button" value="Entrar" onClick={handleLogin}/>
               </a>
+              <div className="google-btn">
+                <GoogleLogin
+                  clientId = {clientId}
+                  buttonText="Continuar com o Google"
+                  onSuccess={responseSuccess}
+                  onFailure={responseFailure}
+                  cookiePolicy={'single_host_origin'}
+                />
+              </div>
               {/* <a href="/pagina-inicial">
               <input  type="submit" value="Entrar" />
               </a> */}
