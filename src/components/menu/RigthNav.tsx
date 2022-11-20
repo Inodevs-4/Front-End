@@ -107,6 +107,15 @@ function RightNav(props: Props) {
     >
       {/* <DashboardIcon  color='primary'/> */}
       <S.Li> <DashboardIcon  color='primary'/>Dashboards</S.Li>
+      
+    </NavLink>
+
+    <NavLink
+      to='/dashboard_geral'
+    >
+      {/* <DashboardIcon  color='primary'/> */}
+      <S.Li> <DashboardIcon  color='primary'/>Dashboard Geral</S.Li>
+      
     </NavLink>
 
     <NavLink
