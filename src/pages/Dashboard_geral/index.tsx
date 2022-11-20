@@ -76,7 +76,7 @@ const renderCustomizedLabel = (props: any) => {
                             <ListGroup.Item action href='#link1'>
                                 <p>Default</p>
                             </ListGroup.Item>
-                            {lancamentos.map((Lancamentos) => (
+                            {mLancamentos.map((Lancamentos) => (
                                 <ListGroup.Item action href={'#' + String(Lancamentos?.id)} key={Lancamentos?.id}>
                                 {Lancamentos?.modalidade?.includes("hora extra") ? <h5>Hora Extra</h5> : <h5>Sobre aviso</h5>}
                                 <hr />
@@ -91,7 +91,7 @@ const renderCustomizedLabel = (props: any) => {
                             <Tab.Pane eventKey='#link1'>
                                 <MdMoreTime size={200} className="icone"/>    
                             </Tab.Pane>
-                            {lancamentos.map((Lancamentos) => (
+                            {mLancamentos.map((Lancamentos) => (
                                  <Tab.Pane eventKey={'#' + String(Lancamentos?.id)} key={Lancamentos?.id}>
                                     {Lancamentos?.status?.includes("pendente") ? 
                                         <div>
