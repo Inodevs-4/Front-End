@@ -2,7 +2,7 @@ import { AuthContext } from './AuthContext'
 import { useState, useEffect } from 'react'
 import { Colaborador } from '../types/Types'
 import { login, loginOauth, validateGoogle, validateToken } from '../hooks/Login'
-import { getColaborador } from '../hooks/Colaborador'
+import { getColaboradorByEmail } from '../hooks/Colaborador'
 import { gapi } from 'gapi-script';
 
 export const AuthProvider = ({children} : {children: JSX.Element}) => {
@@ -27,7 +27,9 @@ export const AuthProvider = ({children} : {children: JSX.Element}) => {
             if (storageGoogle && storageToken) {
                 const data = await validateGoogle(storageToken)
                 if (data.user_id) {
-                    setColaborador(await getColaborador(storageGoogle));
+                    console.log(data.email)
+                    setColaborador(await getColaboradorByEmail(data.email));
+                    console.log(await getColaboradorByEmail(data.email))
                 } else {
                     setColaborador({});
                 }
@@ -57,13 +59,13 @@ export const AuthProvider = ({children} : {children: JSX.Element}) => {
         return false;
     }
     
-    const signinGoogle = async (email: string, token: string, id: string, nome: string) => {
-        const data = await loginOauth(email, id, nome)
+    const signinGoogle = async (email: string, token: string, id: string) => {
+        const data = await loginOauth(email, token, id)
         
         if (data.matricula && token) {
             setColaborador(data);
             setToken(token);
-            setIdGoogle(id.slice(0,18));
+            setIdGoogle(id);
             return true;
         }
         return false;
