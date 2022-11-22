@@ -58,6 +58,20 @@ export async function getColaborador(matricula: string | undefined) {
     })
 } 
 
+// pegar um usuario pelo seu email
+export async function getColaboradorByEmail(email: string | undefined) {
+  return fetch(`${process.env.REACT_APP_SERVER}/getColaboradorByEmail/${email}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      return data
+    })
+} 
+
 export async function atualizarColaborador(matricula: string | undefined, colaborador: Colaborador | undefined){
   fetch(`${process.env.REACT_APP_SERVER}/atualizarColaborador/${matricula}`, {
     method: 'PUT',

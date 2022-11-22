@@ -35,18 +35,12 @@ export const Login = () =>{
 
   const responseSuccess = async (resp: any) => {
     setRemoveLoading(false)
-    let nome = ''
-    if (resp.profileObj.givenName) {
-      nome += resp.profileObj.givenName + ' '
-    }
-    if (resp.profileObj.familyName) {
-      nome += resp.profileObj.familyName
-    }
-    const isLogged = await auth.signinGoogle(resp.profileObj.email, resp.accessToken, resp.googleId, nome)
+
+    const isLogged = await auth.signinGoogle(resp.profileObj.email, resp.accessToken, resp.googleId)
     if (isLogged) {
       navigate('/');
     } else {
-      alert("ERRO AO LOGAR!");
+      alert("Não existem usuários com este email cadastrado!");
     }
     setRemoveLoading(true)
   }
