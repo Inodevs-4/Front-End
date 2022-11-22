@@ -66,6 +66,8 @@ const renderCustomizedLabel = (props: any) => {
   return (
   
     <body>
+      <Navbar/>
+      <div className="container">
         <div className="hora">
             <h4>Quadro de Horas extras e Sobre avisos Geral</h4>
             <hr />
@@ -122,7 +124,7 @@ const renderCustomizedLabel = (props: any) => {
                     </Row>
             </Tab.Container>
                 </div>
-    <Navbar/>
+    <div className="eu">
     <BarChart
       width={700}
       height={350}
@@ -145,6 +147,8 @@ const renderCustomizedLabel = (props: any) => {
       </Bar>
       <Bar dataKey="data_fim" fill="#82ca9d" minPointSize={10} />
     </BarChart>
+    </div>
+    </div>
     </body>
   );
 }
