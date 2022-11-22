@@ -15,7 +15,7 @@
 .containeraaa{
     display: grid;
 	grid-template-columns: 1fr 1fr ;
-	grid-gap: 12px;
+	grid-gap: 1px;
     margin-top: 2rem;
 }
 .scroll {

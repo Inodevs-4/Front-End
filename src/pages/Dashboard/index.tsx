@@ -1,18 +1,31 @@
-import { useContext, useEffect, useState } from 'react';
+import "./stylesDashboard.css";
+import { useContext } from "react";
+import { useEffect } from "react";
+import { useState} from "react";
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { MdMoreTime } from 'react-icons/md';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
-import Navbar from "../../components/menu/Navbar";
-import { meusLancamentos, todosLancamentos } from '../../hooks/Lancamento';
-import { Lancamento } from '../../types/Types';
-import { AuthContext } from '../../login/AuthContext';
-import "./stylesDashboard.css"
 import { formatarDataHora, formatarHora, formatarInicial } from '../../functions/formatar';
-import { MdMoreTime } from 'react-icons/md';
+import { AuthContext } from "../../login/AuthContext"; 
+import { meusLancamentos, todosLancamentos } from '../../hooks/Lancamento';
+import  Navbar  from "../../components/menu/Navbar";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  LabelList
+} from "recharts";
+import { Lancamento } from "../../types/Types";
 
-export const Dashboard = () => {
-    const auth = useContext(AuthContext)
+
+export const Dashboard_geral = () => {
+const auth = useContext(AuthContext)
     const [mLancamentos, setMLancamentos] = useState<Lancamento[]>([])
 
     useEffect(() => {
@@ -28,11 +41,35 @@ export const Dashboard = () => {
         })()
     }, [])
     console.log(mLancamentos)
-    return(
-        <body>
-            <Navbar/>
-            <div className="hora">
-            <h4>Quadro de Horas extras e Sobre avisos</h4>
+
+const renderCustomizedLabel = (props: any) => {
+  const { x, y, width, value } = props;
+  const radius = 10;
+
+  return (
+    <g>
+      <circle cx={x + width / 2} cy={y - radius} r={radius} fill="#5a52fc" />
+      <text
+        x={x + width / 2}
+        y={y - radius}
+        fill="#fff"
+        textAnchor="middle"
+        dominantBaseline="middle"
+      >
+        {value.split(" ")[1]}
+      </text>
+    </g>
+  );
+};
+
+
+  return (
+  
+    <body>
+      <Navbar/>
+      <div className="containeraaa">
+        <div className="hora">
+            <h4>Quadro de Horas extras e Sobre avisos Geral</h4>
             <hr />
             <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1" >
                     <Row>
@@ -41,7 +78,7 @@ export const Dashboard = () => {
                             <ListGroup.Item action href='#link1'>
                                 <p>Default</p>
                             </ListGroup.Item>
-                            {mLancamentos.map((Lancamentos) => (
+                            {lancamentos.map((Lancamentos) => (
                                 <ListGroup.Item action href={'#' + String(Lancamentos?.id)} key={Lancamentos?.id}>
                                 {Lancamentos?.modalidade?.includes("hora extra") ? <h5>Hora Extra</h5> : <h5>Sobre aviso</h5>}
                                 <hr />
@@ -56,7 +93,7 @@ export const Dashboard = () => {
                             <Tab.Pane eventKey='#link1'>
                                 <MdMoreTime size={200} className="icone"/>    
                             </Tab.Pane>
-                            {mLancamentos.map((Lancamentos) => (
+                            {lancamentos.map((Lancamentos) => (
                                  <Tab.Pane eventKey={'#' + String(Lancamentos?.id)} key={Lancamentos?.id}>
                                     {Lancamentos?.status?.includes("pendente") ? 
                                         <div>
@@ -87,8 +124,32 @@ export const Dashboard = () => {
                     </Row>
             </Tab.Container>
                 </div>
-        </body>
-    )
-}
+    <div className="eu">
+    <BarChart
+      width={700}
+      height={350}
+      data={lancamentos}
 
-export default Dashboard;
+      margin={{
+        top: 5,
+        right: 30,
+        left: 20,
+        bottom: 5
+      }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="matricula" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="data_inicio" fill="#8884d8" minPointSize={5}>
+        <LabelList dataKey="data_inicio" content={renderCustomizedLabel} />
+      </Bar>
+      <Bar dataKey="data_fim" fill="#82ca9d" minPointSize={10} />
+    </BarChart>
+    </div>
+    </div>
+    </body>
+  );
+}
+export default Dashboard_geral;

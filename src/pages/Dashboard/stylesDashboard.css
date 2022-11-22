@@ -1,16 +1,23 @@
 .hora {
     background-color: white;
-    width: 40%;
     min-height: 17em;
-    margin-top: 2em;
+    width: 90%;
+    margin-top: 0em;
     margin-left: 2em;
     border-radius: 10px;
     padding-top: 1%;
     padding-bottom: 1%;
     padding-left: 2%;
     box-shadow: 2px 2px 15px 4px rgba(0,0,0,.2);
+    
 }
 
+.containeraaa{
+    display: grid;
+	grid-template-columns: 1fr 1fr ;
+	grid-gap: 1px;
+    margin-top: 2rem;
+}
 .scroll {
     max-height: 18em;
     overflow-y: auto;

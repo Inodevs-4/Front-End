@@ -128,7 +128,7 @@ const renderCustomizedLabel = (props: any) => {
     <BarChart
       width={700}
       height={350}
-      data={lancamentos}
+      data={mLancamentos}
 
       margin={{
         top: 5,
