@@ -2,7 +2,7 @@
     background-color: white;
     min-height: 17em;
     width: 90%;
-    margin-top: -2em;
+    margin-top: 0em;
     margin-left: 2em;
     border-radius: 10px;
     padding-top: 1%;
@@ -12,10 +12,11 @@
     
 }
 
-.container{
+.containeraaa{
     display: grid;
 	grid-template-columns: 1fr 1fr ;
 	grid-gap: 12px;
+    margin-top: 2rem;
 }
 .scroll {
     max-height: 18em;

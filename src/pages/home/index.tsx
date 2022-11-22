@@ -4,7 +4,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Navbar from '../../components/menu/Navbar';
 import { useContext, useEffect, useState } from 'react'
 // import Calendar from 'react-calendar';
-import "./styled.css";
+import "./home.css";
 import { Lancamento } from '../../types/Types'
 import { AuthContext } from '../../login/AuthContext';
 import { formatarDataHora, formatarInicial } from '../../functions/formatar';
