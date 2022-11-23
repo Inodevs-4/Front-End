@@ -7,7 +7,7 @@ import { MdMoreTime } from 'react-icons/md';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import { formatarDataHora } from '../../functions/formatar';
-import {  graficoGeral, todosLancamentos } from '../../hooks/Lancamento';
+import {  graficoGeral, todosLancamentos, todosLancamentosFiltro } from '../../hooks/Lancamento';
 import  Navbar  from "../../components/menu/Navbar";
 import {
   BarChart,
@@ -19,20 +19,45 @@ import {
   Legend,
   LabelList
 } from "recharts";
-import { Lancamento } from "../../types/Types";
-
+import { Cliente, Colaborador, CR, Lancamento } from "../../types/Types";
+import { todosCRs } from "../../hooks/CR";
+import { todosClientes } from "../../hooks/Clientes";
+import { selectColaboradores } from "../../hooks/Colaborador";
+import SearchIcon from '@mui/icons-material/Search';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export const Dashboard_geral = () => {
 
     const [mLancamentos, setMLancamentos] = useState<Lancamento[]>([])
-    const [dadosGrafico, setDadosGrafico] = useState<{name: String, horaextra: Number, sobreaviso: Number}[]>([])
+    const [dadosGrafico, setDadosGrafico] = useState<{name: string, horaextra: number, sobreaviso: number}[]>([])
+
+    const [crs, setCrs] = useState<CR[]>([])
+    const [clientes, setClientes] = useState<Cliente[]>([])
+    const [colaboradores, setColaboradores] = useState<Colaborador[]>([])
+    const [search, setSearch] = useState<{colaborador: string, cliente: string, cr:string}>({colaborador: "*", cliente: "*", cr: "*"})
 
     useEffect(() => {
       (async() => {
           setMLancamentos(await todosLancamentos())
           setDadosGrafico(await graficoGeral())
+          setCrs(await todosCRs())
+          setClientes(await todosClientes())
+          setColaboradores(await selectColaboradores())
       })()
   }, [])  
+
+  function handleSelect(e: any) {
+    setSearch({...search, [e.target.name]: e.target.options[e.target.selectedIndex].value,})
+  } 
+
+  async function searchLancamento() {
+    setMLancamentos(await todosLancamentosFiltro(search.colaborador, search.cliente, search.cr))
+  }
+
+  async function clear() {
+    setMLancamentos(await todosLancamentos())
+    setSearch({colaborador: "*", cliente: "*", cr: "*"})
+  }
 
 const renderCustomizedLabel = (props: any) => {
   const { x, y, width, value } = props;
@@ -63,6 +88,35 @@ const renderCustomizedLabel = (props: any) => {
         <div className="hora">
             <h4>Quadro Geral de Horas extras e Sobreavisos</h4>
             <hr />
+            <div className="selects">
+                <select  className="form-select search-select" id="colaborador" onChange={handleSelect} name="colaborador" value={search.colaborador}>
+                  <option value="*" disabled selected>Colaborador</option>
+                  {colaboradores && 
+                  (colaboradores.map((c) => (
+                      <option value={c.matricula} key={c.matricula}>{c.nome}</option>
+                  )))}
+                </select>
+
+              <select  className="form-select search-select" id="cliente" onChange={handleSelect} name="cliente" value={search.cliente}>
+                <option value="*" disabled selected>Cliente</option>
+                {clientes && 
+                (clientes.map((c) => (
+                    <option value={c.cnpj} key={c.cnpj}>{c.nome}</option>
+                )))}
+              </select>
+
+              <select  className="form-select search-select" id="cr" onChange={handleSelect} name="cr" value={search.cr}>
+                <option value="*" disabled selected>CR</option>
+                {crs && 
+                (crs.map((c) => (
+                    <option value={c.numero} key={c.numero}>{c.nome}</option>
+                )))}
+              </select>
+              
+              <button className="search-button btn btn-primary" onClick={searchLancamento}><SearchIcon /></button>
+              <button className="search-button btn btn-secondary" onClick={clear}><ClearIcon /></button>
+            </div>
+
             <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1" >
                     <Row>
                         <Col sm={4}>
@@ -118,6 +172,7 @@ const renderCustomizedLabel = (props: any) => {
             </Tab.Container>
                 </div>
     <div className="eu">
+    <h4 className="mb-4">Horas Extras e Sobreaviso trabalhadas na empresa em 2022</h4>
     <BarChart
       width={700}
       height={350}

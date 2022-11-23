@@ -161,3 +161,17 @@ export async function graficoGeral() {
           return data
   })
 }
+
+// pesquisar lancamento no dash
+export async function todosLancamentosFiltro(colaborador: String, cliente: String, cr: String) {
+  return fetch(`${process.env.REACT_APP_SERVER}/todosLancamentosFiltro/${colaborador}/${cliente}/${cr}`, {
+      method: 'GET',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+  })
+      .then((resp) => resp.json())
+      .then((data) => {
+          return data
+  })
+}
