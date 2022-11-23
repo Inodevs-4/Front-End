@@ -7,9 +7,9 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { MdMoreTime } from 'react-icons/md';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
-import { formatarDataHora, formatarHora, formatarInicial } from '../../functions/formatar';
+import { formatarDataHora } from '../../functions/formatar';
 import { AuthContext } from "../../login/AuthContext"; 
-import { meusLancamentos, todosLancamentos } from '../../hooks/Lancamento';
+import { todosLancamentosColab } from '../../hooks/Lancamento';
 import  Navbar  from "../../components/menu/Navbar";
 import {
   BarChart,
@@ -24,23 +24,15 @@ import {
 import { Lancamento } from "../../types/Types";
 
 
-export const Dashboard_geral = () => {
+export const Dashboard = () => {
 const auth = useContext(AuthContext)
-    const [mLancamentos, setMLancamentos] = useState<Lancamento[]>([])
-
-    useEffect(() => {
-      (async() => {
-          setMLancamentos(await todosLancamentos())
-      })()
-  }, [])  
 
     const [lancamentos, setLancamentos] = useState<Lancamento[]>([])
     useEffect(() => {
         (async() => {
-          setLancamentos(await meusLancamentos(String(auth.colaborador?.matricula)))
+          setLancamentos(await todosLancamentosColab(String(auth.colaborador?.matricula)))
         })()
     }, [])
-    console.log(mLancamentos)
 
 const renderCustomizedLabel = (props: any) => {
   const { x, y, width, value } = props;
@@ -69,7 +61,8 @@ const renderCustomizedLabel = (props: any) => {
       <Navbar/>
       <div className="containeraaa">
         <div className="hora">
-            <h4>Quadro de Horas extras e Sobre avisos Geral</h4>
+            <h4>Quadro de Horas extras e Sobreavisos</h4>
+            <h6>Colaborador: {auth.colaborador?.nome}</h6>
             <hr />
             <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1" >
                     <Row>
@@ -80,7 +73,7 @@ const renderCustomizedLabel = (props: any) => {
                             </ListGroup.Item>
                             {lancamentos.map((Lancamentos) => (
                                 <ListGroup.Item action href={'#' + String(Lancamentos?.id)} key={Lancamentos?.id}>
-                                {Lancamentos?.modalidade?.includes("hora extra") ? <h5>Hora Extra</h5> : <h5>Sobre aviso</h5>}
+                                {Lancamentos?.modalidade?.includes("hora extra") ? <h5>Hora Extra</h5> : <h5>Sobreaviso</h5>}
                                 <hr />
                                 <p className='horasobre'> {formatarDataHora(String(Lancamentos?.data_inicio))}</p>
                                 </ListGroup.Item>
@@ -97,7 +90,7 @@ const renderCustomizedLabel = (props: any) => {
                                  <Tab.Pane eventKey={'#' + String(Lancamentos?.id)} key={Lancamentos?.id}>
                                     {Lancamentos?.status?.includes("pendente") ? 
                                         <div>
-                                            {Lancamentos?.modalidade?.includes("hora extra") ? <span>Hora Extra</span> : <span>Sobre aviso</span>}
+                                            {Lancamentos?.modalidade?.includes("hora extra") ? <span>Hora Extra</span> : <span>Sobreaviso</span>}
                                             <p className="dados"><strong>Gestor:</strong> { Lancamentos?.gestor?.nome}</p>
                                             <p className="dados"><strong>Projeto:</strong> { Lancamentos?.projeto?.nome}</p>
                                             <p className="dados"><strong>Status:</strong> { Lancamentos?.status}</p>
@@ -128,28 +121,41 @@ const renderCustomizedLabel = (props: any) => {
     <BarChart
       width={700}
       height={350}
-      data={lancamentos}
+      data={[
+        {name: "jan/2022", horaextra: 10, sobreaviso: 20}, 
+        {name: "fev/2022", horaextra: 15, sobreaviso: 7},
+        {name: "mar/2022", horaextra: 10, sobreaviso: 20}, 
+        {name: "abr/2022", horaextra: 15, sobreaviso: 7},
+        {name: "mai/2022", horaextra: 10, sobreaviso: 20}, 
+        {name: "jun/2022", horaextra: 15, sobreaviso: 7},
+        {name: "jul/2022", horaextra: 10, sobreaviso: 20}, 
+        {name: "ago/2022", horaextra: 15, sobreaviso: 7},
+        {name: "set/2022", horaextra: 10, sobreaviso: 20}, 
+        {name: "out/2022", horaextra: 15, sobreaviso: 7},
+        {name: "nov/2022", horaextra: 10, sobreaviso: 20}, 
+        {name: "dez/2022", horaextra: 15, sobreaviso: 7}
+      ]}
 
       margin={{
         top: 5,
-        right: 30,
-        left: 20,
+        right: 50,
+        left: -20,
         bottom: 5
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="matricula" />
+      <XAxis dataKey="name" />
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="data_inicio" fill="#8884d8" minPointSize={5}>
-        <LabelList dataKey="data_inicio" content={renderCustomizedLabel} />
+      <Bar dataKey="horaextra" fill="#8884d8" minPointSize={5}>
+        <LabelList dataKey="horaextra" content={renderCustomizedLabel} />
       </Bar>
-      <Bar dataKey="data_fim" fill="#82ca9d" minPointSize={10} />
+      <Bar dataKey="sobreaviso" fill="#82ca9d" minPointSize={10} />
     </BarChart>
     </div>
     </div>
     </body>
   );
 }
-export default Dashboard_geral;
+export default Dashboard;

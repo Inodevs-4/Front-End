@@ -30,6 +30,20 @@ export async function meusLancamentos(matricula: string | undefined){
     })
 }
 
+// todos lancamentos de um colaborador
+export async function todosLancamentosColab(matricula: string | undefined){
+  return fetch(`${process.env.REACT_APP_SERVER}/todosLancamentosColab/${matricula}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      return data
+    })
+}
+
 // pegar todos os lancamentos
 export async function todosLancamentos() {
   return fetch(`${process.env.REACT_APP_SERVER}/todosLancamentos`, {
