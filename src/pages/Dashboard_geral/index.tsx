@@ -7,7 +7,7 @@ import { MdMoreTime } from 'react-icons/md';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import { formatarDataHora } from '../../functions/formatar';
-import {  todosLancamentos } from '../../hooks/Lancamento';
+import {  graficoGeral, todosLancamentos } from '../../hooks/Lancamento';
 import  Navbar  from "../../components/menu/Navbar";
 import {
   BarChart,
@@ -25,10 +25,12 @@ import { Lancamento } from "../../types/Types";
 export const Dashboard_geral = () => {
 
     const [mLancamentos, setMLancamentos] = useState<Lancamento[]>([])
+    const [dadosGrafico, setDadosGrafico] = useState<{name: String, horaextra: Number, sobreaviso: Number}[]>([])
 
     useEffect(() => {
       (async() => {
           setMLancamentos(await todosLancamentos())
+          setDadosGrafico(await graficoGeral())
       })()
   }, [])  
 
@@ -119,20 +121,7 @@ const renderCustomizedLabel = (props: any) => {
     <BarChart
       width={700}
       height={350}
-      data={[
-        {name: "jan/2022", horaextra: 10, sobreaviso: 20}, 
-        {name: "fev/2022", horaextra: 15, sobreaviso: 7},
-        {name: "mar/2022", horaextra: 10, sobreaviso: 20}, 
-        {name: "abr/2022", horaextra: 15, sobreaviso: 7},
-        {name: "mai/2022", horaextra: 10, sobreaviso: 20}, 
-        {name: "jun/2022", horaextra: 15, sobreaviso: 7},
-        {name: "jul/2022", horaextra: 10, sobreaviso: 20}, 
-        {name: "ago/2022", horaextra: 15, sobreaviso: 7},
-        {name: "set/2022", horaextra: 10, sobreaviso: 20}, 
-        {name: "out/2022", horaextra: 15, sobreaviso: 7},
-        {name: "nov/2022", horaextra: 10, sobreaviso: 20}, 
-        {name: "dez/2022", horaextra: 15, sobreaviso: 7}
-      ]}
+      data={dadosGrafico}
 
       margin={{
         top: 5,

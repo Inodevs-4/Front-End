@@ -147,3 +147,17 @@ export async function gestorLancamentos(matricula: string | undefined){
       return data
     })
 }
+
+// dados do grafico
+export async function graficoGeral() {
+  return fetch(`${process.env.REACT_APP_SERVER}/graficoGeral`, {
+      method: 'GET',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+  })
+      .then((resp) => resp.json())
+      .then((data) => {
+          return data
+  })
+}
