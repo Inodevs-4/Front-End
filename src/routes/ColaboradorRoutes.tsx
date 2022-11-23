@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes as Switch, Navigate } from "react-router-d
 import Etapa1Form from "../pages/Cadastro_HoraExtra_Apontamento/Etapa1Form";
 import { Etapa2Form } from "../pages/Cadastro_HoraExtra_Apontamento/Etapa2Form";
 import { Etapa3Form } from "../pages/Cadastro_HoraExtra_Apontamento/Etapa3Form";
+import Dashboard from "../pages/Dashboard";
 import Home from "../pages/home";
 import Login from "../pages/Login";
 
@@ -15,6 +16,7 @@ function ColaboradorRoutes() {
         <Route path="/etapa1" element={<Etapa1Form/>}/>
         <Route path="/etapa2" element={<Etapa2Form/>}/>
         <Route path="/etapa3" element={<Etapa3Form/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Switch>
     </BrowserRouter>
     )

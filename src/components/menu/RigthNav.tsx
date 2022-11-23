@@ -101,7 +101,7 @@ function RightNav(props: Props) {
       <S.Li> <ModeEditIcon  color='primary'/> Manipulação Horas</S.Li>
     </NavLink>
   )}
-{(auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
+
     <NavLink
       to='/dashboard'
     >
@@ -109,7 +109,7 @@ function RightNav(props: Props) {
       <S.Li> <DashboardIcon  color='primary'/>Dashboards</S.Li>
       
     </NavLink>
-      )}
+
 {(auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
     <NavLink
       to='/dashboard_geral'

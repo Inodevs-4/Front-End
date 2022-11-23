@@ -15,6 +15,8 @@ import Login from "../pages/Login";
 import Projeto from "../pages/tabela_projetos"; 
 import Cliente from "../pages/Tabela_clientes";
 import Crs from "../pages/Tabela_crs";
+import Dashboard from "../pages/Dashboard";
+import Dashboard_geral from "../pages/Dashboard_geral";
 
 function GestorRoutes() {
     return (
@@ -38,6 +40,8 @@ function GestorRoutes() {
         <Route path="/crs" element={<Crs/>}/>
         <Route path="/cadastro-cr" element={<CadastroCR/>}/>
         <Route path="/editar-cr/:numero" element={<Editar_Crs/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/dashboard_geral" element={<Dashboard_geral/>}/>
       </Switch>
     </BrowserRouter>
     )
