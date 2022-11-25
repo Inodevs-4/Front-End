@@ -17,6 +17,7 @@ import Cliente from "../pages/Tabela_clientes";
 import Crs from "../pages/Tabela_crs";
 import Dashboard from "../pages/Dashboard";
 import Dashboard_geral from "../pages/Dashboard_geral";
+import Historico from "../pages/Historico_Lancamentos";
 
 function GestorRoutes() {
     return (
@@ -42,6 +43,7 @@ function GestorRoutes() {
         <Route path="/editar-cr/:numero" element={<Editar_Crs/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/dashboard_geral" element={<Dashboard_geral/>}/>
+        <Route path="/historico" element={<Historico/>}/>
       </Switch>
     </BrowserRouter>
     )

@@ -36,8 +36,8 @@ h3 {
 
 
 .editar{
-    width: 30%;
-    margin-left: 35%;
+    width: 25% !important;
+    margin-left: 5% !important;
     margin-right: 0;
     font-size: 15px;
 }
@@ -47,7 +47,7 @@ h3 {
 }
 
 .alteracao {
-    margin-left: 40%;
+    margin-left: 20% !important;
     margin-bottom: 10px;
     
 }
@@ -61,16 +61,19 @@ h3 {
 }
 
 .buttons button{
-    display: inline;
-    width: 10em;
+    display: inline !important;
+    width: 10em !important;
 }
 
 .btn.btn-primary.editar{
-    margin-right: auto;
-    margin-left: 15% !important;
+    margin-left: 5% !important;
 }
 
 .btn.btn-danger.editar{
-    margin-right: -10% !important;
-    margin-left: 16% !important;
+    margin-left: 5% !important;
 }
+
+.btn-danger.reprovar{
+    margin-left: 5% !important;
+}
+

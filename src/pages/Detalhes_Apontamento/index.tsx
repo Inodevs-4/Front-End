@@ -1,5 +1,5 @@
 import Navbar from '../../components/menu/Navbar';
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import "./det_apon.css";
 import { formatarDataHoraInput } from "../../functions/formatar";
 import { Colaborador, Lancamento, Projeto, Verba } from '../../types/Types'
@@ -8,6 +8,7 @@ import { aprovarLancamento, atualizarLancamento, getLancamento, reprovarLancamen
 import { selectProjetos } from '../../hooks/Projeto';
 import { selectColaboradores, selectGestores } from '../../hooks/Colaborador';
 import { todasVerbas } from '../../hooks/Verba';
+import { AuthContext } from '../../login/AuthContext';
 
 
 export const DetalhesApontamento = () =>{
@@ -21,6 +22,7 @@ export const DetalhesApontamento = () =>{
     const [colaboradores, setColaboradores] = useState<Colaborador[]>([])
     const [verbas, setVerbas] = useState<Verba[]>()
     const [verba, setVerba] = useState<number[]>([0,0])
+    const auth = useContext(AuthContext)
 
     // selecionando lancamento por id
     useEffect(() => {
@@ -28,6 +30,7 @@ export const DetalhesApontamento = () =>{
             const data = await getLancamento(id)
             setLancamento(data)
             setLacamentoIncial(data)
+            console.log(lancamento)
         }
         hookLancamento()
       }, [])
@@ -154,15 +157,12 @@ export const DetalhesApontamento = () =>{
             { /* Lançamento */}
             <div className="edit">
                 <h3>Lançamento</h3>
-
-  
                 <div className="form-floating mb-3">
-                    <select  className="form-select" id="floatingInputGrid" disabled={isDisabled} value={lancamento?.colaborador?.matricula} onChange={handleSelect} name="colaborador">
-                    {colaboradores.map((colaborador) => (
-                        <option value={colaborador.matricula} key={colaborador.matricula}>{colaborador.nome}</option>
-                    ))}
-                    </select>
-                    <label htmlFor="floatingInputGrid">Nome do Colaborador</label>
+                    <><select className="form-select" id="floatingInputGrid" disabled value={lancamento?.colaborador?.matricula} onChange={handleSelect} name="colaborador">
+                        {colaboradores.map((colaborador) => (
+                            <option value={colaborador.matricula} key={colaborador.matricula}>{colaborador.nome}</option>
+                        ))}
+                    </select><label htmlFor="floatingInputGrid">Nome do Colaborador</label></>
                 </div>
                 { /* Modalidade && Tipo && 2º acionamento*/}
                 <div className="row g-2">
@@ -243,84 +243,101 @@ export const DetalhesApontamento = () =>{
                     </div>
                 </div>
                 <div className="row g-2">
-                    <div className="col-md">
-                        <div className="form-floating">
-                            <input type="text" className="form-control" id="floatingInputGrid" disabled={isDisabled} value={lancamento?.observacoes} onChange={handleChange} name="observacoes"/>
-                            <label htmlFor="floatingInputGrid">Observação</label>
-                        </div>
+                    <div className="form-floating">
+                        <input type="text" className="form-control" id="floatingInputGrid" disabled={isDisabled} value={lancamento?.observacoes} onChange={handleChange} name="observacoes"/>
+                        <label htmlFor="floatingInputGrid">Observação</label>
                     </div>
-                <h5>Verbas:</h5>
-                
-                {lancamento?.verbas && lancamento?.verbas.map((verba, index) => (
+                { /* Verba */}
+                {(auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
                     <>
-                    {index % 2 === 0 ? (
-                    <div className="left">
+                    {lancamento?.verbas && lancamento?.verbas.map((verba, index) => (
+                        <>
+                        {index % 2 === 0 ? (
+                        <div className="left">
+                            <div key={verba.id} className="col-md">
+                                <div className="form-floating">
+                                    <input type="text" className="form-control" id="floatingInputGrid" disabled value={verba.numero} name='verba'/>
+                                    <label htmlFor="floatingInputGrid">Verba</label>
+                                    {isHidden && <button className="remover" id={String(verba.id)} onClick={removerVerba}>&#8212;</button>}
+                                </div>  
+                            </div>
+                        </div>) : 
+                        (
+                        <div className="right">
                         <div key={verba.id} className="col-md">
-                            <div className="form-floating">
-                                <input type="text" className="form-control" id="floatingInputGrid" disabled value={verba.numero} name='verba'/>
-                                {isHidden && <button className="remover" id={String(verba.id)} onClick={removerVerba}>&#8212;</button>}
-                            </div>  
+                        <div className="form-floating">
+                            <input type="text" className="form-control" id="floatingInputGrid" disabled value={verba.numero} name='verba'/>
+                            <label htmlFor="floatingInputGrid">Verba</label>
+                            {isHidden && <button className="remover" id={String(verba.id)} onClick={removerVerba}>&#8212;</button>}
+                        </div>  
+                        </div>  
                         </div>
-                    </div>) : 
-                    (
-                    <div className="right">
-                      <div key={verba.id} className="col-md">
-                      <div className="form-floating">
-                          <input type="text" className="form-control" id="floatingInputGrid" disabled value={verba.numero} name='verba'/>
-                          {isHidden && <button className="remover" id={String(verba.id)} onClick={removerVerba}>&#8212;</button>}
-                      </div>  
-                    </div>  
-                    </div>
-                    )}
-                    </>
-            ))}
+                        )}
+                        </>
+                    
+                ))}
 
-                {isHidden && (
-                    <>
-                    {lancamento?.verbas && lancamento?.verbas.length % 2 === 0 ? (
-                        <div className='left'>
-                            <div className="col-md">
-                                <div className="form-floating">
-                                    <select name="verba" id="floatingInputGrid" className="form-select" aria-label=".form-select-lg example" onChange={handleSelectVerba} value={verba[1]}>
-                                        <option value="0" disabled selected>Selecione um verba</option>
-                                        {verbas && 
-                                        (verbas.map((v) => (
-                                            <option value={v.id} key={v.id}>{v.numero}</option>
-                                        )
-                                    ))}
-                                    </select>
-                                    <label>Nova Verba</label>
-                                    <button className="adicionar" onClick={adicionarVerba}>+</button>
+                    {isHidden && (
+                        <>
+                        {lancamento?.verbas && lancamento?.verbas.length % 2 === 0 ? (
+                            <div className='left'>
+                                <div className="col-md">
+                                    <div className="form-floating">
+                                        <select name="verba" id="floatingInputGrid" className="form-select" aria-label=".form-select-lg example" onChange={handleSelectVerba} value={verba[1]}>
+                                            <option value="0" disabled selected>Selecione um verba</option>
+                                            {verbas && 
+                                            (verbas.map((v) => (
+                                                <option value={v.id} key={v.id}>{v.numero}</option>
+                                            )
+                                        ))}
+                                        </select>
+                                        <label>Nova Verba</label>
+                                        <button className="adicionar" onClick={adicionarVerba}>+</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ) : (
-                        <div className='right'>
-                            <div className="col-md">
-                                <div className="form-floating">
-                                    <select name="verba" id="floatingInputGrid" className="form-select" aria-label=".form-select-lg example" onChange={handleSelectVerba} value={verba[1]}>
-                                        <option value="0" disabled selected>Selecione uma verba</option>
-                                        {verbas && 
-                                        (verbas.map((v) => (
-                                            <option value={v.id} key={v.id}>{v.numero}</option>
-                                        )
-                                    ))}
-                                    </select>
-                                    <label>Nova Verba</label>
-                                    <button className="adicionar" onClick={adicionarVerba}>+</button>
+                        ) : (
+                            <div className='right'>
+                                <div className="col-md">
+                                    <div className="form-floating">
+                                        <select name="verba" id="floatingInputGrid" className="form-select" aria-label=".form-select-lg example" onChange={handleSelectVerba} value={verba[1]}>
+                                            <option value="0" disabled selected>Selecione uma verba</option>
+                                            {verbas && 
+                                            (verbas.map((v) => (
+                                                <option value={v.id} key={v.id}>{v.numero}</option>
+                                            )
+                                        ))}
+                                        </select>
+                                        <label>Nova Verba</label>
+                                        <button className="adicionar" onClick={adicionarVerba}>+</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
+                        </>
                     )}
                     </>
-                )}
+                    )}
         
                     <hr className='linha'/>
 
                     <div className="buttons">
-                        <button onClick={aprovar}  className='btn btn-success editar' hidden={isHidden}>Aprovar</button>
-                        <button onClick={editarLancamento}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
-                        <button onClick={reprovar}  className='btn btn-danger editar' hidden={isHidden}>Reprovar</button></div>
+                        {(auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
+                            <>
+                            <button onClick={reprovar} className='btn btn-danger reprovar' hidden={isHidden}>Reprovar</button>
+                            </>
+                        )}
+                        {(lancamento?.status === "reprovado" || auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
+                            <>
+                            <button onClick={editarLancamento}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
+                            </>
+                        )}
+                        {(auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
+                            <>
+                            <button onClick={aprovar} className='btn btn-success editar' hidden={isHidden}>Aprovar</button>
+                            </>
+                        )}
+                    </div>
                     <div className='alteracao' hidden={isVisible}>
                         <button className='btn btn-danger' onClick={cancelar}>Cancelar</button>
                         <button onClick={salvarLacamento} className='btn btn-success'>Concluir</button>

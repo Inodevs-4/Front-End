@@ -23,6 +23,7 @@ import CadastroCR from "../pages/CadastroCR";
 import Editar_Crs from "../pages/Editar_CR";
 import Dashboard from "../pages/Dashboard";
 import Dashboard_geral from "../pages/Dashboard_geral";
+import Historico from "../pages/Historico_Lancamentos";
 
 function AdminstradorRoutes() {
     return (
@@ -54,6 +55,7 @@ function AdminstradorRoutes() {
         <Route path="/editar-cr/:numero" element={<Editar_Crs/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/dashboard_geral" element={<Dashboard_geral/>}/>
+        <Route path="/historico" element={<Historico/>}/>
       </Switch>
     </BrowserRouter>
     )

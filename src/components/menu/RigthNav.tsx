@@ -120,7 +120,7 @@ function RightNav(props: Props) {
     </NavLink>
 )}
     <NavLink
-      to='/'
+      to='/historico'
    
     >
     
