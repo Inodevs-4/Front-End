@@ -158,8 +158,9 @@ const renderCustomizedLabel = (props: any) => {
       </Bar>
       <Bar dataKey="sobreaviso" fill="#82ca9d" minPointSize={10} />
     </BarChart>
+    
     </div>
-    <button onClick={exportPdf}>Exportar Pdf</button>
+    <button onClick={exportPdf} className="btn btn-primary export-pdf">Exportar Pdf</button>
     </div>
     </body>
   );

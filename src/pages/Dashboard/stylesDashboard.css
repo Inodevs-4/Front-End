@@ -71,3 +71,9 @@ hr {
     margin-top: 10%;
     color: #0B2D72;
 }
+
+.export-pdf {
+    width: 50%;
+    margin-left: 75%;
+    margin-top: 12%
+}

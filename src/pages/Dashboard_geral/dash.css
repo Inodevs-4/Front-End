@@ -79,3 +79,9 @@ hr {
     height: 37px;
     width: 8%;
 }
+
+.export-pdf {
+    width: 50%;
+    margin-left: 75%;
+    margin-top: 5%
+}
