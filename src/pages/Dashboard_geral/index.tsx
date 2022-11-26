@@ -25,6 +25,7 @@ import { todosClientes } from "../../hooks/Clientes";
 import { selectColaboradores } from "../../hooks/Colaborador";
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
+import { exportPdfGeral } from "../../functions/pdf";
 
 export const Dashboard_geral = () => {
 
@@ -196,6 +197,7 @@ const renderCustomizedLabel = (props: any) => {
       <Bar dataKey="sobreaviso" fill="#82ca9d" minPointSize={10} />
     </BarChart>
     </div>
+    <button onClick={exportPdfGeral}>Exportar Pdf</button>
     </div>
     </body>
   );

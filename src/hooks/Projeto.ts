@@ -73,3 +73,18 @@ export async function atualizarProjeto(projeto: Projeto | undefined , id: string
         })
     .catch((err) => console.log(err))
 }
+
+// horas trabalhadas projeto
+export async function horasTrabalhadasProjeto(id: string | undefined, modalidade: string | undefined) {
+  return fetch(`${process.env.REACT_APP_SERVER}/horasTrabalhadasProjeto/${id}/${modalidade}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+          return data
+      })
+  .catch((err) => console.log(err))
+}

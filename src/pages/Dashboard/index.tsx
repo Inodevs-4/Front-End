@@ -22,6 +22,7 @@ import {
   LabelList
 } from "recharts";
 import { Lancamento } from "../../types/Types";
+import { exportPdfColaborador } from "../../functions/pdf";
 
 
 export const Dashboard = () => {
@@ -33,6 +34,10 @@ const auth = useContext(AuthContext)
           setLancamentos(await todosLancamentosColab(String(auth.colaborador?.matricula)))
         })()
     }, [])
+
+    function exportPdf() {
+      exportPdfColaborador(String(auth.colaborador?.matricula));
+    }
 
 const renderCustomizedLabel = (props: any) => {
   const { x, y, width, value } = props;
@@ -154,6 +159,7 @@ const renderCustomizedLabel = (props: any) => {
       <Bar dataKey="sobreaviso" fill="#82ca9d" minPointSize={10} />
     </BarChart>
     </div>
+    <button onClick={exportPdf}>Exportar Pdf</button>
     </div>
     </body>
   );
