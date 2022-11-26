@@ -1,8 +1,9 @@
 import { jsPDF } from 'jspdf'
 import { getCR } from '../hooks/CR';
-import { horasTrabalhadasProjeto, todosProjetos } from '../hooks/Projeto';
+import { getProjeto, horasTrabalhadasProjeto, todosProjetos } from '../hooks/Projeto';
 import * as htmlToImage from 'html-to-image';
 import { getColaborador } from '../hooks/Colaborador';
+import { horasLancamentoVerba, todasVerbas } from '../hooks/Verba';
 
 async function creatPdf({
     doc,
@@ -140,55 +141,48 @@ export async function exportPdfColaborador(matricula: string) {
     doc.text(`Turno: ${c.turno}`, 20, 72);
     doc.text(`Email: ${c.email}`, 20, 80);
     doc.text(`Telefone: ${c.telefone}`, 20, 88);
+    doc.text(`Centro de Resultado: ${c.cr.nome}`, 20, 96);
 
-    let m = 88;
+    let m = 112;
 
-    // const v = await todasVerbas();
+    const verbas = await todasVerbas();
 
-    // for(let i = 0; i < projetos.length; i++) {
+    for(let i = 0; i < verbas.length; i++) {
+        let v = verbas[i]
 
-    //     const pageHeight = doc.internal.pageSize.getHeight();
+        const pageHeight = doc.internal.pageSize.getHeight();
 
-    //     if (m+50 > pageHeight) {
-    //         doc.addPage();
-    //         m = 20
-    //     }
+        if (m+50 > pageHeight) {
+            doc.addPage();
+            m = 20
+        }
 
-    //     let p = projetos[i]
-    //     doc.setFont("helvetica", "bold");
-    //     doc.setFontSize(14);
-    //     doc.text(`Nome do Projeto: ${p.nome}`, 20, m);
-    //     doc.setFont("helvetica", "normal");
-    //     doc.setFontSize(12);
-    //     m += 12;
-    //     doc.text(`Nome do Cliente: ${p.cliente.nome}`, 20, m);
-    //     m += 8;
-    //     doc.text(`Nome do Centro de Resultado: ${p.cr.nome}`, 20, m);
-    //     m += 8;
-    //     doc.text(`Integrantes do Centro de Resultado:`, 20, m);
-    //     m += 8;
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text(`Verba: ${v.numero}`, 20, m);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(12);
+        m += 12;
 
-    //     let cr = await getCR(p.cr.numero);
-    //     for(let j = 0; j < cr.colaboradores.length; j++) {
-    //         doc.text(`Nome do Colaborador: ${cr.colaboradores[j].nome}`, 30, m);
-    //         m += 8;
-    //     }
-    //     m += 4;
+        let horasEx = await horasLancamentoVerba(matricula, 'horaextra', v.numero)
+        doc.text(`Horas extras trabalhadas: ${horasEx.horas}`, 20, m);
+        m += 8;
 
-    //     let horasE = await horasTrabalhadasProjeto(p.id, 'horaextra');
-    //     doc.text(`Horas extras trabalhadas no projeto: ${horasE.horas}h`, 20, m);
-    //     m += 8;
+        let horasSo = await horasLancamentoVerba(matricula, 'sobreaviso', v.numero)
+        doc.text(`Horas de sobreaviso trabalhadas: ${horasSo.horas}`, 20, m);
+        m += 8;
 
-    //     let horasS = await horasTrabalhadasProjeto(p.id, 'sobreaviso');
-    //     doc.text(`Horas de sobreaviso trabalhadas no projeto: ${horasS.horas}h`, 20, m);
-    //     m += 18;
+        const cr = await getCR(c.cr.numero)
+        const projeto = await getProjeto(cr.projeto.id)
+        doc.text(`Projeto: ${projeto.nome}`, 20, m);
+        m += 18;
         
-    // }
+    }
       
-    // const elements = document.getElementsByClassName("recharts-wrapper");
+    const elements = document.getElementsByClassName("recharts-wrapper");
 
-    // const margin = m
-    // await creatPdf({ doc, elements, margin });
+    const margin = m
+    await creatPdf({ doc, elements, margin });
 
     doc.save(`${data}.pdf`);
 }
