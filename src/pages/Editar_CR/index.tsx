@@ -88,7 +88,7 @@ export const Editar_Crs = () =>{
         if (cr?.colaboradores !== undefined && colaboradores !== undefined){
             const colaboradoresCR = [...cr?.colaboradores]
             for (var i=0; i < colaboradoresCR.length; i++){
-                if (colaboradoresCR[i].matricula === Number(e.target.id)){
+                if (colaboradoresCR[i].matricula === e.target.id){
                     const colaboradoresSelect = [...colaboradores]
                     colaboradoresSelect.push(colaboradoresCR[i])
                     setColaboradores(colaboradoresSelect)
@@ -136,7 +136,7 @@ export const Editar_Crs = () =>{
                     </div>
                 </div>
 
-                <h5>Colaboradores:</h5>
+                <h5 className="colab">Colaboradores:</h5>
                         {(!isHidden && cr?.colaboradores && cr?.colaboradores.length === 0) && <p className="texto">Não há colaboradores neste Centro de Resultado.</p>}
                         {cr?.colaboradores && cr?.colaboradores.map((colaborador, index) => (
                             <>

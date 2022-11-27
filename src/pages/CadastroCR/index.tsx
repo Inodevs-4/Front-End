@@ -45,7 +45,7 @@ export const CadastroCR = () =>{
         if (cr?.colaboradores !== undefined && colaboradores !== undefined){
             const colaboradoresCR = [...cr?.colaboradores]
             for (var i=0; i < colaboradoresCR.length; i++){
-                if (colaboradoresCR[i].matricula === Number(e.target.id)){
+                if (colaboradoresCR[i].matricula === e.target.id){
                     const colaboradoresSelect = [...colaboradores]
                     colaboradoresSelect.push(colaboradoresCR[i])
                     setColaboradores(colaboradoresSelect)
@@ -88,7 +88,7 @@ export const CadastroCR = () =>{
                     </div>
                 </div>
 
-                <h5>Colaboradores:</h5>
+                <h5 className="colab">Colaboradores:</h5>
                 
                         {cr?.colaboradores && cr?.colaboradores.map((colaborador, index) => (
                             <>

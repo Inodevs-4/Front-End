@@ -30,7 +30,6 @@ export const DetalhesApontamento = () =>{
             const data = await getLancamento(id)
             setLancamento(data)
             setLacamentoIncial(data)
-            console.log(lancamento)
         }
         hookLancamento()
       }, [])
@@ -95,10 +94,12 @@ export const DetalhesApontamento = () =>{
     }
 
     function removerVerba(e: any) {
+        console.log(lancamento)
         if (lancamento?.verbas !== undefined && verbas !== undefined){
             const verbasLanca = [...lancamento?.verbas]
             for (var i=0; i < verbasLanca.length; i++){
-                if (verbasLanca[i].id === Number(e.target.id)){
+                if (verbasLanca[i].numero === Number(e.target.id)){
+                    console.log('entrou')
                     const verbasSelect = [...verbas]
                     verbasSelect.push(verbasLanca[i])
                     setVerbas(verbasSelect)
@@ -254,21 +255,21 @@ export const DetalhesApontamento = () =>{
                         <>
                         {index % 2 === 0 ? (
                         <div className="left">
-                            <div key={verba.id} className="col-md">
+                            <div key={verba.numero} className="col-md">
                                 <div className="form-floating">
                                     <input type="text" className="form-control" id="floatingInputGrid" disabled value={verba.numero} name='verba'/>
                                     <label htmlFor="floatingInputGrid">Verba</label>
-                                    {isHidden && <button className="remover" id={String(verba.id)} onClick={removerVerba}>&#8212;</button>}
+                                    {isHidden && <button className="remover" id={String(verba.numero)} onClick={removerVerba}>&#8212;</button>}
                                 </div>  
                             </div>
                         </div>) : 
                         (
                         <div className="right">
-                        <div key={verba.id} className="col-md">
+                        <div key={verba.numero} className="col-md">
                         <div className="form-floating">
                             <input type="text" className="form-control" id="floatingInputGrid" disabled value={verba.numero} name='verba'/>
                             <label htmlFor="floatingInputGrid">Verba</label>
-                            {isHidden && <button className="remover" id={String(verba.id)} onClick={removerVerba}>&#8212;</button>}
+                            {isHidden && <button className="remover" id={String(verba.numero)} onClick={removerVerba}>&#8212;</button>}
                         </div>  
                         </div>  
                         </div>

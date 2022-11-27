@@ -59,7 +59,7 @@ export const Home = () =>{
           </a>
           </li>
           <li>
-          <a href="/aprovacao-lancamento">
+          <a href="/historico">
             <input  type="button" value="Visualizar apontamentos" id="Cadastrar"/>
           </a>
           </li>

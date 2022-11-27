@@ -82,6 +82,7 @@ export const Cadastro_verba = () => {
                     </div>
                     <p>Período Semanal:</p>
                         <select className="form-control select" aria-label="Disabled select example"  onChange={handleChange} name="periodo" >
+                        <option disabled selected>Selecione um período semanal</option>
                         <option value="segunda_sexta">Segunda a Sexta</option>
                         <option value="sabado">Sábado</option>
                         <option value="domingo">Domingo</option>

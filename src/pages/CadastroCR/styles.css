@@ -125,6 +125,10 @@ h5 {
     text-align: center;
 }
 
+.colab {
+    text-align: center;
+}
+
 /* .edit {
     width: 60%;
     min-height: 40em;
