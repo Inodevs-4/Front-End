@@ -281,3 +281,29 @@ hr {
     box-shadow: 2px 2px 5px 4px rgba(0,0,0,.2);
 
 }
+
+.selects {
+  display: flex;
+}
+
+.search {
+  display: inline-block;
+  width: 26%;
+  margin-bottom: 4%;
+  margin-right: 1%;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.search-button {
+  height: 37px;
+  width: 8%;
+}
+
+.search-select {
+  display: inline-block;
+  width: 26%;
+  margin-bottom: 4%;
+  margin-right: 1%;
+}

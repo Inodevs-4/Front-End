@@ -148,9 +148,23 @@ export async function gestorLancamentos(matricula: string | undefined){
     })
 }
 
-// dados do grafico
+// dados do grafico geral
 export async function graficoGeral() {
   return fetch(`${process.env.REACT_APP_SERVER}/graficoGeral`, {
+      method: 'GET',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+  })
+      .then((resp) => resp.json())
+      .then((data) => {
+          return data
+  })
+}
+
+// dados do grafico individual
+export async function graficoIndividual(matricula: string | undefined) {
+  return fetch(`${process.env.REACT_APP_SERVER}/graficoIndividual/${matricula}`, {
       method: 'GET',
       headers: {
       'Content-Type': 'application/json',
@@ -165,6 +179,19 @@ export async function graficoGeral() {
 // pesquisar lancamento no dash
 export async function todosLancamentosFiltro(colaborador: String, cliente: String, cr: String) {
   return fetch(`${process.env.REACT_APP_SERVER}/todosLancamentosFiltro/${colaborador}/${cliente}/${cr}`, {
+      method: 'GET',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+  })
+      .then((resp) => resp.json())
+      .then((data) => {
+          return data
+  })
+}
+
+export async function todosLancamentosColabPeriodo(matricula: String, data1: String, data2: String, modalidade: String) {
+  return fetch(`${process.env.REACT_APP_SERVER}/todosLancamentosColabPeriodo/${matricula}/${data1}/${data2}/${modalidade}`, {
       method: 'GET',
       headers: {
       'Content-Type': 'application/json',

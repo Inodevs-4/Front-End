@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import { formatarDataHora } from '../../functions/formatar';
 import { AuthContext } from "../../login/AuthContext"; 
-import { todosLancamentosColab } from '../../hooks/Lancamento';
+import { graficoIndividual, todosLancamentosColab, todosLancamentosColabPeriodo } from '../../hooks/Lancamento';
 import  Navbar  from "../../components/menu/Navbar";
 import {
   BarChart,
@@ -25,21 +25,44 @@ import { Lancamento } from "../../types/Types";
 import { exportPdfColaborador } from "../../functions/pdf";
 import TimelineHorasPorMes from "./TimelineHorasPorMes";
 import Grafico_HorasMensais from "./grafico_HorasMensais";
-
+import SearchIcon from '@mui/icons-material/Search';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export const Dashboard = () => {
 const auth = useContext(AuthContext)
 
+const [search, setSearch] = useState<{data1: string, data2: string, modalidade: "*"}>({data1: "*", data2: "*", modalidade: "*"})
+
+const [dadosGrafico, setDadosGrafico] = useState<{name: string, horaextra: number, sobreaviso: number}[]>([])
     const [lancamentos, setLancamentos] = useState<Lancamento[]>([])
     useEffect(() => {
         (async() => {
           setLancamentos(await todosLancamentosColab(String(auth.colaborador?.matricula)))
+          setDadosGrafico(await graficoIndividual(String(auth.colaborador?.matricula)))
         })()
     }, [])
 
     function exportPdf() {
       exportPdfColaborador(String(auth.colaborador?.matricula));
     }
+
+    function handleChange(e: any) {
+      setSearch({...search, [e.target.name]: e.target.value})
+    }  
+    
+    function handleSelect(e: any) {
+      setSearch({...search, [e.target.name]: e.target.options[e.target.selectedIndex].value,})
+    } 
+
+    async function searchLancamento() {
+      setLancamentos(await todosLancamentosColabPeriodo(String(auth.colaborador?.matricula), search.data1, search.data2, search.modalidade))
+    }
+  
+    async function clear() {
+      setLancamentos(await todosLancamentosColab(String(auth.colaborador?.matricula)))
+      setSearch({data1: "*", data2: "*", modalidade: "*"})
+    }
+  
 
 const renderCustomizedLabel = (props: any) => {
   const { x, y, width, value } = props;
@@ -72,6 +95,20 @@ const renderCustomizedLabel = (props: any) => {
             <h4>Quadro de Horas extras e Sobreavisos</h4>
             <h6>Colaborador: {auth.colaborador?.nome}</h6>
             <hr />
+            <div className="selects">
+              <select  className="form-select search-select" id="modalidade" onChange={handleSelect} name="modalidade" value={search.modalidade}>
+                <option value="*" disabled selected>Modalidade</option>
+                <option value="sobreaviso">Sobreaviso</option>
+                <option  value="hora extra">Hora Extra</option>
+              </select>
+
+              <input className="search" value={search.data1} name="data1" type="date" onChange={handleChange}/>
+              <input className="search" value={search.data2} name="data2" type="date" onChange={handleChange}/>
+              
+              <button className="search-button btn btn-primary" onClick={searchLancamento}><SearchIcon /></button>
+              <button className="search-button btn btn-secondary" onClick={clear}><ClearIcon /></button>
+            </div>
+
             <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1" >
                     <Row>
                         <Col sm={4}>
@@ -129,20 +166,7 @@ const renderCustomizedLabel = (props: any) => {
     <BarChart
       width={700}
       height={350}
-      data={[
-        {name: "jan/2022", horaextra: 10, sobreaviso: 20}, 
-        {name: "fev/2022", horaextra: 15, sobreaviso: 7},
-        {name: "mar/2022", horaextra: 10, sobreaviso: 20}, 
-        {name: "abr/2022", horaextra: 15, sobreaviso: 7},
-        {name: "mai/2022", horaextra: 10, sobreaviso: 20}, 
-        {name: "jun/2022", horaextra: 15, sobreaviso: 7},
-        {name: "jul/2022", horaextra: 10, sobreaviso: 20}, 
-        {name: "ago/2022", horaextra: 15, sobreaviso: 7},
-        {name: "set/2022", horaextra: 10, sobreaviso: 20}, 
-        {name: "out/2022", horaextra: 15, sobreaviso: 7},
-        {name: "nov/2022", horaextra: 10, sobreaviso: 20}, 
-        {name: "dez/2022", horaextra: 15, sobreaviso: 7}
-      ]}
+      data={dadosGrafico}
 
       margin={{
         top: 5,
