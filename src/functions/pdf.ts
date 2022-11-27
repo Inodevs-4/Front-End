@@ -38,12 +38,12 @@ async function creatPdf({
         doc.addPage();
         doc.setFont("helvetica", "bold");
         doc.setFontSize(16);
-        doc.text("Horas Extras e Sobreaviso trabalhadas na empresa em 2022", 25, top-10);
-        top = 25;
+        doc.text("Horas Extras e Sobreaviso trabalhadas na empresa em 2022 e \n no mês atual, respectivamente", 25, top-10);
+        top = 10;
       } else {
         doc.setFont("helvetica", "bold");
         doc.setFontSize(16);
-        doc.text("Horas Extras e Sobreaviso trabalhadas na empresa em 2022", 25, top-10);
+        // doc.text("Horas Extras e Sobreaviso trabalhadas na empresa em 2022", 25, top-10);
       }
   
       doc.addImage(imgData, "PNG", padding, top, elWidth, elHeight, `image${i}`);

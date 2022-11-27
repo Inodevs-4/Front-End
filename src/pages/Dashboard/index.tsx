@@ -23,6 +23,8 @@ import {
 } from "recharts";
 import { Lancamento } from "../../types/Types";
 import { exportPdfColaborador } from "../../functions/pdf";
+import TimelineHorasPorMes from "./TimelineHorasPorMes";
+import Grafico_HorasMensais from "./grafico_HorasMensais";
 
 
 export const Dashboard = () => {
@@ -64,6 +66,7 @@ const renderCustomizedLabel = (props: any) => {
   
     <body>
       <Navbar/>
+
       <div className="containeraaa">
         <div className="hora">
             <h4>Quadro de Horas extras e Sobreavisos</h4>
@@ -160,8 +163,17 @@ const renderCustomizedLabel = (props: any) => {
     </BarChart>
     
     </div>
+    
     <button onClick={exportPdf} className="btn btn-primary export-pdf">Exportar Pdf</button>
+
     </div>
+
+    <div className="timel">
+      <TimelineHorasPorMes/>
+    </div>
+    <div className="horas_mensais">
+<Grafico_HorasMensais/>
+</div> 
     </body>
   );
 }
