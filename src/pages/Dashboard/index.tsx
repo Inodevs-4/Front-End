@@ -31,6 +31,8 @@ import ClearIcon from '@mui/icons-material/Clear';
 export const Dashboard = () => {
 const auth = useContext(AuthContext)
 
+let ano = (new Date(Date.now())).getFullYear()
+
 const [search, setSearch] = useState<{data1: string, data2: string, modalidade: "*"}>({data1: "*", data2: "*", modalidade: "*"})
 
 const [dadosGrafico, setDadosGrafico] = useState<{name: string, horaextra: number, sobreaviso: number}[]>([])
@@ -163,6 +165,7 @@ const renderCustomizedLabel = (props: any) => {
             </Tab.Container>
                 </div>
     <div className="eu">
+    <h4 className="mb-4">Horas Extras e Sobreaviso individual trabalhadas na empresa em {ano}</h4>
     <BarChart
       width={700}
       height={350}

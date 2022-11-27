@@ -33,7 +33,7 @@ export const Dashboard_geral = () => {
 
     const [mLancamentos, setMLancamentos] = useState<Lancamento[]>([])
     const [dadosGrafico, setDadosGrafico] = useState<{name: string, horaextra: number, sobreaviso: number}[]>([])
-
+    let ano = (new Date(Date.now())).getFullYear()
     const [crs, setCrs] = useState<CR[]>([])
     const [clientes, setClientes] = useState<Cliente[]>([])
     const [colaboradores, setColaboradores] = useState<Colaborador[]>([])
@@ -175,7 +175,7 @@ const renderCustomizedLabel = (props: any) => {
             </Tab.Container>
                 </div>
     <div className="eu">
-    <h4 className="mb-4">Horas Extras e Sobreaviso trabalhadas na empresa em 2022</h4>
+    <h4 className="mb-4">Horas Extras e Sobreaviso trabalhadas na empresa em {ano}</h4>
     <BarChart
       width={700}
       height={350}
