@@ -321,24 +321,25 @@ export const DetalhesApontamento = () =>{
                     )}
         
                     <hr className='linha'/>
-
+                    {!isHidden &&                           
                     <div className="buttons">
                         {(auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
                             <>
-                            <button onClick={reprovar} className='btn btn-danger reprovar' hidden={isHidden}>Reprovar</button>
+                            <button onClick={reprovar} className='btn btn-danger reprovar'>Reprovar</button>
                             </>
                         )}
                         {(lancamento?.status === "reprovado" || auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
                             <>
-                            <button onClick={editarLancamento}  className='btn btn-primary editar' hidden={isHidden}>Editar</button>
+                            <button onClick={editarLancamento}  className='btn btn-primary editar'>Editar</button>
                             </>
                         )}
                         {(auth.colaborador?.perfil === "gestor" || auth.colaborador?.perfil === "administrador") && (
                             <>
-                            <button onClick={aprovar} className='btn btn-success editar' hidden={isHidden}>Aprovar</button>
+                            <button onClick={aprovar} className='btn btn-success aprovar'>Aprovar</button>
                             </>
                         )}
                     </div>
+                    }
                     <div className='alteracao' hidden={isVisible}>
                         <button className='btn btn-danger' onClick={cancelar}>Cancelar</button>
                         <button onClick={salvarLacamento} className='btn btn-success'>Concluir</button>

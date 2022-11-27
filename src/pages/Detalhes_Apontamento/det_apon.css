@@ -35,11 +35,20 @@ h3 {
 }
 
 
-.editar{
+.aprovar{
     width: 25% !important;
-    margin-left: 5% !important;
+    margin-left: 0% !important;
     margin-right: 0;
     font-size: 15px;
+}
+
+.editar {
+    margin-right: 10% !important;
+    margin-left: 12% !important;
+}
+
+.reprovar {
+    margin-left: 13% !important;
 }
 
 .linha {
@@ -64,16 +73,3 @@ h3 {
     display: inline !important;
     width: 10em !important;
 }
-
-.btn.btn-primary.editar{
-    margin-left: 5% !important;
-}
-
-.btn.btn-danger.editar{
-    margin-left: 5% !important;
-}
-
-.btn-danger.reprovar{
-    margin-left: 5% !important;
-}
-
