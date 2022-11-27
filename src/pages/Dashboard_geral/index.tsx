@@ -26,6 +26,8 @@ import { selectColaboradores } from "../../hooks/Colaborador";
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import { exportPdfGeral } from "../../functions/pdf";
+import TimelineHorasPorMes from "./TimelineHorasPorMes";
+import Grafico_HorasMensais from "./grafico_HorasMensais";
 
 export const Dashboard_geral = () => {
 
@@ -199,6 +201,14 @@ const renderCustomizedLabel = (props: any) => {
     </div>
     <button onClick={exportPdfGeral} className="btn btn-primary export-pdf">Exportar Pdf</button>
     </div>
+
+    <div className="timel">
+      <TimelineHorasPorMes/>
+    </div>
+    <div className="horas_mensais">
+      <Grafico_HorasMensais/>
+    </div> 
+    
     </body>
   );
 }
